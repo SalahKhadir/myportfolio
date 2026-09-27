@@ -1,26 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@300;400;700&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-accent: 'Bebas Neue', sans-serif;
+  --font-sans: 'Montserrat', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --color-accent: var(--accent);
+  --color-gray-alt: rgba(100, 100, 100, 0.4);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --accent: #000068; /* Light mode color */
+  }
+  .dark {
+    --accent: #5470ff; /* Dark mode color */
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .heading {
+    @apply font-accent text-6xl md:text-8xl lg:text-9xl text-black dark:text-white uppercase tracking-tight;
+  }
+
+  .btn-link {
+    @apply inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-accent hover:text-black dark:hover:text-white transition-colors;
+  }
+
+  .button {
+    @apply relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-mono text-xs font-bold tracking-widest text-white uppercase bg-black dark:bg-white dark:text-black rounded-lg transition-all duration-300 hover:bg-accent dark:hover:bg-accent dark:hover:text-white;
+  }
 }
