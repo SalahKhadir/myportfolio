@@ -52,7 +52,7 @@ export default function Hero() {
       <div className="relative w-full max-w-7xl mx-auto h-[85vh] min-h-[640px] flex items-center justify-center">
 
         {/* 1. Portrait Cut-out Layer (Shifted Left + High-Transparency Blend) */}
-        <div className="absolute bottom-0 -left-6 sm:left-0 md:-left-8 lg:-left-14 xl:-left-80 z-20 pointer-events-none select-none w-[420px] sm:w-[500px] md:w-[560px] lg:w-[620px] xl:w-[850px] max-w-none">
+        <div className="absolute bottom-0 -left-6 sm:left-0 md:-left-8 lg:-left-14 xl:-left-75 z-20 pointer-events-none select-none w-[420px] sm:w-[500px] md:w-[560px] lg:w-[620px] xl:w-[850px] max-w-none">
           <div className="relative w-full" style={parallaxStyle}>
             {/* Headshot with mask-image for a true transparent fade at the bottom, without colored overlays */}
             <Image
@@ -60,7 +60,7 @@ export default function Hero() {
               alt={profile.name}
               width={660}
               height={900}
-              className="w-full h-auto object-contain drop-shadow-2xl mix-blend-multiply dark:mix-blend-lighten opacity-90 brightness-105 contrast-110 [mask-image:linear-gradient(to_top,transparent_0%,black_15%)]"
+              className="w-full h-auto object-contain drop-shadow-2xl mix-blend-multiply dark:mix-blend-lighten opacity-93 brightness-100 contrast-110 [mask-image:linear-gradient(to_top,transparent_0%,black_15%)]"
               priority
             />
           </div>
