@@ -1,5 +1,6 @@
 stages:
   - validate
+  - test
   - preview
   - production
 
@@ -22,7 +23,23 @@ lint_and_typecheck:
   script:
     - npm ci
     - npm run lint
-    - npm run test
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_COMMIT_BRANCH
+
+unit_tests:
+  stage: test
+  script:
+    - npm ci
+    - npm run test:ci
+  coverage: '/All files[^|]*\|[^|]*\s+([\d\.]+)/'
+  artifacts:
+    when: always
+    reports:
+      junit: junit.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura-coverage.xml
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
     - if: $CI_COMMIT_BRANCH
