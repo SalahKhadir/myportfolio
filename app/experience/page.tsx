@@ -2,9 +2,15 @@ import Navbar from "@/components/Navbar";
 import FadeInView from "@/components/FadeInView";
 import { experience, education, certifications } from "@/resources/content";
 
-export const metadata = {
-  title: "Experience | Salah Khadir",
-  description: "Career timeline, education, and certifications.",
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Track Record & Experience',
+  description:
+    'Professional experience, DevOps internships, and software engineering milestones by Salah Khadir.',
+  alternates: {
+    canonical: 'https://www.salahkhadir.codes/experience',
+  },
 };
 
 export default function ExperiencePage() {

@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import { Mail, Globe, Calendar, MessageCircle } from "lucide-react";
+import React, { useState, useEffect } from 'react';
+import { Mail, Globe, Calendar, MessageCircle } from 'lucide-react';
 
 const Github = ({ className }: { className?: string }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -17,6 +17,8 @@ const Linkedin = ({ className }: { className?: string }) => (
 
 export default function ContactForm() {
   const [time, setTime] = useState("");
+  const [status, setStatus] = useState<'IDLE' | 'SUBMITTING' | 'SUCCESS' | 'ERROR'>('IDLE');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const updateTime = () => {
@@ -39,10 +41,47 @@ export default function ContactForm() {
     return () => clearInterval(interval);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    alert("Inquiry submitted!");
-  };
+    setStatus('SUBMITTING');
+    setErrorMessage('');
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    formData.append(
+      'access_key',
+      process.env.NEXT_PUBLIC_WEB3FORMS_KEY || 'YOUR_ACCESS_KEY_HERE'
+    );
+    formData.append('subject', 'New Portfolio Inquiry - salahkhadir.codes');
+    formData.append('from_name', 'Portfolio Contact Hub');
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+        },
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setStatus('SUCCESS');
+        form.reset();
+        setTimeout(() => setStatus('IDLE'), 3000);
+      } else {
+        setStatus('ERROR');
+        setErrorMessage(result.message || 'Transmission failed.');
+        setTimeout(() => setStatus('IDLE'), 3000);
+      }
+    } catch {
+      setStatus('ERROR');
+      setErrorMessage('Network timeout. Please email directly.');
+      setTimeout(() => setStatus('IDLE'), 3000);
+    }
+  }
 
   return (
     <div className="w-full py-20 md:py-28 relative z-10">
@@ -58,30 +97,55 @@ export default function ContactForm() {
       <div className="lg:col-span-7 bg-white dark:bg-[#111111] border border-gray-alt/10 dark:border-white/10 rounded-2xl p-8 shadow-2xl">
         <h2 className="text-2xl font-bold text-black dark:text-white mb-6">Send a Message</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <input
+            type="checkbox"
+            name="botcheck"
+            className="hidden"
+            style={{ display: 'none' }}
+          />
           <input 
             required
+            name="name"
             type="text"
             placeholder="Name"
             className="w-full bg-black/5 dark:bg-[#1c1c1c] border border-transparent dark:border-white/10 rounded-xl px-4 py-3 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 outline-none focus:border-accent dark:focus:border-accent transition-colors"
           />
           <input 
             required
+            name="email"
             type="email"
             placeholder="Email"
             className="w-full bg-black/5 dark:bg-[#1c1c1c] border border-transparent dark:border-white/10 rounded-xl px-4 py-3 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 outline-none focus:border-accent dark:focus:border-accent transition-colors"
           />
           <textarea 
             required
+            name="message"
             rows={5}
             placeholder="Message"
             className="w-full bg-black/5 dark:bg-[#1c1c1c] border border-transparent dark:border-white/10 rounded-xl px-4 py-3 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 outline-none focus:border-accent dark:focus:border-accent transition-colors resize-none"
           />
+          
+          {status === 'ERROR' && (
+            <div className="text-rose-500 font-mono text-xs uppercase tracking-widest mt-2">
+              ✖ {errorMessage}
+            </div>
+          )}
+          {status === 'SUCCESS' && (
+            <div className="text-emerald-500 font-mono text-xs uppercase tracking-widest mt-2">
+              ✔ MESSAGE DELIVERED
+            </div>
+          )}
+
           <div className="mt-2">
             <button 
               type="submit"
-              className="bg-black text-white dark:bg-white dark:text-black font-semibold px-6 py-3 rounded-xl hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
+              disabled={status === 'SUBMITTING'}
+              className="w-full sm:w-auto bg-black text-white dark:bg-white dark:text-black font-semibold px-6 py-3 rounded-xl hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Submit Inquiry
+              {status === "IDLE" && "Submit Inquiry"}
+              {status === "SUBMITTING" && "Sending..."}
+              {status === "SUCCESS" && "Sent!"}
+              {status === "ERROR" && "Retry"}
             </button>
           </div>
         </form>

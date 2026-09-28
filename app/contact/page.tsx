@@ -2,9 +2,15 @@ import Navbar from "@/components/Navbar";
 import ContactForm from "@/components/ContactForm";
 import FadeInView from "@/components/FadeInView";
 
-export const metadata = {
-  title: "Contact | Salah Khadir",
-  description: "Initialize discovery and deploy an inquiry.",
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Direct Channel & Inquiries',
+  description:
+    'Get in touch with Salah Khadir regarding PFE (End-of-Studies) internship opportunities and engineering collaborations.',
+  alternates: {
+    canonical: 'https://www.salahkhadir.codes/contact',
+  },
 };
 
 export default function ContactPage() {

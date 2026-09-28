@@ -3,9 +3,15 @@ import ServicesSection from "@/components/ServicesSection";
 import TechnicalArsenal from "@/components/TechnicalArsenal";
 import FadeInView from "@/components/FadeInView";
 
-export const metadata = {
-  title: "Capabilities | Salah Khadir",
-  description: "Specializing in resilient server architectures, automated deployment security, and contextual data pipelines.",
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Technical Capabilities & Stack',
+  description:
+    'Core competencies across backend engineering (Spring Boot, FastAPI), DevSecOps CI/CD automation, and cloud delivery.',
+  alternates: {
+    canonical: 'https://www.salahkhadir.codes/capabilities',
+  },
 };
 
 export default function CapabilitiesPage() {

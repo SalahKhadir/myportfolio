@@ -76,22 +76,22 @@ export default function Hero() {
       </motion.div>
 
       {/* Main Centered Stage */}
-      <div className="relative w-full max-w-7xl mx-auto h-[85vh] min-h-[640px] flex items-center justify-center">
+      <div className="relative w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center md:h-[85vh] md:min-h-[640px] pt-24 md:pt-0">
 
         {/* 1. Portrait Cut-out Layer */}
         <motion.div 
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-          className="absolute bottom-0 -left-6 sm:left-0 md:-left-8 lg:-left-14 xl:-left-75 z-20 pointer-events-none select-none w-[420px] sm:w-[500px] md:w-[560px] lg:w-[620px] xl:w-[850px] max-w-none"
+          className="relative md:absolute order-1 md:order-none bottom-0 md:-left-8 lg:-left-14 xl:-left-75 z-0 md:z-20 pointer-events-none select-none w-full max-w-[380px] sm:max-w-[460px] md:max-w-none md:w-[560px] lg:w-[620px] xl:w-[850px] mx-auto flex items-end justify-center -mb-10 md:mb-0"
         >
-          <div className="relative w-full" style={parallaxStyle}>
+          <div className="relative w-full h-auto flex items-end" style={parallaxStyle}>
             <Image
               src="/assets/Picture.png"
               alt={profile.name}
               width={660}
               height={900}
-              className="w-full h-auto object-contain drop-shadow-2xl mix-blend-multiply dark:mix-blend-lighten opacity-93 brightness-100 contrast-110 [mask-image:linear-gradient(to_top,transparent_0%,black_15%)]"
+              className="w-full h-auto object-contain object-bottom drop-shadow-2xl mix-blend-multiply dark:mix-blend-lighten opacity-93 brightness-100 contrast-110 [mask-image:linear-gradient(to_top,transparent_0%,black_20%)] md:[mask-image:linear-gradient(to_top,transparent_0%,black_15%)]"
               priority
             />
           </div>
@@ -102,10 +102,10 @@ export default function Hero() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-center justify-center text-center px-4"
+          className="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-center justify-center text-center px-4 order-2 md:order-none pb-20 md:pb-0"
         >
           {/* Greeting */}
-          <motion.p variants={itemVariants} className="text-gray-600 dark:text-gray-300 text-lg md:text-2xl font-sans tracking-wide flex items-center justify-center gap-2">
+          <motion.p variants={itemVariants} className="text-gray-600 dark:text-gray-300 text-lg md:text-2xl font-sans tracking-wide flex flex-wrap items-center justify-center gap-x-2 gap-y-3">
             Hi, my name is{" "}
             <span className="relative inline-block px-2.5 py-0.5 bg-accent text-white font-bold before:absolute before:-inset-1 before:bg-accent before:-skew-y-3 before:-z-10 mx-2">
               {profile.name}
@@ -114,7 +114,7 @@ export default function Hero() {
           </motion.p>
 
           {/* Main Display Headline */}
-          <motion.h1 variants={itemVariants} className="font-accent mt-4 text-[clamp(64px,12.5vw,185px)] leading-[0.88] tracking-tight uppercase text-black dark:text-white whitespace-nowrap select-none">
+          <motion.h1 variants={itemVariants} className="font-accent mt-4 text-[clamp(44px,11vw,185px)] md:text-[clamp(64px,12.5vw,185px)] leading-[0.88] tracking-tight uppercase text-black dark:text-white whitespace-normal md:whitespace-nowrap select-none">
             {profile.titlePrimary}
             <br />
             {profile.titleSecondary}
@@ -126,10 +126,10 @@ export default function Hero() {
           </motion.p>
 
           {/* Action CTA */}
-          <motion.div variants={itemVariants} className="mt-8 flex items-center justify-center gap-8 w-full">
+          <motion.div variants={itemVariants} className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 w-full">
             <Link
               href="/architectures"
-              className="inline-flex items-center gap-2 font-mono text-xs tracking-wider text-gray-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm tracking-wider text-gray-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
             >
               VIEW ARCHITECTURES &rarr;
             </Link>
@@ -137,13 +137,13 @@ export default function Hero() {
               href="/Salah_KHADIR_CV.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 font-mono text-xs tracking-wider text-gray-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm tracking-wider text-gray-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
             >
               RESUME / CV ↗
             </a>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 font-mono text-xs tracking-wider text-gray-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors hidden sm:flex"
+              className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm tracking-wider text-gray-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
             >
               GET IN TOUCH &rarr;
             </Link>

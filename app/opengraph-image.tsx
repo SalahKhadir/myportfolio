@@ -1,73 +1,137 @@
 import { ImageResponse } from 'next/og';
-import fs from 'fs';
-import path from 'path';
 
-export const runtime = 'nodejs';
-export const alt = 'Salah Khadir - Software & DevOps Engineer';
+export const runtime = 'edge';
+export const alt = 'Salah Khadir | Software & DevOps Engineer';
 export const size = {
   width: 1200,
   height: 630,
 };
 export const contentType = 'image/png';
 
-export default async function Image() {
-  // Read icon.svg directly from public
-  const iconPath = path.join(process.cwd(), 'public', 'icon.svg');
-  const svgContent = fs.readFileSync(iconPath, 'utf8');
-
+export default function Image() {
   return new ImageResponse(
     (
       <div
         style={{
-          background: '#0a0a0a',
-          width: '100%',
           height: '100%',
+          width: '100%',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          border: '1px solid #262626',
+          backgroundColor: '#050505',
+          backgroundImage:
+            'radial-gradient(circle at 50% 40%, #171717 0%, #050505 70%)',
+          position: 'relative',
         }}
       >
+        {/* Subtle decorative border grid */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: '24px',
+            border: '1px solid rgba(255, 255, 255, 0.08)',
+            borderRadius: '24px',
+            display: 'flex',
+          }}
+        />
+
+        {/* Brand Monogram Icon Badge */}
         <div
           style={{
             display: 'flex',
+            flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            width: '220px',
-            height: '220px',
-            borderRadius: '36px',
-            background: '#121212',
-            border: '2px solid #333333',
-            padding: '30px',
+            width: '140px',
+            height: '140px',
+            borderRadius: '32px',
+            backgroundColor: '#0d0d0d',
+            border: '1px solid rgba(255, 255, 255, 0.16)',
+            boxShadow: '0 20px 50px rgba(0, 0, 0, 0.6)',
           }}
         >
-          <img
-            src={`data:image/svg+xml;base64,${Buffer.from(svgContent).toString('base64')}`}
-            width={160}
-            height={160}
-          />
+          <span
+            style={{
+              fontSize: '44px',
+              fontWeight: 900,
+              letterSpacing: '-0.05em',
+              color: '#ffffff',
+              lineHeight: 1,
+            }}
+          >
+            SK
+          </span>
+          <span
+            style={{
+              fontSize: '11px',
+              fontFamily: 'monospace',
+              letterSpacing: '0.25em',
+              color: '#3b82f6',
+              marginTop: '6px',
+            }}
+          >
+            SYSTEM
+          </span>
         </div>
+
+        {/* Name Header */}
         <div
           style={{
-            marginTop: '32px',
-            fontSize: '40px',
-            fontWeight: 700,
+            marginTop: '36px',
+            fontSize: '52px',
+            fontWeight: 800,
+            letterSpacing: '-0.03em',
             color: '#ffffff',
-            letterSpacing: '-0.02em',
+            display: 'flex',
+            alignItems: 'center',
           }}
         >
           Salah Khadir
         </div>
+
+        {/* Engineering Title */}
         <div
           style={{
-            marginTop: '10px',
+            marginTop: '12px',
             fontSize: '22px',
-            color: '#a3a3a3',
             fontFamily: 'monospace',
+            letterSpacing: '0.08em',
+            color: '#a3a3a3',
+            display: 'flex',
+            alignItems: 'center',
           }}
         >
-          Software & DevOps Engineer
+          SOFTWARE &amp; DEVOPS ENGINEER
+        </div>
+
+        {/* Stack Highlights Footer Pills */}
+        <div
+          style={{
+            display: 'flex',
+            gap: '12px',
+            marginTop: '36px',
+          }}
+        >
+          {['SPRING BOOT', 'FASTAPI', 'GITLAB CI/CD', 'OCI CERTIFIED'].map(
+            (tag) => (
+              <div
+                key={tag}
+                style={{
+                  padding: '6px 16px',
+                  borderRadius: '9999px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  fontSize: '12px',
+                  fontFamily: 'monospace',
+                  color: '#737373',
+                  letterSpacing: '0.05em',
+                }}
+              >
+                {tag}
+              </div>
+            )
+          )}
         </div>
       </div>
     ),

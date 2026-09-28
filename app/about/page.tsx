@@ -2,9 +2,15 @@ import Navbar from "@/components/Navbar";
 import FadeInView from "@/components/FadeInView";
 import AboutSection from "@/components/AboutSection";
 
-export const metadata = {
-  title: "About | Salah Khadir",
-  description: "About the engineer behind the systems.",
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About & Background',
+  description:
+    'Academic background at EMSI Rabat (DDSI), certifications (OCI DevOps & Java SE 17), and systems engineering philosophy.',
+  alternates: {
+    canonical: 'https://www.salahkhadir.codes/about',
+  },
 };
 
 export default function AboutPage() {
