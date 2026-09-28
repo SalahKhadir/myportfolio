@@ -129,15 +129,23 @@ export default function Hero() {
           <motion.div variants={itemVariants} className="mt-8 flex items-center justify-center gap-8 w-full">
             <Link
               href="/architectures"
-              className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-accent hover:text-black dark:hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 font-mono text-xs tracking-wider text-gray-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
             >
-              View Architectures &rarr;
+              VIEW ARCHITECTURES &rarr;
             </Link>
+            <a
+              href="/Salah_KHADIR_CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-mono text-xs tracking-wider text-gray-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
+            >
+              RESUME / CV ↗
+            </a>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-accent hover:text-black dark:hover:text-white transition-colors hidden sm:flex ml-2"
+              className="inline-flex items-center gap-2 font-mono text-xs tracking-wider text-gray-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors hidden sm:flex"
             >
-              Get In Touch &rarr;
+              GET IN TOUCH &rarr;
             </Link>
           </motion.div>
         </motion.div>
