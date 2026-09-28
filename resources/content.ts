@@ -27,44 +27,87 @@ export const profile = {
 export const architectures = [
   {
     index: "01",
-    category: "Cloud & DevOps Infrastructure",
-    title: "GenAI Microservices CI/CD Platform",
-    client: "Capgemini Engineering Morocco",
-    description: "A production 6-stage automated GitLab CI/CD pipeline orchestrating 9 generative AI microservices, FastAPI backend, MinIO storage, and React/Vite frontends with automated security gates.",
-    image: "/images/projects/capgemini-pipeline.png",
-    stack: ["GitLab CI/CD", "Docker", "Trivy", "Semgrep", "Gitleaks", "FastAPI"],
+    category: "Enterprise IT Incident Management & Service Desk",
+    title: "TicketHub",
+    client: "Completed Monorepo",
+    description: "TicketHub provides structured incident resolution for IT support operations. Built on a decoupled Spring Boot and Next.js foundation, it manages the complete ticket lifecycle across priority levels, categories, and custom workflows. The backend features scheduled background services for SLA compliance monitoring, automatically flagging nearing breaches and routing tickets based on technician availability. Updates are delivered asynchronously via Server-Sent Events, ensuring operations teams maintain situational awareness across all administrative and support views.",
+    image: "/assets/projects/tickethub.png",
+    stack: ["Spring Boot 3", "Next.js (App Router)", "PostgreSQL/MySQL", "Flyway", "Server-Sent Events (SSE)", "GitHub Actions CI"],
     coreFeatures: [
-      "Integrated Shift-Left SAST & Secret Detection",
-      "DAG Parallelization: 4m42s Run Time (-19.7%)",
-      "Automated SSH-less Zero-Downtime Deployment"
+      "Strict Role-Based Access Control with guarded client-side routes and secure endpoints",
+      "Automated background SlaMonitoringService",
+      "Asynchronous Server-Sent Events (SSE) notification stream",
+      "Technician availability tracking, active load balancing, and administrative resolution metrics"
     ]
   },
   {
     index: "02",
-    category: "Distributed Backend & Monorepo",
-    title: "TicketHub Incident Management",
-    client: "Enterprise System Project",
-    description: "Production-grade IT incident management platform engineered as a modular monorepo. Features stateless JWT/RBAC security, automated SLA escalation engine, and real-time push updates via SSE.",
-    image: "/images/projects/tickethub.png",
-    stack: ["Spring Boot", "Next.js", "MySQL", "Spring Security", "SSE"],
+    category: "Digital Library & AI Reading Assistant",
+    title: "BibloNova",
+    client: "Completed Monorepo",
+    description: "BibloNova modernizes digital literature management by pairing an enterprise-grade backend with interactive AI capabilities. Built with a Spring Boot and React monorepo architecture, the platform features stateless JWT authentication, role-based access control, and complete CRUD workflows for library inventories. Beyond standard reading and shelving features, BibloNova integrates a configurable Gemini-driven chat client capable of answering contextual queries and offering reading recommendations based on reader history. The platform is containerized using Docker and Docker Compose for production-grade reliability.",
+    image: "/assets/projects/BibloNova.png",
+    stack: ["Spring Boot 3", "Java 17", "React (Vite)", "MySQL", "Spring Security", "Docker", "Google Gemini API"],
     coreFeatures: [
-      "Stateless JWT Authentication & Granular RBAC",
-      "Automated SLA Tracking with Escalation Rules",
-      "Real-time Event Streaming via Server-Sent Events"
+      "Context-aware AI assistant (BibloBot) with runtime tuning",
+      "Multi-tier role permissions separating standard readers from admins",
+      "Centralized management console featuring inventory controls"
     ]
   },
   {
     index: "03",
-    category: "Intelligent Document Retrieval (RAG)",
-    title: "BibloNova AI Document Intelligence",
-    client: "Academic Engineering Project",
-    description: "Document management system coupling a Dockerized multi-service Spring Boot backend with a Gemini API RAG pipeline for contextual document search across unstructured corporate records.",
-    image: "/images/projects/biblonova.png",
-    stack: ["Spring Boot", "React", "Docker", "Gemini API", "MySQL"],
+    category: "Cultural Media & Music Streaming Platform",
+    title: "Sounds of Morocco",
+    client: "Live / Deployed",
+    description: "Sounds of Morocco is a deployed cultural news and media platform designed to preserve and document the modern Moroccan music landscape. Built with Next.js (App Router) and backed by a headless Strapi CMS, the web application delivers static and dynamic editorial layouts via custom block renderers and Cloudinary media optimization. It features an integrated persistent audio engine that provides continuous playback across route transitions, complete with platform links, artist profiles, and submission channels for emerging talent.",
+    image: "/assets/projects/soundsofmorocco.png",
+    stack: ["Next.js (App Router)", "Strapi CMS", "Tailwind CSS", "Cloudinary", "Framer Motion", "Vercel"],
     coreFeatures: [
-      "RAG Contextual Search Pipeline",
-      "Dockerized Multi-Container Architecture",
-      "Secure Document Ingestion & Metadata Indexing"
+      "Embedded persistent HTML5 mini-player (PlayerContext)",
+      "Custom Strapi Blocks integration for dynamic journalism",
+      "Centralized directory for emerging Moroccan artists"
+    ]
+  },
+  {
+    index: "04",
+    category: "Geospatial Analytics & Interactive Mapping",
+    title: "GeoLocation: Airbnb & Food Hunter",
+    client: "Completed Course Project",
+    description: "Developed as a NoSQL database application, GeoLocation (Airbnb & Food Hunter) demonstrates location-based search and geospatial data processing. The system stores accommodation and food venue points-of-interest in MongoDB, backed by a 2dsphere index to handle spherical geometry lookups. Using an interactive Streamlit interface, users can query points within an adjustable radius, filter results by venue category, and inspect real-time proximity layers rendered dynamically over interactive maps.",
+    image: "/assets/projects/geolocation.png",
+    stack: ["Python", "Streamlit", "MongoDB", "GeoSpatial Indexing (2dsphere)", "Folium / Leaflet", "Pandas"],
+    coreFeatures: [
+      "MongoDB 2dsphere spatial indexing with $near operators",
+      "Dual exploration modes allowing spatial queries from predefined hubs",
+      "Interactive map visualization with color-coded markers"
+    ]
+  },
+  {
+    index: "05",
+    category: "Conversational AI & Internal Document Parsing",
+    title: "Enterprise HR AI Assistant",
+    client: "Completed Monorepo",
+    description: "Engineered during a software engineering internship, this AI ChatBot streamlines corporate HR and recruitment workflows. Built using FastAPI and React, it connects custom document ingestion pipelines to Google Gemini models, enabling contextual retrieval over internal company policies, resumes, and candidate logs. The solution incorporates a dedicated administrative analytics suite, token-budget enforcement via middleware rate limiters, and conversation session persistence for audit compliance.",
+    image: "/assets/projects/ai-chatbot.png",
+    stack: ["FastAPI", "Python", "Google Gemini SDK", "SQLAlchemy", "React (Vite)", "Tailwind CSS"],
+    coreFeatures: [
+      "Conversational AI model grounded with domain-specific datasets",
+      "Administrative document ingestion engine",
+      "Custom token-bucket rate limiter middleware"
+    ]
+  },
+  {
+    index: "06",
+    category: "Urban Waste Management & Ecological Reporting",
+    title: "EcoTrace",
+    client: "Completed Monorepo",
+    description: "EcoTrace bridges the communication gap between citizens and municipal waste operators. Leveraging Django REST Framework and MySQL, the platform provides authenticated APIs for logging environmental irregularities with media attachments and status pipelines. The service incorporates asynchronous notification services, comprehensive permission structures, and custom data migration tooling to handle waste processing analytics and localized community interventions.",
+    image: "/assets/projects/ecotrace.png",
+    stack: ["Django", "Django REST Framework", "React", "MySQL", "JWT Auth", "Pillow"],
+    coreFeatures: [
+      "Waste reporting workflow supporting media uploads & geolocation",
+      "Multi-tenant permission scheme isolating reporters, operators, inspectors",
+      "Automated database provisioning scripts & dynamic notifications"
     ]
   }
 ];
@@ -186,4 +229,51 @@ export const education = [
     school: "Institut Spécialisé de Technologie Appliquée (ISTA)",
     location: "Errachidia, Morocco",
   },
+];
+
+export const cvTechStackData = [
+  {
+    category: "Languages & Core",
+    items: [
+      { name: "Java", icon: "FaJava" },
+      { name: "Python", icon: "SiPython" },
+      { name: "TypeScript", icon: "SiTypescript" },
+      { name: "JavaScript", icon: "SiJavascript" },
+      { name: "SQL", icon: "TbDatabase" },
+      { name: "PHP", icon: "SiPhp" }
+    ]
+  },
+  {
+    category: "Frameworks & Runtimes",
+    items: [
+      { name: "Spring Boot", icon: "SiSpringboot" },
+      { name: "FastAPI", icon: "SiFastapi" },
+      { name: "Next.js", icon: "SiNextdotjs" },
+      { name: "React", icon: "SiReact" },
+      { name: "Django", icon: "SiDjango" },
+      { name: "Laravel", icon: "SiLaravel" }
+    ]
+  },
+  {
+    category: "Databases & Storage",
+    items: [
+      { name: "PostgreSQL", icon: "SiPostgresql" },
+      { name: "MySQL", icon: "SiMysql" },
+      { name: "Oracle DB", icon: "GrOracle" },
+      { name: "MongoDB", icon: "SiMongodb" },
+      { name: "MinIO", icon: "SiMinio" }
+    ]
+  },
+  {
+    category: "DevOps & Cloud",
+    items: [
+      { name: "Docker", icon: "SiDocker" },
+      { name: "Kubernetes", icon: "SiKubernetes" },
+      { name: "Terraform", icon: "SiTerraform" },
+      { name: "GitLab CI/CD", icon: "SiGitlab" },
+      { name: "GitHub Actions", icon: "SiGithubactions" },
+      { name: "Oracle Cloud (OCI)", icon: "GrOracle" },
+      { name: "Linux", icon: "SiLinux" }
+    ]
+  }
 ];

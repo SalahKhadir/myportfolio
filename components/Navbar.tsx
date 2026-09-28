@@ -11,12 +11,12 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-[#F8F7F4]/90 dark:bg-[#0a0a0a]/90 backdrop-blur-md border-b border-gray-alt/10">
+    <nav className="absolute top-0 w-full z-50 bg-transparent">
       <div className="w-full px-6 lg:px-12 h-24 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="hover:scale-105 transition-transform duration-300 flex items-center">
-          <Image src="/assets/mylogo/WhiteBG.png" alt="Logo" width={200} height={200} className="dark:hidden h-20 w-auto" priority />
-          <Image src="/assets/mylogo/BlackBG.png" alt="Logo" width={200} height={200} className="hidden dark:block h-20 w-auto" priority />
+          <Image src="/assets/mylogo/WhiteBG.png" alt="Logo" width={200} height={200} className="dark:hidden h-20 w-auto mt-6" priority />
+          <Image src="/assets/mylogo/BlackBG.png" alt="Logo" width={200} height={200} className="hidden dark:block h-20 w-auto mt-6" priority />
         </Link>
 
         {/* Desktop Links */}
@@ -25,12 +25,16 @@ export default function Navbar() {
             <span className="text-accent/40 group-hover:text-accent font-bold mr-2">01.</span> 
             Engineered Systems
           </Link>
-          <Link href="/experience" className="group transition-colors hover:text-accent">
+          <Link href="/capabilities" className="group transition-colors hover:text-accent">
             <span className="text-accent/40 group-hover:text-accent font-bold mr-2">02.</span> 
+            Capabilities
+          </Link>
+          <Link href="/experience" className="group transition-colors hover:text-accent">
+            <span className="text-accent/40 group-hover:text-accent font-bold mr-2">03.</span> 
             Track Record
           </Link>
           <Link href="/about" className="group transition-colors hover:text-accent">
-            <span className="text-accent/40 group-hover:text-accent font-bold mr-2">03.</span> 
+            <span className="text-accent/40 group-hover:text-accent font-bold mr-2">04.</span> 
             About
           </Link>
           
@@ -58,11 +62,14 @@ export default function Navbar() {
           <Link href="/architectures" onClick={() => setIsOpen(false)}>
             <span className="text-accent/40 font-bold mr-2">01.</span> Engineered Systems
           </Link>
+          <Link href="/capabilities" onClick={() => setIsOpen(false)}>
+            <span className="text-accent/40 font-bold mr-2">02.</span> Capabilities
+          </Link>
           <Link href="/experience" onClick={() => setIsOpen(false)}>
-            <span className="text-accent/40 font-bold mr-2">02.</span> Track Record
+            <span className="text-accent/40 font-bold mr-2">03.</span> Track Record
           </Link>
           <Link href="/about" onClick={() => setIsOpen(false)}>
-            <span className="text-accent/40 font-bold mr-2">03.</span> About
+            <span className="text-accent/40 font-bold mr-2">04.</span> About
           </Link>
           <Link href="/contact" onClick={() => setIsOpen(false)} className="text-accent">
             Get In Touch →

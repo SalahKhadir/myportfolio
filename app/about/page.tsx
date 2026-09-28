@@ -11,7 +11,7 @@ export default function AboutPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-32 pb-24 px-6 max-w-[90rem] mx-auto w-full min-h-[80vh]">
+      <main className="pt-48 pb-24 px-6 max-w-[90rem] mx-auto w-full min-h-[80vh]">
         <FadeInView className="mb-32">
           <AboutSection />
         </FadeInView>

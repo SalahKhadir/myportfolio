@@ -40,8 +40,8 @@ export default function ArchitectureCard({
           
           {/* Image placeholder or actual image (Using a div with gradient as placeholder if image fails) */}
           <div className="absolute inset-0 top-8 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-[#111] dark:to-[#0a0a0a]">
-            {/* If there was a real image: <Image src={image} fill className="object-cover" alt={title} /> */}
-            <div className="absolute inset-0 flex items-center justify-center font-mono text-gray-400 opacity-20 text-sm p-8 text-center">
+            <Image src={image} fill className="object-cover opacity-90 hover:opacity-100 transition-opacity duration-500" alt={title} />
+            <div className="absolute inset-0 flex items-center justify-center font-mono text-gray-400 opacity-20 text-sm p-8 text-center -z-10">
               [ SYSTEM SCHEMATIC: {title} ]
             </div>
           </div>
@@ -83,7 +83,7 @@ export default function ArchitectureCard({
         
         <div className="pt-4">
           <Link href="/contact" className="btn-link group">
-            Inquire about Architecture →
+            View System Specs →
           </Link>
         </div>
       </div>

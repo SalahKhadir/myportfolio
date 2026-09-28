@@ -12,12 +12,15 @@ export default function ArchitecturesPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-32 pb-24 px-6 max-w-[90rem] mx-auto w-full">
+      <main className="pt-48 pb-24 px-6 max-w-[90rem] mx-auto w-full">
         <FadeInView delay={0.2}>
           <header className="mb-24 border-b border-gray-alt/10 pb-12">
+            <p className="font-mono text-accent uppercase tracking-widest text-xs mb-4 font-bold">
+              // PRODUCTION PLATFORMS
+            </p>
             <h1 className="heading mb-6">ENGINEERED SYSTEMS</h1>
-            <p className="font-mono text-gray-500 uppercase tracking-widest text-sm max-w-2xl">
-              A CATALOG OF SYSTEMS, PIPELINES, AND PLATFORMS ENGINEERED FOR RESILIENCE AND SCALE.
+            <p className="text-gray-500 dark:text-gray-400 font-light text-lg md:text-xl max-w-3xl leading-relaxed">
+              High-throughput backend microservices, automated CI/CD delivery pipelines, and intelligent retrieval platforms engineered for resilience and scale.
             </p>
           </header>
         </FadeInView>

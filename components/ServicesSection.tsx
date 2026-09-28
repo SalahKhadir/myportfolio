@@ -24,8 +24,9 @@ export default function ServicesSection() {
           </p>
 
           <div className="mt-auto">
-            <span className="font-mono text-[9px] uppercase tracking-widest text-gray-400 block mb-2">Core Technologies</span>
-            <p className="font-mono text-[10px] text-gray-500">{service.tech}</p>
+            <div className="font-mono text-[10px] text-accent uppercase tracking-[0.2em] opacity-0 transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+              Explore Capability &rarr;
+            </div>
           </div>
         </div>
       ))}
