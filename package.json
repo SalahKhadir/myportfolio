@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "test": "jest",
-    "test:ci": "jest --ci --coverage --coverageReporters=text --coverageReporters=cobertura --reporters=default --reporters=jest-junit"
+    "test:ci": "jest --ci --coverage --coverageReporters=text --coverageReporters=cobertura --reporters=default --reporters=jest-junit",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
     "framer-motion": "^13.4.4",
@@ -20,6 +22,7 @@
     "react-icons": "^5.7.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.63.0",
     "@tailwindcss/postcss": "^4",
     "@testing-library/dom": "^10.4.2",
     "@testing-library/jest-dom": "^7.0.1",

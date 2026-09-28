@@ -1,6 +1,7 @@
 stages:
   - validate
   - test
+  - e2e
   - preview
   - production
 
@@ -40,6 +41,21 @@ unit_tests:
       coverage_report:
         coverage_format: cobertura
         path: coverage/cobertura-coverage.xml
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_COMMIT_BRANCH
+
+e2e_tests:
+  stage: e2e
+  image: mcr.microsoft.com/playwright:v1.48.0-jammy
+  script:
+    - npm ci
+    - npm run test:e2e
+  artifacts:
+    when: always
+    paths:
+      - playwright-report/
+    expire_in: 30 days
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
     - if: $CI_COMMIT_BRANCH
