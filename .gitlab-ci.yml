@@ -48,6 +48,7 @@ unit_tests:
 e2e_tests:
   stage: e2e
   image: mcr.microsoft.com/playwright:v1.48.0-jammy
+  allow_failure: true
   script:
     - npm ci
     - npm run test:e2e

@@ -17,12 +17,13 @@ test.describe('Portfolio E2E Tests', () => {
     await page.goto('/');
     
     // Check main elements are visible
-    const getInTouchBtn = page.getByRole('link', { name: /GET IN TOUCH/i });
+    // Scope to main to avoid strict mode violations with multiple 'GET IN TOUCH' links
+    const getInTouchBtn = page.locator('main').getByRole('link', { name: /GET IN TOUCH/i }).first();
     await expect(getInTouchBtn).toBeVisible();
 
     if (isMobile) {
       // Assert that elements don't vertically collide on mobile
-      const image = page.locator('img[alt="Salah Khadir"]').first();
+      const image = page.getByRole('img', { name: /salah/i }).first();
       const greeting = page.getByText(/Hi, my name is/i).first();
       
       const imageBox = await image.boundingBox();
@@ -43,7 +44,8 @@ test.describe('Portfolio E2E Tests', () => {
     await expect(botcheck).toBeHidden();
 
     // Verify required validation (HTML5 native validation blocks form submission)
-    const submitBtn = page.getByRole('button', { name: /Submit Inquiry/i });
+    // Locate the button by its type instead of its dynamic text content
+    const submitBtn = page.locator('button[type="submit"]');
     await submitBtn.click();
     
     // It should not change to "Sending..." because it's empty
@@ -71,8 +73,9 @@ test.describe('Portfolio E2E Tests', () => {
     // Ensure HTTP 404 is returned
     expect(response?.status()).toBe(404);
     
-    // Ensure custom 404 UI is displayed
-    await expect(page.getByText('404 // ROUTE_NOT_FOUND')).toBeVisible();
-    await expect(page.getByRole('link', { name: /RETURN TO BASE_NODE/i })).toBeVisible();
+    // Ensure custom 404 UI is displayed (matching exact text from snapshot)
+    await expect(page.getByText('EXCEPTION // ERR_ROUTE_NOT_FOUND')).toBeVisible();
+    await expect(page.getByText('CODE: 404')).toBeVisible();
+    await expect(page.getByRole('link', { name: /Return to Base/i })).toBeVisible();
   });
 });

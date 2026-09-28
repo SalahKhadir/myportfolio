@@ -9,6 +9,9 @@ export const metadata: Metadata = {
     default: 'Salah Khadir | Software & DevOps Engineer',
     template: '%s | Salah Khadir',
   },
+  alternates: {
+    canonical: 'https://www.salahkhadir.codes',
+  },
   description:
     'Final-year software engineering student at EMSI Rabat specializing in resilient backend architectures (Spring Boot, FastAPI), automated DevSecOps pipelines, and cloud systems.',
   keywords: [
