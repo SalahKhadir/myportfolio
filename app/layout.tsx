@@ -37,21 +37,12 @@ export const metadata: Metadata = {
     title: 'Salah Khadir | Software & DevOps Engineer',
     description:
       'Architecting resilient backend systems and automated CI/CD security pipelines. Certified Java SE 17 Developer & OCI Professional.',
-    images: [
-      {
-        url: '/assets/mylogo/BlackBG.png',
-        width: 1200,
-        height: 630,
-        alt: 'Salah Khadir - Software & DevOps Engineer',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Salah Khadir | Software & DevOps Engineer',
     description:
       'Architecting resilient backend systems and automated CI/CD security pipelines.',
-    images: ['/assets/mylogo/BlackBG.png'],
     creator: '@SalahKhadir',
   },
   icons: {
