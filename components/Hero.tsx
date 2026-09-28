@@ -137,7 +137,7 @@ export default function Hero() {
               href="/contact"
               className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-accent hover:text-black dark:hover:text-white transition-colors hidden sm:flex ml-2"
             >
-              Initialize Discovery &rarr;
+              Get In Touch &rarr;
             </Link>
           </motion.div>
         </motion.div>

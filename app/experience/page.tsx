@@ -14,7 +14,7 @@ export default function ExperiencePage() {
       <main className="pt-32 pb-24 px-6 max-w-[90rem] mx-auto w-full">
         <FadeInView delay={0.2}>
           <header className="mb-24 border-b border-gray-alt/10 pb-12">
-            <h1 className="heading mb-6">EXPERIENCE</h1>
+            <h1 className="heading mb-6">TRACK RECORD & CREDENTIALS</h1>
             <p className="font-mono text-gray-500 uppercase tracking-widest text-sm max-w-2xl">
               CAREER TIMELINE, ACADEMIC BACKGROUND, AND OFFICIAL CERTIFICATIONS.
             </p>

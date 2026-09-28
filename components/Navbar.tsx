@@ -23,11 +23,11 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-8 font-mono text-[11px] uppercase tracking-widest">
           <Link href="/architectures" className="group transition-colors hover:text-accent">
             <span className="text-accent/40 group-hover:text-accent font-bold mr-2">01.</span> 
-            Architectures
+            Engineered Systems
           </Link>
           <Link href="/experience" className="group transition-colors hover:text-accent">
             <span className="text-accent/40 group-hover:text-accent font-bold mr-2">02.</span> 
-            Experience
+            Track Record
           </Link>
           <Link href="/about" className="group transition-colors hover:text-accent">
             <span className="text-accent/40 group-hover:text-accent font-bold mr-2">03.</span> 
@@ -35,7 +35,7 @@ export default function Navbar() {
           </Link>
           
           <Link href="/contact" className="button group ml-4">
-            <span className="button-content uppercase tracking-widest text-[10px] font-bold">Initialize Discovery</span>
+            <span className="button-content uppercase tracking-widest text-[10px] font-bold">Get In Touch</span>
           </Link>
           
           <div className="ml-3 border-l border-gray-alt/20 pl-3">
@@ -56,16 +56,16 @@ export default function Navbar() {
       {isOpen && (
         <div className="md:hidden absolute top-24 left-0 w-full bg-[#F8F7F4] dark:bg-[#0a0a0a] border-b border-gray-alt/10 p-6 flex flex-col gap-6 font-mono text-sm uppercase tracking-widest">
           <Link href="/architectures" onClick={() => setIsOpen(false)}>
-            <span className="text-accent/40 font-bold mr-2">01.</span> Architectures
+            <span className="text-accent/40 font-bold mr-2">01.</span> Engineered Systems
           </Link>
           <Link href="/experience" onClick={() => setIsOpen(false)}>
-            <span className="text-accent/40 font-bold mr-2">02.</span> Experience
+            <span className="text-accent/40 font-bold mr-2">02.</span> Track Record
           </Link>
           <Link href="/about" onClick={() => setIsOpen(false)}>
             <span className="text-accent/40 font-bold mr-2">03.</span> About
           </Link>
           <Link href="/contact" onClick={() => setIsOpen(false)} className="text-accent">
-            Initialize Discovery →
+            Get In Touch →
           </Link>
         </div>
       )}

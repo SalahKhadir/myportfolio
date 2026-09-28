@@ -48,7 +48,7 @@ export default function ContactForm() {
     <div className="w-full py-20 md:py-28 relative z-10">
       <div className="w-full px-4">
         <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent mb-3 text-center">Phase 01: Connection</p>
-        <h2 className="font-accent text-6xl md:text-8xl lg:text-9xl text-black dark:text-white uppercase tracking-tight text-center">Initialize Discovery</h2>
+        <h2 className="font-accent text-6xl md:text-8xl lg:text-9xl text-black dark:text-white uppercase tracking-tight text-center">Get In Touch</h2>
         <p className="mt-4 mb-16 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-light text-base md:text-lg text-center leading-relaxed">Ready to discuss an engineering challenge or a 2027 PFE opportunity? Send a message directly or connect via the channels below.</p>
       </div>
 
