@@ -8,7 +8,11 @@ export const size = {
 };
 export const contentType = 'image/png';
 
-export default function Image() {
+export default async function Image() {
+  const iconBuffer = await fetch(new URL('../public/icon.svg', import.meta.url)).then((res) => res.arrayBuffer());
+  const iconBase64 = Buffer.from(iconBuffer).toString('base64');
+  const iconSrc = `data:image/svg+xml;base64,${iconBase64}`;
+
   return new ImageResponse(
     (
       <div
@@ -40,39 +44,18 @@ export default function Image() {
         <div
           style={{
             display: 'flex',
-            flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            width: '140px',
-            height: '140px',
+            width: '128px',
+            height: '128px',
             borderRadius: '32px',
             backgroundColor: '#0d0d0d',
             border: '1px solid rgba(255, 255, 255, 0.16)',
             boxShadow: '0 20px 50px rgba(0, 0, 0, 0.6)',
+            overflow: 'hidden',
           }}
         >
-          <span
-            style={{
-              fontSize: '44px',
-              fontWeight: 900,
-              letterSpacing: '-0.05em',
-              color: '#ffffff',
-              lineHeight: 1,
-            }}
-          >
-            SK
-          </span>
-          <span
-            style={{
-              fontSize: '11px',
-              fontFamily: 'monospace',
-              letterSpacing: '0.25em',
-              color: '#3b82f6',
-              marginTop: '6px',
-            }}
-          >
-            SYSTEM
-          </span>
+          <img src={iconSrc} width="128" height="128" />
         </div>
 
         {/* Name Header */}
