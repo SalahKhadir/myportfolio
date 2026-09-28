@@ -55,6 +55,8 @@ e2e_tests:
     when: always
     paths:
       - playwright-report/
+    reports:
+      junit: playwright-junit.xml
     expire_in: 30 days
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
