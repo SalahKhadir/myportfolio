@@ -17,10 +17,10 @@ export const profile = {
   titleSecondary: "ENGINEER",
   subtitle: "Architecting resilient backend systems and automated CI/CD security pipelines.",
   aboutParagraphs: [
-    "Hey! I'm Salah, a final-year Software Engineering student at École Marocaine des Sciences de l'Ingénieur (EMSI Rabat), specializing in Développement Digital et Systèmes d'Information. I build *high-throughput backend services* and *shift-left DevOps infrastructure*.",
-    "I don't just 'build websites.' I architect tools that reduce operational friction and eliminate security vulnerabilities before deployment. My core focus lies at the intersection of robust backend frameworks (Spring Boot, FastAPI), automated multi-stage *CI/CD pipelines*, and zero-trust cloud delivery.",
-    "Certified Oracle Cloud Infrastructure (OCI) Architect & DevOps Professional, and Oracle Certified Java SE 17 Developer. I combine deep OOP rigor with modern *cloud-native containerization*.",
-    "Currently seeking a 4 to 6-month PFE (End-of-Studies) Internship starting *February 2027*."
+    "Final-year Software Engineering student at EMSI Rabat specializing in Digital Development and Information Systems. My engineering practice focuses on designing *modular, resilient backend services* and automating *cloud-native delivery pipelines*.",
+    "I approach software engineering with a dual focus on *server-side architecture* and *operational security*. On the application layer, I design structured APIs and data processing workflows using *Spring Boot and FastAPI*, prioritizing relational integrity and asynchronous event handling. On the delivery layer, I implement *automated CI/CD pipelines* embedded with *shift-left security practices*—integrating static application testing and container vulnerability scanning to guarantee predictable, zero-downtime rollouts.",
+    "Certified as an *Oracle Certified Java SE 17 Developer*, *OCI DevOps Professional*, and *OCI Architect Professional*, I balance clean architectural patterns with reproducible cloud infrastructure.",
+    "Currently seeking a 4 to 6-month End-of-Studies (PFE) internship starting *February 2027*."
   ]
 };
 
@@ -147,8 +147,8 @@ export const faqs = [
     answer: "I hold 3 active Oracle credentials: OCI DevOps Professional (1Z0-1109-26), OCI Architect Professional (1Z0-997-26), and Java SE 17 Developer (1Z0-829)."
   },
   {
-    question: "How do you handle security in your pipelines?",
-    answer: "Security is non-negotiable. I integrate shift-left gates directly into the CI loop: Gitleaks for pre-commit/pre-merge secret prevention, Semgrep for static code analysis, and Trivy for container vulnerability scanning."
+    question: "How do you ensure security across your deployments?",
+    answer: "I treat security as a continuous, automated process rather than an afterthought. By embedding shift-left security gates directly into the CI/CD pipeline—using Gitleaks for secret detection, Semgrep for static analysis (SAST), and Trivy for container auditing—I ensure vulnerabilities are resolved before they ever hit production."
   }
 ];
 

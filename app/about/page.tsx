@@ -13,7 +13,7 @@ export default function AboutPage() {
       <Navbar />
       <main className="pt-48 pb-24 px-6 max-w-[90rem] mx-auto w-full min-h-[80vh]">
         <FadeInView className="mb-32">
-          <AboutSection />
+          <AboutSection showCvDownload={true} />
         </FadeInView>
       </main>
     </>
