@@ -41,8 +41,13 @@ export default async function Image() {
             border: '2px solid #333333',
             padding: '30px',
           }}
-          dangerouslySetInnerHTML={{ __html: svgContent }}
-        />
+        >
+          <img
+            src={`data:image/svg+xml;base64,${Buffer.from(svgContent).toString('base64')}`}
+            width={160}
+            height={160}
+          />
+        </div>
         <div
           style={{
             marginTop: '32px',
