@@ -24,7 +24,7 @@ export default function HomePage() {
         <FadeInView className="py-24 px-6 max-w-[90rem] mx-auto w-full border-t border-gray-alt/10">
           <div className="mb-16">
             <p className="font-mono text-accent uppercase tracking-widest text-xs mb-4 font-bold">
-              // PRODUCTION PLATFORMS
+              {"// PRODUCTION PLATFORMS"}
             </p>
             <h2 className="heading mb-4">ENGINEERED SYSTEMS</h2>
             <p className="text-gray-500 dark:text-gray-400 font-light text-lg max-w-2xl leading-relaxed">
@@ -53,7 +53,7 @@ export default function HomePage() {
         <FadeInView className="py-24 px-6 border-t border-gray-alt/10 bg-gray-50/30 dark:bg-black/20">
           <div className="mb-16 max-w-7xl mx-auto w-full">
             <p className="font-mono text-accent uppercase tracking-widest text-xs mb-4 font-bold">
-              // TECHNICAL DOMAINS
+              {"// TECHNICAL DOMAINS"}
             </p>
             <h2 className="heading mb-4">CORE CAPABILITIES</h2>
             <p className="text-gray-500 dark:text-gray-400 font-light text-lg max-w-2xl leading-relaxed">

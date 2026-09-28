@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+
 import { cvTechStackData } from "@/resources/content";
 import { 
-  SiOpenjdk, SiPython, SiTypescript, SiJavascript, SiCplusplus, SiPhp,
+  SiPython, SiTypescript, SiJavascript, SiCplusplus, SiPhp,
   SiSpringboot, SiFastapi, SiDjango, SiLaravel, SiReact, SiNextdotjs, SiTailwindcss,
   SiPostgresql, SiMysql, SiMongodb, SiMinio,
   SiDocker, SiKubernetes, SiTerraform, SiGitlab, SiGithubactions, SiLinux
@@ -26,7 +26,7 @@ export default function TechnicalArsenal() {
     <div className="mt-32 border-t border-gray-alt/10 pt-24">
       <div className="mb-16">
         <p className="font-mono text-accent uppercase tracking-widest text-xs mb-4 font-bold">
-          // STACK & TOOLCHAIN
+          {"// STACK & TOOLCHAIN"}
         </p>
         <h2 className="text-4xl md:text-5xl font-accent uppercase tracking-tight mb-4">TECHNICAL ARSENAL</h2>
         <p className="font-mono text-gray-500 uppercase tracking-widest text-sm max-w-2xl">
