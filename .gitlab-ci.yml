@@ -28,8 +28,11 @@ lint_and_typecheck:
 
 deploy_preview:
   stage: preview
-  script:
+  before_script:
     - npm install --global vercel
+    - mkdir -p .vercel
+    - echo "{\"projectId\":\"$VERCEL_PROJECT_ID\",\"orgId\":\"$VERCEL_ORG_ID\"}" > .vercel/project.json
+  script:
     - vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
     - vercel build --token=$VERCEL_TOKEN
     - vercel deploy --prebuilt --token=$VERCEL_TOKEN
@@ -38,8 +41,11 @@ deploy_preview:
 
 deploy_production:
   stage: production
-  script:
+  before_script:
     - npm install --global vercel
+    - mkdir -p .vercel
+    - echo "{\"projectId\":\"$VERCEL_PROJECT_ID\",\"orgId\":\"$VERCEL_ORG_ID\"}" > .vercel/project.json
+  script:
     - vercel pull --yes --environment=production --token=$VERCEL_TOKEN
     - vercel build --prod --token=$VERCEL_TOKEN
     - vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
