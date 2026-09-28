@@ -12,11 +12,11 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-[#F8F7F4]/90 dark:bg-[#0a0a0a]/90 backdrop-blur-md border-b border-gray-alt/10">
-      <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+      <div className="w-full px-6 lg:px-12 h-24 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="hover:scale-105 transition-transform duration-300 flex items-center">
-          <Image src="/assets/mylogo/WhiteBG.png" alt="Logo" width={128} height={128} className="dark:hidden h-16 w-auto" priority />
-          <Image src="/assets/mylogo/BlackBG.png" alt="Logo" width={128} height={128} className="hidden dark:block h-16 w-auto" priority />
+          <Image src="/assets/mylogo/WhiteBG.png" alt="Logo" width={200} height={200} className="dark:hidden h-20 w-auto" priority />
+          <Image src="/assets/mylogo/BlackBG.png" alt="Logo" width={200} height={200} className="hidden dark:block h-20 w-auto" priority />
         </Link>
 
         {/* Desktop Links */}
@@ -29,16 +29,16 @@ export default function Navbar() {
             <span className="text-accent/40 group-hover:text-accent font-bold mr-2">02.</span> 
             Experience
           </Link>
-          <Link href="/capabilities" className="group transition-colors hover:text-accent">
+          <Link href="/about" className="group transition-colors hover:text-accent">
             <span className="text-accent/40 group-hover:text-accent font-bold mr-2">03.</span> 
-            Capabilities
+            About
           </Link>
           
           <Link href="/contact" className="button group ml-4">
             <span className="button-content uppercase tracking-widest text-[10px] font-bold">Initialize Discovery</span>
           </Link>
           
-          <div className="ml-4 border-l border-gray-alt/20 pl-6">
+          <div className="ml-3 border-l border-gray-alt/20 pl-3">
             <ThemeToggle />
           </div>
         </div>
@@ -61,8 +61,8 @@ export default function Navbar() {
           <Link href="/experience" onClick={() => setIsOpen(false)}>
             <span className="text-accent/40 font-bold mr-2">02.</span> Experience
           </Link>
-          <Link href="/capabilities" onClick={() => setIsOpen(false)}>
-            <span className="text-accent/40 font-bold mr-2">03.</span> Capabilities
+          <Link href="/about" onClick={() => setIsOpen(false)}>
+            <span className="text-accent/40 font-bold mr-2">03.</span> About
           </Link>
           <Link href="/contact" onClick={() => setIsOpen(false)} className="text-accent">
             Initialize Discovery →

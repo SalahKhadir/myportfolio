@@ -4,7 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
-  title: "Salah Khadir | Software & DevSecOps Engineer",
+  title: "Salah Khadir | Software & DevOps Engineer",
   description: "Architecting resilient backend systems and automated CI/CD security pipelines.",
 };
 

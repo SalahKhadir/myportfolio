@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import FadeInView from "@/components/FadeInView";
 import { experience, education, certifications } from "@/resources/content";
 
 export const metadata = {
@@ -11,15 +12,17 @@ export default function ExperiencePage() {
     <>
       <Navbar />
       <main className="pt-32 pb-24 px-6 max-w-[90rem] mx-auto w-full">
-        <header className="mb-24 border-b border-gray-alt/10 pb-12">
-          <h1 className="heading mb-6">EXPERIENCE</h1>
-          <p className="font-mono text-gray-500 uppercase tracking-widest text-sm max-w-2xl">
-            CAREER TIMELINE, ACADEMIC BACKGROUND, AND OFFICIAL CERTIFICATIONS.
-          </p>
-        </header>
+        <FadeInView delay={0.2}>
+          <header className="mb-24 border-b border-gray-alt/10 pb-12">
+            <h1 className="heading mb-6">EXPERIENCE</h1>
+            <p className="font-mono text-gray-500 uppercase tracking-widest text-sm max-w-2xl">
+              CAREER TIMELINE, ACADEMIC BACKGROUND, AND OFFICIAL CERTIFICATIONS.
+            </p>
+          </header>
+        </FadeInView>
 
         {/* Experience Timeline */}
-        <section className="mb-32">
+        <FadeInView className="mb-32">
           <div className="mb-12">
             <h2 className="text-4xl md:text-5xl font-accent uppercase tracking-tight mb-2">CAREER TIMELINE</h2>
           </div>
@@ -66,11 +69,11 @@ export default function ExperiencePage() {
               </div>
             ))}
           </div>
-        </section>
+        </FadeInView>
 
         <div className="grid md:grid-cols-2 gap-16 lg:gap-24">
           {/* Certifications */}
-          <section>
+          <FadeInView>
             <div className="mb-12">
               <h2 className="text-4xl md:text-5xl font-accent uppercase tracking-tight mb-2">CERTIFICATIONS</h2>
             </div>
@@ -87,10 +90,10 @@ export default function ExperiencePage() {
                 </div>
               ))}
             </div>
-          </section>
+          </FadeInView>
 
           {/* Education */}
-          <section>
+          <FadeInView>
             <div className="mb-12">
               <h2 className="text-4xl md:text-5xl font-accent uppercase tracking-tight mb-2">EDUCATION</h2>
             </div>
@@ -108,7 +111,7 @@ export default function ExperiencePage() {
                 </div>
               ))}
             </div>
-          </section>
+          </FadeInView>
         </div>
       </main>
     </>

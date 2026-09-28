@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { profile, systemConfig } from "@/resources/content";
 
 export default function Hero() {
@@ -25,6 +26,22 @@ export default function Hero() {
     transition: "transform 0.1s ease-out",
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  };
+
   return (
     <section 
       className="relative min-h-screen w-full flex items-center justify-center overflow-hidden px-4 py-20 bg-[radial-gradient(#e8e8e8_1px,transparent_1px)] dark:bg-[radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:30px_30px]"
@@ -32,29 +49,43 @@ export default function Hero() {
     >
       
       {/* Left Metadata Tag (Bottom-Left) */}
-      <div className="absolute bottom-10 left-8 hidden lg:block font-mono text-[10px] text-gray-400 uppercase tracking-[0.3em] leading-relaxed z-30 select-none">
+      <motion.div 
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 1 }}
+        className="absolute bottom-10 left-8 hidden lg:block font-mono text-[10px] text-gray-400 uppercase tracking-[0.3em] leading-relaxed z-30 select-none"
+      >
         <div className="flex items-center gap-2 mb-1">
           <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
           Status: <span className="text-gray-600 dark:text-gray-300">{systemConfig.status}</span>
         </div>
         <div>Focus: <span className="text-gray-600 dark:text-gray-300">{systemConfig.focus}</span></div>
         <div>Stack: <span className="text-gray-600 dark:text-gray-300">{systemConfig.stack}</span></div>
-      </div>
+      </motion.div>
 
       {/* Right Metadata Tag (Bottom-Right) */}
-      <div className="absolute bottom-10 right-8 hidden lg:block font-mono text-[10px] text-gray-400 uppercase tracking-[0.3em] leading-relaxed text-right z-30 select-none">
+      <motion.div 
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 1 }}
+        className="absolute bottom-10 right-8 hidden lg:block font-mono text-[10px] text-gray-400 uppercase tracking-[0.3em] leading-relaxed text-right z-30 select-none"
+      >
         <div>Location: <span className="text-gray-600 dark:text-gray-300">{systemConfig.location}</span></div>
         <div>System: <span className="text-gray-600 dark:text-gray-300">{systemConfig.system}</span></div>
         <div>Ref: <span className="text-gray-600 dark:text-gray-300">{systemConfig.ref}</span></div>
-      </div>
+      </motion.div>
 
       {/* Main Centered Stage */}
       <div className="relative w-full max-w-7xl mx-auto h-[85vh] min-h-[640px] flex items-center justify-center">
 
-        {/* 1. Portrait Cut-out Layer (Shifted Left + High-Transparency Blend) */}
-        <div className="absolute bottom-0 -left-6 sm:left-0 md:-left-8 lg:-left-14 xl:-left-75 z-20 pointer-events-none select-none w-[420px] sm:w-[500px] md:w-[560px] lg:w-[620px] xl:w-[850px] max-w-none">
+        {/* 1. Portrait Cut-out Layer */}
+        <motion.div 
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+          className="absolute bottom-0 -left-6 sm:left-0 md:-left-8 lg:-left-14 xl:-left-75 z-20 pointer-events-none select-none w-[420px] sm:w-[500px] md:w-[560px] lg:w-[620px] xl:w-[850px] max-w-none"
+        >
           <div className="relative w-full" style={parallaxStyle}>
-            {/* Headshot with mask-image for a true transparent fade at the bottom, without colored overlays */}
             <Image
               src="/assets/Picture.png"
               alt={profile.name}
@@ -64,33 +95,38 @@ export default function Hero() {
               priority
             />
           </div>
-        </div>
+        </motion.div>
 
-        {/* 2. Typography Block: Centered Horizontally */}
-        <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-center justify-center text-center px-4">
+        {/* 2. Typography Block */}
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-center justify-center text-center px-4"
+        >
           {/* Greeting */}
-          <p className="text-gray-600 dark:text-gray-300 text-lg md:text-2xl font-sans tracking-wide flex items-center justify-center gap-2">
+          <motion.p variants={itemVariants} className="text-gray-600 dark:text-gray-300 text-lg md:text-2xl font-sans tracking-wide flex items-center justify-center gap-2">
             Hi, my name is{" "}
             <span className="relative inline-block px-2.5 py-0.5 bg-accent text-white font-bold before:absolute before:-inset-1 before:bg-accent before:-skew-y-3 before:-z-10 mx-2">
               {profile.name}
             </span>{" "}
             and I&apos;m a
-          </p>
+          </motion.p>
 
           {/* Main Display Headline */}
-          <h1 className="font-accent mt-4 text-[clamp(64px,12.5vw,185px)] leading-[0.88] tracking-tight uppercase text-black dark:text-white whitespace-nowrap select-none">
+          <motion.h1 variants={itemVariants} className="font-accent mt-4 text-[clamp(64px,12.5vw,185px)] leading-[0.88] tracking-tight uppercase text-black dark:text-white whitespace-nowrap select-none">
             {profile.titlePrimary}
             <br />
             {profile.titleSecondary}
-          </h1>
+          </motion.h1>
 
           {/* Subtitle */}
-          <p className="mt-6 text-gray-500 dark:text-gray-400 text-base md:text-xl font-light max-w-2xl mx-auto leading-relaxed">
+          <motion.p variants={itemVariants} className="mt-6 text-gray-500 dark:text-gray-400 text-base md:text-xl font-light max-w-2xl mx-auto leading-relaxed">
             {profile.subtitle}
-          </p>
+          </motion.p>
 
           {/* Action CTA */}
-          <div className="mt-8 flex items-center justify-center gap-8 w-full">
+          <motion.div variants={itemVariants} className="mt-8 flex items-center justify-center gap-8 w-full">
             <Link
               href="/architectures"
               className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-accent hover:text-black dark:hover:text-white transition-colors"
@@ -103,8 +139,8 @@ export default function Hero() {
             >
               Initialize Discovery &rarr;
             </Link>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
       </div>
     </section>

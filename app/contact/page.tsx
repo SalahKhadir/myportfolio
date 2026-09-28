@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import ContactForm from "@/components/ContactForm";
+import FadeInView from "@/components/FadeInView";
 
 export const metadata = {
   title: "Contact | Salah Khadir",
@@ -10,17 +11,10 @@ export default function ContactPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-32 pb-24 px-6 max-w-[90rem] mx-auto w-full min-h-screen flex flex-col items-center justify-center">
-        <header className="mb-16 text-center">
-          <h1 className="heading mb-6">INITIALIZE DISCOVERY</h1>
-          <p className="font-mono text-gray-500 uppercase tracking-widest text-sm max-w-2xl mx-auto">
-            ESTABLISH SECURE CONNECTION OR DEPLOY AN INQUIRY.
-          </p>
-        </header>
-
-        <div className="w-full">
+      <main className="pt-32 pb-24 px-6 w-full min-h-screen flex flex-col items-center justify-center bg-[radial-gradient(#e8e8e8_1px,transparent_1px)] dark:bg-[radial-gradient(rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:20px_20px]">
+        <FadeInView className="w-full max-w-[90rem] mx-auto" delay={0.2}>
           <ContactForm />
-        </div>
+        </FadeInView>
       </main>
     </>
   );

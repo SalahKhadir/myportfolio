@@ -35,7 +35,7 @@ export default function FaqSection() {
               <p className="text-gray-600 dark:text-gray-300 font-light leading-relaxed" 
                 dangerouslySetInnerHTML={{
                   // Automatically wrap specific keywords for emphasis if desired, or just output text
-                  __html: faq.answer.replace(/(Shift-Left|Backend Development|DevSecOps Automation)/g, '<strong class="text-accent">$1</strong>')
+                  __html: faq.answer.replace(/(Shift-Left|Backend Development|DevOps Automation)/g, '<strong class="text-accent">$1</strong>')
                 }}
               />
             </div>

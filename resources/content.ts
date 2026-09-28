@@ -17,17 +17,17 @@ export const profile = {
   titleSecondary: "ENGINEER",
   subtitle: "Architecting resilient backend systems and automated CI/CD security pipelines.",
   aboutParagraphs: [
-    "Hey! I'm Salah, a final-year Software Engineering student at École Marocaine des Sciences de l'Ingénieur (EMSI Rabat), specializing in Développement Digital et Systèmes d'Information. I build high-throughput backend services and shift-left DevSecOps infrastructure.",
-    "I don't just 'build websites.' I architect tools that reduce operational friction and eliminate security vulnerabilities before deployment. My core focus lies at the intersection of robust backend frameworks (Spring Boot, FastAPI), automated multi-stage CI/CD pipelines, and zero-trust cloud delivery.",
-    "Certified Oracle Cloud Infrastructure (OCI) Architect & DevOps Professional, and Oracle Certified Java SE 17 Developer. I combine deep OOP rigor with modern cloud-native containerization.",
-    "Currently seeking a 4 to 6-month PFE (End-of-Studies) Internship starting February 2027."
+    "Hey! I'm Salah, a final-year Software Engineering student at École Marocaine des Sciences de l'Ingénieur (EMSI Rabat), specializing in Développement Digital et Systèmes d'Information. I build *high-throughput backend services* and *shift-left DevOps infrastructure*.",
+    "I don't just 'build websites.' I architect tools that reduce operational friction and eliminate security vulnerabilities before deployment. My core focus lies at the intersection of robust backend frameworks (Spring Boot, FastAPI), automated multi-stage *CI/CD pipelines*, and zero-trust cloud delivery.",
+    "Certified Oracle Cloud Infrastructure (OCI) Architect & DevOps Professional, and Oracle Certified Java SE 17 Developer. I combine deep OOP rigor with modern *cloud-native containerization*.",
+    "Currently seeking a 4 to 6-month PFE (End-of-Studies) Internship starting *February 2027*."
   ]
 };
 
 export const architectures = [
   {
     index: "01",
-    category: "Cloud & DevSecOps Infrastructure",
+    category: "Cloud & DevOps Infrastructure",
     title: "GenAI Microservices CI/CD Platform",
     client: "Capgemini Engineering Morocco",
     description: "A production 6-stage automated GitLab CI/CD pipeline orchestrating 9 generative AI microservices, FastAPI backend, MinIO storage, and React/Vite frontends with automated security gates.",
@@ -78,7 +78,7 @@ export const services = [
   },
   {
     index: "02",
-    title: "DevSecOps & Cloud Delivery",
+    title: "DevOps & Cloud Delivery",
     description: "Building automated CI/CD pipelines with integrated shift-left security (SAST, secret detection, container auditing) and zero-downtime container rollouts.",
     tech: "GitLab CI/CD, GitHub Actions, Docker, Kubernetes, OCI, Trivy, Semgrep"
   },
@@ -97,7 +97,7 @@ export const faqs = [
   },
   {
     question: "What is your primary technical focus?",
-    answer: "My core specialization is Backend Development (Java/Spring Boot, Python/FastAPI) and DevSecOps Automation (GitLab CI/CD, Docker, Kubernetes, and Shift-Left security tooling)."
+    answer: "My core specialization is Backend Development (Java/Spring Boot, Python/FastAPI) and DevOps Automation (GitLab CI/CD, Docker, Kubernetes, and Shift-Left security tooling)."
   },
   {
     question: "What professional certifications do you hold?",
@@ -112,7 +112,7 @@ export const faqs = [
 export const experience = [
   {
     period: "Jul 2026 – Sep 2026",
-    role: "DevOps / DevSecOps Intern",
+    role: "DevOps Intern",
     company: "Capgemini Engineering Morocco",
     location: "Casablanca, Morocco",
     summary:
