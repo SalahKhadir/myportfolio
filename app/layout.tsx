@@ -49,9 +49,12 @@ export const metadata: Metadata = {
     creator: '@SalahKhadir',
   },
   icons: {
-    icon: '/icon.svg',
-    shortcut: '/icon.svg',
-    apple: '/assets/mylogo/BlackBG.png',
+    icon: [
+      { url: '/favicon.ico', sizes: '32x32' },
+      { url: '/icon.png', sizes: '192x192', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/apple-icon.png',
   },
   robots: {
     index: true,
