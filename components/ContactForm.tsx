@@ -51,7 +51,7 @@ export default function ContactForm() {
 
     formData.append(
       'access_key',
-      process.env.NEXT_PUBLIC_WEB3FORMS_KEY || 'YOUR_ACCESS_KEY_HERE'
+      process.env.NEXT_WEB3FORMS_KEY || 'YOUR_ACCESS_KEY_HERE'
     );
     formData.append('subject', 'New Portfolio Inquiry - salahkhadir.codes');
     formData.append('from_name', 'Portfolio Contact Hub');
