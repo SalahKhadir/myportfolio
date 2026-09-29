@@ -26,13 +26,13 @@ export const profile = {
 
 export const architectures = [
   {
-    index: "01",
-    category: "Enterprise IT Incident Management & Service Desk",
+    index: "01.",
+    category: "ENTERPRISE IT INCIDENT MANAGEMENT & SERVICE DESK",
     title: "TicketHub",
     client: "Completed Monorepo",
     description: "TicketHub provides structured incident resolution for IT support operations. Built on a decoupled Spring Boot and Next.js foundation, it manages the complete ticket lifecycle across priority levels, categories, and custom workflows. The backend features scheduled background services for SLA compliance monitoring, automatically flagging nearing breaches and routing tickets based on technician availability. Updates are delivered asynchronously via Server-Sent Events, ensuring operations teams maintain situational awareness across all administrative and support views.",
     image: "/assets/projects/tickethub.png",
-    stack: ["Spring Boot 3", "Next.js (App Router)", "PostgreSQL/MySQL", "Flyway", "Server-Sent Events (SSE)", "GitHub Actions CI"],
+    stack: ["SPRING BOOT 3", "NEXT.JS (APP ROUTER)", "POSTGRESQL/MYSQL", "SPRING DATA JPA", "SERVER-SENT EVENTS (SSE)", "GITHUB ACTIONS CI"],
     coreFeatures: [
       "Strict Role-Based Access Control with guarded client-side routes and secure endpoints",
       "Automated background SlaMonitoringService",
@@ -41,13 +41,13 @@ export const architectures = [
     ]
   },
   {
-    index: "02",
-    category: "Digital Library & AI Reading Assistant",
+    index: "02.",
+    category: "DIGITAL LIBRARY & AI READING ASSISTANT",
     title: "BibloNova",
     client: "Completed Monorepo",
-    description: "BibloNova modernizes digital literature management by pairing an enterprise-grade backend with interactive AI capabilities. Built with a Spring Boot and React monorepo architecture, the platform features stateless JWT authentication, role-based access control, and complete CRUD workflows for library inventories. Beyond standard reading and shelving features, BibloNova integrates a configurable Gemini-driven chat client capable of answering contextual queries and offering reading recommendations based on reader history. The platform is containerized using Docker and Docker Compose for production-grade reliability.",
+    description: "BibloNova modernizes digital literature management by pairing an enterprise-grade backend with interactive AI capabilities. Built with a Spring Boot and React monorepo architecture, the platform features stateless JWT authentication, role-based access control, and complete CRUD workflows for library inventories. Beyond standard reading and shelving features, BibloNova integrates a configurable Gemini-driven chat client capable of answering contextual queries and offering reading recommendations based on reader history. The platform is fully containerized using multi-stage Dockerfiles and an Nginx reverse proxy orchestrated via Docker Compose.",
     image: "/assets/projects/BibloNova.png",
-    stack: ["Spring Boot 3", "Java 17", "React (Vite)", "MySQL", "Spring Security", "Docker", "Google Gemini API"],
+    stack: ["SPRING BOOT 3", "JAVA 17", "REACT (VITE)", "MYSQL", "SPRING SECURITY", "DOCKER", "NGINX", "GOOGLE GEMINI API"],
     coreFeatures: [
       "Context-aware AI assistant (BibloBot) with runtime tuning",
       "Multi-tier role permissions separating standard readers from admins",
@@ -55,13 +55,13 @@ export const architectures = [
     ]
   },
   {
-    index: "03",
-    category: "Cultural Media & Music Streaming Platform",
+    index: "03.",
+    category: "CULTURAL MEDIA & MUSIC STREAMING PLATFORM",
     title: "Sounds of Morocco",
     client: "Live / Deployed",
-    description: "Sounds of Morocco is a deployed cultural news and media platform designed to preserve and document the modern Moroccan music landscape. Built with Next.js (App Router) and backed by a headless Strapi CMS, the web application delivers static and dynamic editorial layouts via custom block renderers and Cloudinary media optimization. It features an integrated persistent audio engine that provides continuous playback across route transitions, complete with platform links, artist profiles, and submission channels for emerging talent.",
+    description: "Sounds of Morocco is a deployed cultural news and media platform designed to preserve and document the modern Moroccan music landscape. Built with Next.js (App Router) and backed by a headless Strapi CMS on PostgreSQL (Supabase), the web application delivers static and dynamic editorial layouts via custom block renderers. It features an integrated persistent audio engine that provides continuous playback across route transitions, complete with platform links, artist profiles, and submission channels for emerging talent.",
     image: "/assets/projects/soundsofmorocco.png",
-    stack: ["Next.js (App Router)", "Strapi CMS", "Tailwind CSS", "Cloudinary", "Framer Motion", "Vercel"],
+    stack: ["NEXT.JS (APP ROUTER)", "STRAPI CMS", "POSTGRESQL (SUPABASE)", "TAILWIND CSS", "CLOUDINARY", "VERCEL"],
     coreFeatures: [
       "Embedded persistent HTML5 mini-player (PlayerContext)",
       "Custom Strapi Blocks integration for dynamic journalism",
@@ -69,27 +69,27 @@ export const architectures = [
     ]
   },
   {
-    index: "04",
-    category: "Geospatial Analytics & Interactive Mapping",
-    title: "GeoLocation: Airbnb & Food Hunter",
-    client: "Completed Course Project",
-    description: "Developed as a NoSQL database application, GeoLocation (Airbnb & Food Hunter) demonstrates location-based search and geospatial data processing. The system stores accommodation and food venue points-of-interest in MongoDB, backed by a 2dsphere index to handle spherical geometry lookups. Using an interactive Streamlit interface, users can query points within an adjustable radius, filter results by venue category, and inspect real-time proximity layers rendered dynamically over interactive maps.",
+    index: "04.",
+    category: "GEOSPATIAL ANALYTICS & DATA MANIPULATION",
+    title: "GeoLocation Utility",
+    client: "Completed Script Environment",
+    description: "A high-performance Python scripting environment designed for manipulating geospatial data and executing complex location-based queries. By leveraging high-performance numerical computing libraries like Numpy and dataframe compatibility tooling like Narwhals, the utility bypasses standard iterative loops to exponentially decrease the execution time of proximity calculations and spatial transformations.",
     image: "/assets/projects/geolocation.png",
-    stack: ["Python", "Streamlit", "MongoDB", "GeoSpatial Indexing (2dsphere)", "Folium / Leaflet", "Pandas"],
+    stack: ["PYTHON", "NUMPY", "NARWHALS", "PANDAS"],
     coreFeatures: [
-      "MongoDB 2dsphere spatial indexing with $near operators",
-      "Dual exploration modes allowing spatial queries from predefined hubs",
-      "Interactive map visualization with color-coded markers"
+      "High-speed numerical calculations for distance and radius geometry",
+      "Dataframe compatibility layer leveraging Narwhals",
+      "Vectorized spatial transformations avoiding memory bottlenecks"
     ]
   },
   {
-    index: "05",
-    category: "Conversational AI & Internal Document Parsing",
+    index: "05.",
+    category: "AUTOMATED RESUME SCREENING & HR CHATBOT",
     title: "Enterprise HR AI Assistant",
     client: "Completed Monorepo",
-    description: "Engineered during a software engineering internship, this AI ChatBot streamlines corporate HR and recruitment workflows. Built using FastAPI and React, it connects custom document ingestion pipelines to Google Gemini models, enabling contextual retrieval over internal company policies, resumes, and candidate logs. The solution incorporates a dedicated administrative analytics suite, token-budget enforcement via middleware rate limiters, and conversation session persistence for audit compliance.",
+    description: "Engineered during a software engineering internship, this AI ChatBot streamlines corporate HR and recruitment workflows. Built using FastAPI and React, it connects custom document ingestion pipelines to Google Gemini models, enabling contextual retrieval over internal company policies and resumes. The solution incorporates a dedicated administrative analytics suite, custom token-bucket rate limiter middleware, and is deployed via Docker and Nginx.",
     image: "/assets/projects/ai-chatbot.png",
-    stack: ["FastAPI", "Python", "Google Gemini SDK", "SQLAlchemy", "React (Vite)", "Tailwind CSS"],
+    stack: ["FASTAPI", "PYTHON", "GOOGLE GEMINI SDK", "SQLALCHEMY", "REACT (VITE)", "DOCKER", "NGINX"],
     coreFeatures: [
       "Conversational AI model grounded with domain-specific datasets",
       "Administrative document ingestion engine",
@@ -97,13 +97,13 @@ export const architectures = [
     ]
   },
   {
-    index: "06",
-    category: "Urban Waste Management & Ecological Reporting",
+    index: "06.",
+    category: "URBAN WASTE MANAGEMENT & ECOLOGICAL REPORTING",
     title: "EcoTrace",
     client: "Completed Monorepo",
-    description: "EcoTrace bridges the communication gap between citizens and municipal waste operators. Leveraging Django REST Framework and MySQL, the platform provides authenticated APIs for logging environmental irregularities with media attachments and status pipelines. The service incorporates asynchronous notification services, comprehensive permission structures, and custom data migration tooling to handle waste processing analytics and localized community interventions.",
+    description: "EcoTrace bridges the communication gap between citizens and municipal waste operators. Leveraging Django REST Framework and MySQL, the platform provides authenticated APIs for logging environmental irregularities with media attachments mapped directly to the server filesystem. The service incorporates asynchronous notification services, comprehensive permission structures, and automated deployment validations via GitHub Actions.",
     image: "/assets/projects/ecotrace.png",
-    stack: ["Django", "Django REST Framework", "React", "MySQL", "JWT Auth", "Pillow"],
+    stack: ["DJANGO", "DJANGO REST FRAMEWORK", "REACT", "MYSQL", "JWT AUTH", "PILLOW", "GITHUB ACTIONS"],
     coreFeatures: [
       "Waste reporting workflow supporting media uploads & geolocation",
       "Multi-tenant permission scheme isolating reporters, operators, inspectors",
