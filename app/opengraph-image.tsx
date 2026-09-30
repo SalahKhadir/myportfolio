@@ -1,6 +1,8 @@
 import { ImageResponse } from 'next/og';
 
-export const runtime = 'edge';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+
 export const alt = 'Salah Khadir | Software & DevOps Engineer';
 export const size = {
   width: 1200,
@@ -9,8 +11,8 @@ export const size = {
 export const contentType = 'image/png';
 
 export default async function Image() {
-  const iconBuffer = await fetch(new URL('./icon.png', import.meta.url)).then((res) => res.arrayBuffer());
-  const iconBase64 = Buffer.from(iconBuffer).toString('base64');
+  const iconBuffer = readFileSync(join(process.cwd(), 'public', 'icon.png'));
+  const iconBase64 = iconBuffer.toString('base64');
   const iconSrc = `data:image/png;base64,${iconBase64}`;
 
   return new ImageResponse(
@@ -55,7 +57,7 @@ export default async function Image() {
             overflow: 'hidden',
           }}
         >
-          <img src={iconSrc} width="128" height="128" />
+          <img src={iconSrc} width={120} height={120} />
         </div>
 
         {/* Name Header */}
