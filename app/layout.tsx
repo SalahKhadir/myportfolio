@@ -48,14 +48,6 @@ export const metadata: Metadata = {
       'Architecting resilient backend systems and automated CI/CD security pipelines.',
     creator: '@SalahKhadir',
   },
-  icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: '32x32' },
-      { url: '/icon.png', sizes: '192x192', type: 'image/png' },
-    ],
-    shortcut: '/favicon.ico',
-    apple: '/apple-icon.png',
-  },
   robots: {
     index: true,
     follow: true,

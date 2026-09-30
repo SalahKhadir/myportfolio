@@ -9,7 +9,7 @@ export const size = {
 export const contentType = 'image/png';
 
 export default async function Image() {
-  const iconBuffer = await fetch(new URL('../public/icon.png', import.meta.url)).then((res) => res.arrayBuffer());
+  const iconBuffer = await fetch(new URL('./icon.png', import.meta.url)).then((res) => res.arrayBuffer());
   const iconBase64 = Buffer.from(iconBuffer).toString('base64');
   const iconSrc = `data:image/png;base64,${iconBase64}`;
 
