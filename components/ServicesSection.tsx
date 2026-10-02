@@ -1,6 +1,10 @@
-import { services } from "@/resources/content";
+"use client";
+
+import { useLanguage } from "./LanguageContext";
 
 export default function ServicesSection() {
+  const { t } = useLanguage();
+  const { services, ui } = t;
   return (
     <div className="grid max-w-7xl mx-auto w-full lg:grid-cols-3 border border-gray-alt/10 rounded-2xl overflow-hidden">
       {services.map((service, idx) => (
@@ -25,7 +29,7 @@ export default function ServicesSection() {
 
           <div className="mt-auto">
             <div className="font-mono text-[10px] text-accent uppercase tracking-[0.2em] opacity-0 transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-              Explore Capability &rarr;
+              {ui.services.exploreCapability}
             </div>
           </div>
         </div>

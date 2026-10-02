@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useLanguage } from "./LanguageContext";
 
 interface ArchitectureCardProps {
   index: string;
@@ -22,6 +25,9 @@ export default function ArchitectureCard({
   coreFeatures,
   isEven = false,
 }: ArchitectureCardProps) {
+  const { t } = useLanguage();
+  const { ui } = t;
+
   return (
     <article className="project-item group grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
       {/* Media Mockup Column */}
@@ -42,7 +48,7 @@ export default function ArchitectureCard({
           <div className="absolute inset-0 top-8 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-[#111] dark:to-[#0a0a0a]">
             <Image src={image} fill className="object-cover opacity-90 hover:opacity-100 transition-opacity duration-500" alt={title} />
             <div className="absolute inset-0 flex items-center justify-center font-mono text-gray-400 opacity-20 text-sm p-8 text-center -z-10">
-              [ SYSTEM SCHEMATIC: {title} ]
+              [ {ui.card.systemSchematic} {title} ]
             </div>
           </div>
 
@@ -83,7 +89,7 @@ export default function ArchitectureCard({
         
         <div className="pt-4">
           <Link href="/contact" className="btn-link group">
-            View System Specs →
+            {ui.card.viewSystemSpecs}
           </Link>
         </div>
       </div>

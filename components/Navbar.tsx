@@ -4,11 +4,16 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import LanguageToggle from "./LanguageToggle";
 
 import Image from "next/image";
 
+import { useLanguage } from "./LanguageContext";
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useLanguage();
+  const { ui } = t;
 
   useEffect(() => {
     if (isOpen) {
@@ -34,33 +39,35 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-8 font-mono text-[11px] uppercase tracking-widest">
           <Link href="/architectures" className="group transition-colors hover:text-accent">
             <span className="text-accent/40 group-hover:text-accent font-bold mr-2">01.</span> 
-            Engineered Systems
+            {ui.navbar.engineeredSystems}
           </Link>
           <Link href="/capabilities" className="group transition-colors hover:text-accent">
             <span className="text-accent/40 group-hover:text-accent font-bold mr-2">02.</span> 
-            Capabilities
+            {ui.navbar.capabilities}
           </Link>
           <Link href="/experience" className="group transition-colors hover:text-accent">
             <span className="text-accent/40 group-hover:text-accent font-bold mr-2">03.</span> 
-            Track Record
+            {ui.navbar.trackRecord}
           </Link>
           <Link href="/about" className="group transition-colors hover:text-accent">
             <span className="text-accent/40 group-hover:text-accent font-bold mr-2">04.</span> 
-            About
+            {ui.navbar.about}
           </Link>
           
           <Link href="/contact" className="button group ml-4">
-            <span className="button-content uppercase tracking-widest text-[10px] font-bold">Get In Touch</span>
+            <span className="button-content uppercase tracking-widest text-[10px] font-bold">{ui.navbar.getInTouch}</span>
           </Link>
           
-          <div className="ml-3 border-l border-gray-alt/20 pl-3">
+          <div className="ml-3 border-l border-gray-alt/20 pl-3 flex items-center gap-1">
             <ThemeToggle />
+            <LanguageToggle />
           </div>
         </div>
 
         {/* Mobile Toggle */}
-        <div className="md:hidden flex items-center gap-4">
+        <div className="md:hidden flex items-center gap-2">
           <ThemeToggle />
+          <LanguageToggle />
           <button className="p-2 text-black dark:text-white" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
@@ -71,16 +78,16 @@ export default function Navbar() {
       {isOpen && (
         <div className="md:hidden fixed top-24 left-0 w-full h-[calc(100vh-6rem)] bg-white/90 dark:bg-neutral-950/90 backdrop-blur-md border-t border-gray-alt/10 dark:border-neutral-800 p-8 flex flex-col gap-8 font-mono text-sm uppercase tracking-widest z-40 overflow-y-auto">
           <Link href="/architectures" onClick={() => setIsOpen(false)} className="flex items-center text-gray-900 dark:text-gray-100 hover:text-accent dark:hover:text-accent transition-colors">
-            <span className="text-accent/60 font-bold mr-4">01.</span> Engineered Systems
+            <span className="text-accent/60 font-bold mr-4">01.</span> {ui.navbar.engineeredSystems}
           </Link>
           <Link href="/capabilities" onClick={() => setIsOpen(false)} className="flex items-center text-gray-900 dark:text-gray-100 hover:text-accent dark:hover:text-accent transition-colors">
-            <span className="text-accent/60 font-bold mr-4">02.</span> Capabilities
+            <span className="text-accent/60 font-bold mr-4">02.</span> {ui.navbar.capabilities}
           </Link>
           <Link href="/experience" onClick={() => setIsOpen(false)} className="flex items-center text-gray-900 dark:text-gray-100 hover:text-accent dark:hover:text-accent transition-colors">
-            <span className="text-accent/60 font-bold mr-4">03.</span> Track Record
+            <span className="text-accent/60 font-bold mr-4">03.</span> {ui.navbar.trackRecord}
           </Link>
           <Link href="/about" onClick={() => setIsOpen(false)} className="flex items-center text-gray-900 dark:text-gray-100 hover:text-accent dark:hover:text-accent transition-colors">
-            <span className="text-accent/60 font-bold mr-4">04.</span> About
+            <span className="text-accent/60 font-bold mr-4">04.</span> {ui.navbar.about}
           </Link>
           
           <div className="h-px w-full bg-gray-alt/10 dark:bg-neutral-800 my-2" />
@@ -92,8 +99,7 @@ export default function Navbar() {
             onClick={() => setIsOpen(false)} 
             className="flex items-center justify-between text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
           >
-            <span>Resume / CV</span>
-            <span className="text-lg">↗</span>
+            <span>{ui.navbar.resumeCv}</span>
           </a>
           
           <Link 
@@ -101,7 +107,7 @@ export default function Navbar() {
             onClick={() => setIsOpen(false)} 
             className="w-full py-4 mt-auto bg-black text-white dark:bg-white dark:text-black font-bold text-xs uppercase tracking-widest rounded-md text-center hover:bg-gray-800 dark:hover:bg-neutral-200 transition-colors"
           >
-            Get In Touch
+            {ui.navbar.getInTouch}
           </Link>
         </div>
       )}

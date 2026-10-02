@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Mail, Globe, Calendar, MessageCircle } from 'lucide-react';
+import { useLanguage } from "./LanguageContext";
 
 const Github = ({ className }: { className?: string }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -19,6 +20,8 @@ export default function ContactForm() {
   const [time, setTime] = useState("");
   const [status, setStatus] = useState<'IDLE' | 'SUBMITTING' | 'SUCCESS' | 'ERROR'>('IDLE');
   const [errorMessage, setErrorMessage] = useState('');
+  const { t } = useLanguage();
+  const { ui, systemConfig } = t;
 
   useEffect(() => {
     const updateTime = () => {
@@ -73,12 +76,12 @@ export default function ContactForm() {
         setTimeout(() => setStatus('IDLE'), 3000);
       } else {
         setStatus('ERROR');
-        setErrorMessage(result.message || 'Transmission failed.');
+        setErrorMessage(result.message || ui.contact.errorMessage);
         setTimeout(() => setStatus('IDLE'), 3000);
       }
     } catch {
       setStatus('ERROR');
-      setErrorMessage('Network timeout. Please email directly.');
+      setErrorMessage(ui.contact.timeoutMessage);
       setTimeout(() => setStatus('IDLE'), 3000);
     }
   }
@@ -86,16 +89,16 @@ export default function ContactForm() {
   return (
     <div className="w-full py-20 md:py-28 relative z-10">
       <div className="w-full px-4">
-        <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent mb-3 text-center">Phase 01: Connection</p>
-        <h2 className="font-accent text-6xl md:text-8xl lg:text-9xl text-black dark:text-white uppercase tracking-tight text-center">Get In Touch</h2>
-        <p className="mt-4 mb-16 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-light text-base md:text-lg text-center leading-relaxed">Ready to discuss an engineering challenge or a 2027 PFE opportunity? Send a message directly or connect via the channels below.</p>
+        <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent mb-3 text-center">{ui.contact.tagline}</p>
+        <h2 className="font-accent text-6xl md:text-8xl lg:text-9xl text-black dark:text-white uppercase tracking-tight text-center">{ui.contact.title}</h2>
+        <p className="mt-4 mb-16 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-light text-base md:text-lg text-center leading-relaxed">{ui.contact.description}</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 w-full max-w-5xl mx-auto px-4 font-sans">
       
       {/* Left Column - Send a Message */}
       <div className="lg:col-span-7 bg-white dark:bg-[#111111] border border-gray-alt/10 dark:border-white/10 rounded-2xl p-8 shadow-2xl">
-        <h2 className="text-2xl font-bold text-black dark:text-white mb-6">Send a Message</h2>
+        <h2 className="text-2xl font-bold text-black dark:text-white mb-6">{ui.contact.sendMessage}</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
             type="checkbox"
@@ -107,21 +110,21 @@ export default function ContactForm() {
             required
             name="name"
             type="text"
-            placeholder="Name"
+            placeholder={ui.contact.namePlaceholder}
             className="w-full bg-black/5 dark:bg-[#1c1c1c] border border-transparent dark:border-white/10 rounded-xl px-4 py-3 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 outline-none focus:border-accent dark:focus:border-accent transition-colors"
           />
           <input 
             required
             name="email"
             type="email"
-            placeholder="Email"
+            placeholder={ui.contact.emailPlaceholder}
             className="w-full bg-black/5 dark:bg-[#1c1c1c] border border-transparent dark:border-white/10 rounded-xl px-4 py-3 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 outline-none focus:border-accent dark:focus:border-accent transition-colors"
           />
           <textarea 
             required
             name="message"
             rows={5}
-            placeholder="Message"
+            placeholder={ui.contact.messagePlaceholder}
             className="w-full bg-black/5 dark:bg-[#1c1c1c] border border-transparent dark:border-white/10 rounded-xl px-4 py-3 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 outline-none focus:border-accent dark:focus:border-accent transition-colors resize-none"
           />
           
@@ -132,7 +135,7 @@ export default function ContactForm() {
           )}
           {status === 'SUCCESS' && (
             <div className="text-emerald-500 font-mono text-xs uppercase tracking-widest mt-2">
-              ✔ MESSAGE DELIVERED
+              {ui.contact.messageDelivered}
             </div>
           )}
 
@@ -142,10 +145,10 @@ export default function ContactForm() {
               disabled={status === 'SUBMITTING'}
               className="w-full sm:w-auto bg-black text-white dark:bg-white dark:text-black font-semibold px-6 py-3 rounded-xl hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {status === "IDLE" && "Submit Inquiry"}
-              {status === "SUBMITTING" && "Sending..."}
-              {status === "SUCCESS" && "Sent!"}
-              {status === "ERROR" && "Retry"}
+              {status === "IDLE" && ui.contact.submitIdle}
+              {status === "SUBMITTING" && ui.contact.submitSending}
+              {status === "SUCCESS" && ui.contact.submitSent}
+              {status === "ERROR" && ui.contact.submitRetry}
             </button>
           </div>
         </form>
@@ -156,7 +159,7 @@ export default function ContactForm() {
         
         {/* Contact Details Card */}
         <div className="bg-white dark:bg-[#111111] border border-gray-alt/10 dark:border-white/10 rounded-2xl p-8 shadow-2xl">
-          <h2 className="text-xl font-bold text-black dark:text-white mb-6">Contact Details</h2>
+          <h2 className="text-xl font-bold text-black dark:text-white mb-6">{ui.contact.contactDetails}</h2>
           
           <div className="flex flex-col gap-6">
             {/* Email Row */}
@@ -171,7 +174,7 @@ export default function ContactForm() {
             <div className="flex items-center gap-4">
               <Globe className="w-5 h-5 text-accent" />
               <div>
-                <p className="text-gray-500 dark:text-gray-400 text-xs mb-1">Morocco (GMT)</p>
+                <p className="text-gray-500 dark:text-gray-400 text-xs mb-1">{ui.contact.moroccoGmt}</p>
                 <p className="text-black dark:text-white font-medium">
                   {time || "Loading..."}
                 </p>
@@ -182,9 +185,9 @@ export default function ContactForm() {
             <div className="flex items-start gap-4">
               <Calendar className="w-5 h-5 text-accent mt-1" />
               <div>
-                <p className="text-gray-500 dark:text-gray-400 text-xs mb-1">Current Status</p>
+                <p className="text-gray-500 dark:text-gray-400 text-xs mb-1">{ui.contact.currentStatus}</p>
                 <span className="bg-green-100 dark:bg-green-950/60 border border-green-300 dark:border-green-500/30 text-green-700 dark:text-green-400 text-xs px-3 py-1 rounded-full font-medium inline-block mt-1">
-                  Available for PFE (Feb 2027)
+                  {systemConfig.status}
                 </span>
               </div>
             </div>
@@ -197,15 +200,15 @@ export default function ContactForm() {
             className="inline-flex items-center gap-2 bg-black/5 dark:bg-[#1c1c1c] border border-transparent dark:border-white/10 text-black dark:text-white px-5 py-2.5 rounded-xl hover:border-black/20 dark:hover:border-white/30 transition-all mt-6 text-sm font-medium w-fit"
           >
             <MessageCircle className="w-4 h-4" />
-            Chat on WhatsApp
+            {ui.contact.chatWhatsapp}
           </a>
         </div>
 
         {/* Connect Card */}
         <div className="bg-white dark:bg-[#111111] border border-gray-alt/10 dark:border-white/10 rounded-2xl p-8 shadow-2xl flex-grow">
-          <h2 className="text-xl font-bold text-black dark:text-white mb-3">Connect</h2>
+          <h2 className="text-xl font-bold text-black dark:text-white mb-3">{ui.contact.connect}</h2>
           <p className="text-gray-500 dark:text-gray-400 text-sm mb-6 font-light leading-relaxed">
-            Follow my work or send me a message on social platforms.
+            {ui.contact.socialDesc}
           </p>
           
           <div className="flex flex-wrap items-center gap-6 text-black dark:text-white text-sm font-medium">

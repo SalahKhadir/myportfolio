@@ -4,10 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, Variants } from "framer-motion";
-import { profile, systemConfig } from "@/resources/content";
+import { useLanguage } from "./LanguageContext";
 
 export default function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const { t } = useLanguage();
+  const { systemConfig, profile, ui } = t;
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -106,11 +108,11 @@ export default function Hero() {
         >
           {/* Greeting */}
           <motion.p variants={itemVariants} className="text-gray-600 dark:text-gray-300 text-lg md:text-2xl font-sans tracking-wide flex flex-wrap items-center justify-center gap-x-2 gap-y-3">
-            Hi, my name is{" "}
+            {ui.hero.greeting}{" "}
             <span className="relative inline-block px-2.5 py-0.5 bg-accent text-white font-bold before:absolute before:-inset-1 before:bg-accent before:-skew-y-3 before:-z-10 mx-2">
               {profile.name}
             </span>{" "}
-            and I&apos;m a
+            {ui.hero.andIAmA}
           </motion.p>
 
           {/* Main Display Headline */}
@@ -131,7 +133,7 @@ export default function Hero() {
               href="/architectures"
               className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm tracking-wider text-gray-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
             >
-              VIEW ARCHITECTURES &rarr;
+              {ui.hero.viewArchitectures}
             </Link>
             <a
               href="/Salah_KHADIR_CV.pdf"
@@ -139,13 +141,13 @@ export default function Hero() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm tracking-wider text-gray-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
             >
-              RESUME / CV ↗
+              {ui.hero.resumeCv}
             </a>
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm tracking-wider text-gray-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
             >
-              GET IN TOUCH &rarr;
+              {ui.hero.getInTouch}
             </Link>
           </motion.div>
         </motion.div>

@@ -1,11 +1,13 @@
 "use client";
 
-import { faqs } from "@/resources/content";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { useLanguage } from "./LanguageContext";
 
 export default function FaqSection() {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
+  const { t } = useLanguage();
+  const { faqs } = t;
 
   return (
     <div className="max-w-4xl mx-auto w-full space-y-4">
