@@ -83,11 +83,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-          className="relative md:absolute order-1 md:order-none bottom-0 md:-left-8 lg:-left-14 xl:-left-75 z-0 md:z-20 pointer-events-none select-none w-full max-w-[380px] sm:max-w-[460px] md:max-w-none md:w-[560px] lg:w-[620px] xl:w-[850px] mx-auto flex items-end justify-center -mb-10 md:mb-0"
+          className="relative md:absolute order-1 md:order-none bottom-0 md:-left-8 lg:-left-14 xl:-left-68 z-0 md:z-20 pointer-events-none select-none w-full max-w-[300px] sm:max-w-[360px] md:max-w-none md:w-[440px] lg:w-[500px] xl:w-[750px] mx-auto flex items-end justify-center -mb-10 md:mb-0"
         >
           <div className="relative w-full h-auto flex items-end" style={parallaxStyle}>
             <Image
-              src="/assets/Picture.png"
+              src="/assets/Salah.png"
               alt={profile.name}
               width={660}
               height={900}
