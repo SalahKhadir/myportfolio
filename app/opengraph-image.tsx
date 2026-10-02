@@ -57,7 +57,7 @@ export default async function Image() {
             overflow: 'hidden',
           }}
         >
-          <img src={iconSrc} width={120} height={120} />
+          <img src={iconSrc} width={120} height={120} alt="Salah Khadir Icon" />
         </div>
 
         {/* Name Header */}

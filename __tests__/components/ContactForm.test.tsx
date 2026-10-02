@@ -1,6 +1,7 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import ContactForm from '../../components/ContactForm';
+import { LanguageProvider } from '../../components/LanguageContext';
 
 // Mock fetch globally
 global.fetch = jest.fn(() =>
@@ -19,7 +20,11 @@ describe('ContactForm Component', () => {
   });
 
   it('renders correctly', () => {
-    render(<ContactForm />);
+    render(
+      <LanguageProvider>
+        <ContactForm />
+      </LanguageProvider>
+    );
     expect(screen.getByText('Get In Touch')).toBeInTheDocument();
     expect(screen.getByPlaceholderText('Name')).toBeInTheDocument();
     expect(screen.getByPlaceholderText('Email')).toBeInTheDocument();
@@ -27,7 +32,11 @@ describe('ContactForm Component', () => {
   });
 
   it('shows submitting state and calls API on submit', async () => {
-    render(<ContactForm />);
+    render(
+      <LanguageProvider>
+        <ContactForm />
+      </LanguageProvider>
+    );
     
     fireEvent.change(screen.getByPlaceholderText('Name'), { target: { value: 'Test User' } });
     fireEvent.change(screen.getByPlaceholderText('Email'), { target: { value: 'test@example.com' } });
