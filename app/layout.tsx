@@ -3,6 +3,8 @@ import "./globals.css";
 
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { LanguageProvider } from "@/components/LanguageContext";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.salahkhadir.codes'),
@@ -106,6 +108,8 @@ export default function RootLayout({
             }),
           }}
         />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
