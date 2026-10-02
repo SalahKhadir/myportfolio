@@ -87,7 +87,7 @@ export default function Hero() {
         >
           <div className="relative w-full h-auto flex items-end" style={parallaxStyle}>
             <Image
-              src="/assets/Salah.png"
+              src="/assets/Salah_Khadir.png"
               alt={profile.name}
               width={660}
               height={900}
