@@ -2,8 +2,6 @@ stages:
   - validate
   - test
   - e2e
-  - preview
-  - production
 
 default:
   image: node:20-alpine
@@ -62,29 +60,3 @@ e2e_tests:
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
     - if: $CI_COMMIT_BRANCH
-
-deploy_preview:
-  stage: preview
-  before_script:
-    - npm install --global vercel
-    - mkdir -p .vercel
-    - echo "{\"projectId\":\"$VERCEL_PROJECT_ID\",\"orgId\":\"$VERCEL_ORG_ID\"}" > .vercel/project.json
-  script:
-    - vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
-    - vercel build --token=$VERCEL_TOKEN
-    - vercel deploy --prebuilt --token=$VERCEL_TOKEN
-  rules:
-    - if: $CI_COMMIT_BRANCH != "main"
-
-deploy_production:
-  stage: production
-  before_script:
-    - npm install --global vercel
-    - mkdir -p .vercel
-    - echo "{\"projectId\":\"$VERCEL_PROJECT_ID\",\"orgId\":\"$VERCEL_ORG_ID\"}" > .vercel/project.json
-  script:
-    - vercel pull --yes --environment=production --token=$VERCEL_TOKEN
-    - vercel build --prod --token=$VERCEL_TOKEN
-    - vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
-  rules:
-    - if: $CI_COMMIT_BRANCH == "main"
