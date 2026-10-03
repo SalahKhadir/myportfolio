@@ -341,5 +341,29 @@ export const ui = {
     chatWhatsapp: "Chat on WhatsApp",
     connect: "Connect",
     socialDesc: "Follow my work or send me a message on social platforms."
+  },
+  architectures: {
+    tagline: "// PRODUCTION PLATFORMS",
+    title: "ENGINEERED SYSTEMS",
+    description: "High-throughput backend microservices, automated CI/CD delivery pipelines, and intelligent retrieval platforms engineered for resilience and scale."
+  },
+  experience: {
+    tagline: "// PROFESSIONAL EXPERIENCE",
+    title: "TRACK RECORD & CREDENTIALS",
+    description: "Career timeline, academic background, and official certifications.",
+    careerTimeline: "CAREER TIMELINE",
+    certifications: "CERTIFICATIONS",
+    issuer: "ISSUER:",
+    education: "EDUCATION"
+  },
+  capabilities: {
+    tagline: "// TECHNICAL SCOPE",
+    title: "CORE CAPABILITIES",
+    description: "Specializing in resilient server architectures, automated deployment security, and contextual data pipelines."
+  },
+  technicalArsenal: {
+    tagline: "// STACK & TOOLCHAIN",
+    title: "TECHNICAL ARSENAL",
+    description: "Core competencies, runtime environments, and infrastructure tooling."
   }
 };

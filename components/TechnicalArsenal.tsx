@@ -1,7 +1,7 @@
 "use client";
 
 
-import { cvTechStackData } from "@/resources/content";
+import { useLanguage } from "./LanguageContext";
 import { 
   SiPython, SiTypescript, SiJavascript, SiCplusplus, SiPhp,
   SiSpringboot, SiFastapi, SiDjango, SiLaravel, SiReact, SiNextdotjs, SiTailwindcss,
@@ -22,15 +22,18 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 export default function TechnicalArsenal() {
+  const { t } = useLanguage();
+  const { ui, cvTechStackData } = t;
+
   return (
     <div className="mt-32 border-t border-gray-alt/10 pt-24">
       <div className="mb-16">
         <p className="font-mono text-accent uppercase tracking-widest text-xs mb-4 font-bold">
-          {"// STACK & TOOLCHAIN"}
+          {ui.technicalArsenal.tagline}
         </p>
-        <h2 className="text-4xl md:text-5xl font-accent uppercase tracking-tight mb-4">TECHNICAL ARSENAL</h2>
+        <h2 className="text-4xl md:text-5xl font-accent uppercase tracking-tight mb-4">{ui.technicalArsenal.title}</h2>
         <p className="font-mono text-gray-500 uppercase tracking-widest text-sm max-w-2xl">
-          Core competencies, runtime environments, and infrastructure tooling.
+          {ui.technicalArsenal.description}
         </p>
       </div>
 

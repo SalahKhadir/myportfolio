@@ -341,5 +341,29 @@ export const ui = {
     chatWhatsapp: "Discuter sur WhatsApp",
     connect: "Réseaux",
     socialDesc: "Suivez mon travail ou envoyez-moi un message sur les réseaux."
+  },
+  architectures: {
+    tagline: "// PLATEFORMES DE PRODUCTION",
+    title: "SYSTÈMES CONÇUS",
+    description: "Microservices backend à haut débit, pipelines de livraison CI/CD automatisés et plateformes de récupération intelligentes conçus pour la résilience et l'échelle."
+  },
+  experience: {
+    tagline: "// EXPÉRIENCE PROFESSIONNELLE",
+    title: "PARCOURS & DIPLÔMES",
+    description: "Historique de carrière, parcours académique et certifications officielles.",
+    careerTimeline: "PARCOURS PROFESSIONNEL",
+    certifications: "CERTIFICATIONS",
+    issuer: "DÉLIVRÉ PAR :",
+    education: "FORMATION"
+  },
+  capabilities: {
+    tagline: "// PORTÉE TECHNIQUE",
+    title: "COMPÉTENCES DE BASE",
+    description: "Spécialisé dans les architectures de serveurs résilientes, la sécurité des déploiements automatisés et les pipelines de données contextuelles."
+  },
+  technicalArsenal: {
+    tagline: "// STACK & OUTILS",
+    title: "ARSENAL TECHNIQUE",
+    description: "Compétences clés, environnements d'exécution et outils d'infrastructure."
   }
 };
