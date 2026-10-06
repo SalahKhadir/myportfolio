@@ -4,7 +4,7 @@ A modern, responsive developer portfolio built with **Next.js**, **React**, **Ty
 
 ## Live Demo
 
-[View the portfolio](https://myportfolio-ten-lemon-61.vercel.app)
+[View the portfolio](https://www.salahkhadir.codes)
 
 ## Features
 
