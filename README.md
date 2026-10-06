@@ -2,6 +2,9 @@
 
 A modern, responsive developer portfolio built with **Next.js**, **React**, **TypeScript**, and **Tailwind CSS**. The site presents Salah Khadir's experience, capabilities, technical skills, architectures, services, and contact information in a polished, accessible interface.
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-salahkhadir.codes-000000?style=flat&logo=vercel&logoColor=white)](https://www.salahkhadir.codes)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+
 ## Live Demo
 
 [View the portfolio](https://www.salahkhadir.codes)
@@ -9,19 +12,14 @@ A modern, responsive developer portfolio built with **Next.js**, **React**, **Ty
 ## Features
 
 - Responsive portfolio experience for desktop, tablet, and mobile devices
-- Dedicated pages for:
-  - About
-  - Experience
-  - Capabilities
-  - Architectures
-  - Contact
+- Dedicated pages for About, Experience, Capabilities, Architectures, and Contact
 - Reusable React components for the hero section, navigation, services, FAQ, technical skills, and contact form
 - Light and dark theme support
 - Language toggle and shared language context
 - Smooth entrance animations powered by Framer Motion
 - SEO and sharing metadata, including sitemap, robots configuration, and Open Graph image generation
 - CV download from the public assets directory
-- Unit/component testing with Jest and Testing Library
+- Unit and component testing with Jest and Testing Library
 - End-to-end testing with Playwright
 - Vercel Analytics and Speed Insights integration
 
@@ -45,8 +43,6 @@ A modern, responsive developer portfolio built with **Next.js**, **React**, **Ty
 - npm, or another compatible package manager
 
 ### Installation
-
-Clone the repository and install its dependencies:
 
 ```bash
 git clone https://github.com/SalahKhadir/myportfolio.git
@@ -147,8 +143,12 @@ This repository is primarily a personal portfolio, but suggestions and improveme
 
 ## License
 
-No license has been specified for this repository. Unless a license is added, the source code should not be reused, redistributed, or modified outside the permissions granted by the repository owner.
+This project is licensed under the **MIT License**.
+
+You are free to use, copy, modify, merge, publish, distribute, sublicense, and sell copies of the software, subject to the conditions described in the [`LICENSE`](./LICENSE) file.
+
+Copyright © 2026 Salah Khadir.
 
 ## Contact
 
-For professional inquiries, use the contact form on the [live portfolio](https://myportfolio-ten-lemon-61.vercel.app).
+For professional inquiries, use the contact form on the [live portfolio](https://www.salahkhadir.codes).
