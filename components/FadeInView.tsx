@@ -12,11 +12,16 @@ interface FadeInViewProps {
 export default function FadeInView({ children, className = "", delay = 0 }: FadeInViewProps) {
   return (
     <motion.section
-      initial={{ opacity: 0, y: 80 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay }}
+      initial={{ opacity: 0, y: 60, scale: 0.95, filter: "blur(10px)" }}
+      whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ 
+        duration: 0.9, 
+        ease: [0.16, 1, 0.3, 1], 
+        delay 
+      }}
       className={className}
+      style={{ willChange: "transform, opacity, filter" }}
     >
       {children}
     </motion.section>

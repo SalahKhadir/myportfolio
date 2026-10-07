@@ -3,14 +3,41 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Terminal, X, Send, Command } from "lucide-react";
 import ReactMarkdown from "react-markdown";
+import NeofetchTerminal from "./NeofetchTerminal";
 
 interface Message {
   role: "user" | "ai";
   content: string;
+  animate?: boolean;
 }
+
+const TypewriterMarkdown = ({ content, animate }: { content: string; animate?: boolean }) => {
+  const [displayedContent, setDisplayedContent] = useState(animate ? "" : content);
+
+  useEffect(() => {
+    if (!animate) {
+      setDisplayedContent(content);
+      return;
+    }
+
+    let i = 0;
+    const interval = setInterval(() => {
+      setDisplayedContent(content.slice(0, i));
+      i++;
+      if (i > content.length) {
+        clearInterval(interval);
+      }
+    }, 15); // Adjust typing speed here
+
+    return () => clearInterval(interval);
+  }, [content, animate]);
+
+  return <ReactMarkdown>{displayedContent}</ReactMarkdown>;
+};
 
 export default function TerminalAssistant() {
   const [isOpen, setIsOpen] = useState(false);
+  const [showNeofetch, setShowNeofetch] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     { role: "ai", content: "Welcome to Salah Khadir's OS. Type a message or click a quick prompt." },
   ]);
@@ -36,6 +63,17 @@ export default function TerminalAssistant() {
   const sendMessage = async (text: string) => {
     if (!text.trim() || isLoading) return;
 
+    if (text.trim().toLowerCase() === "terminal") {
+      setShowNeofetch(true);
+      setMessages((prev) => [
+        ...prev,
+        { role: "user", content: text },
+        { role: "ai", content: "Opening full bash environment...", animate: true },
+      ]);
+      setInput("");
+      return;
+    }
+
     setMessages((prev) => [...prev, { role: "user", content: text }]);
     setInput("");
     setIsLoading(true);
@@ -52,17 +90,17 @@ export default function TerminalAssistant() {
       const data = await response.json();
 
       if (response.ok) {
-        setMessages((prev) => [...prev, { role: "ai", content: data.reply }]);
+        setMessages((prev) => [...prev, { role: "ai", content: data.reply, animate: true }]);
       } else {
         setMessages((prev) => [
           ...prev,
-          { role: "ai", content: data.error || "System error. Please try again." },
+          { role: "ai", content: data.error || "System error. Please try again.", animate: true },
         ]);
       }
     } catch (error) {
       setMessages((prev) => [
         ...prev,
-        { role: "ai", content: "Connection failed. Terminal offline." },
+        { role: "ai", content: "Connection failed. Terminal offline.", animate: true },
       ]);
     } finally {
       setIsLoading(false);
@@ -75,6 +113,8 @@ export default function TerminalAssistant() {
 
   return (
     <>
+      {showNeofetch && <NeofetchTerminal onClose={() => setShowNeofetch(false)} />}
+      
       {/* Floating Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -128,7 +168,7 @@ export default function TerminalAssistant() {
               <div className="text-sm whitespace-pre-wrap leading-relaxed">
                 {msg.role === "ai" ? (
                   <div className="text-gray-700 dark:text-gray-300 prose prose-sm prose-invert max-w-none">
-                    <ReactMarkdown>{msg.content}</ReactMarkdown>
+                    <TypewriterMarkdown content={msg.content} animate={msg.animate} />
                   </div>
                 ) : (
                   <span className="text-black dark:text-white">{msg.content}</span>

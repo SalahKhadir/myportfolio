@@ -46,7 +46,7 @@ export default function ArchitectureCard({
           
           {/* Image placeholder or actual image (Using a div with gradient as placeholder if image fails) */}
           <div className="absolute inset-0 top-8 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-[#111] dark:to-[#0a0a0a]">
-            <Image src={image} fill className="object-cover opacity-90 hover:opacity-100 transition-opacity duration-500" alt={title} />
+            <Image src={image} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover opacity-90 hover:opacity-100 transition-opacity duration-500" alt={title} />
             <div className="absolute inset-0 flex items-center justify-center font-mono text-gray-400 opacity-20 text-sm p-8 text-center -z-10">
               [ {ui.card.systemSchematic} {title} ]
             </div>

@@ -13,6 +13,9 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   :root {
     --accent: #000068; /* Light mode color */
   }
