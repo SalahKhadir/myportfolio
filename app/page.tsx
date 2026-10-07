@@ -2,6 +2,16 @@
 
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import LogoLoop from "@/components/LogoLoop";
+import { 
+  SiPython, SiTypescript, SiJavascript, SiCplusplus, SiPhp,
+  SiSpringboot, SiFastapi, SiDjango, SiLaravel, SiReact, SiNextdotjs, SiTailwindcss,
+  SiPostgresql, SiMysql, SiMongodb, SiMinio,
+  SiDocker, SiKubernetes, SiTerraform, SiGitlab, SiGithubactions, SiLinux
+} from "react-icons/si";
+import { FaJava } from "react-icons/fa";
+import { GrOracle } from "react-icons/gr";
+
 import AboutSection from "@/components/AboutSection";
 import ArchitectureCard from "@/components/ArchitectureCard";
 import ServicesSection from "@/components/ServicesSection";
@@ -9,6 +19,33 @@ import FaqSection from "@/components/FaqSection";
 import ContactForm from "@/components/ContactForm";
 import FadeInView from "@/components/FadeInView";
 import { useLanguage } from "@/components/LanguageContext";
+
+const techLogos = [
+  { node: <FaJava />, title: "Java" },
+  { node: <SiSpringboot />, title: "Spring Boot" },
+  { node: <SiPython />, title: "Python" },
+  { node: <SiFastapi />, title: "FastAPI" },
+  { node: <SiDjango />, title: "Django" },
+  { node: <SiTypescript />, title: "TypeScript" },
+  { node: <SiJavascript />, title: "JavaScript" },
+  { node: <SiReact />, title: "React" },
+  { node: <SiNextdotjs />, title: "Next.js" },
+  { node: <SiTailwindcss />, title: "Tailwind CSS" },
+  { node: <SiCplusplus />, title: "C++" },
+  { node: <SiPhp />, title: "PHP" },
+  { node: <SiLaravel />, title: "Laravel" },
+  { node: <SiPostgresql />, title: "PostgreSQL" },
+  { node: <SiMysql />, title: "MySQL" },
+  { node: <GrOracle />, title: "Oracle" },
+  { node: <SiMongodb />, title: "MongoDB" },
+  { node: <SiMinio />, title: "MinIO" },
+  { node: <SiDocker />, title: "Docker" },
+  { node: <SiKubernetes />, title: "Kubernetes" },
+  { node: <SiTerraform />, title: "Terraform" },
+  { node: <SiGitlab />, title: "GitLab" },
+  { node: <SiGithubactions />, title: "GitHub Actions" },
+  { node: <SiLinux />, title: "Linux" }
+];
 
 export default function HomePage() {
   const { t } = useLanguage();
@@ -20,6 +57,20 @@ export default function HomePage() {
       <main>
         <Hero />
         
+        <FadeInView className="py-8 w-full overflow-hidden">
+          <LogoLoop
+            logos={techLogos}
+            speed={60}
+            direction="left"
+            logoHeight={40}
+            gap={60}
+            hoverSpeed={0}
+            scaleOnHover
+            fadeOut
+            ariaLabel="Technology stack"
+          />
+        </FadeInView>
+
         {/* About Me */}
         <FadeInView className="py-24 px-6 max-w-[90rem] mx-auto w-full border-t border-gray-alt/10">
           <AboutSection />
