@@ -12,38 +12,26 @@ export default function NeofetchTerminal({ onClose }: { onClose: () => void }) {
   const inputRef = useRef<HTMLInputElement>(null);
   
   const neofetchText = `
-           ;               ,           
-         ,;                 '.         
-        ;:                   :;        
-       ::                     ::       
-       ::                     ::       
-       ':                     :        
-        :.                    :        
-     ;' ::                   ::  '     salah@portfolio
-    .'  ';                   ;'  '.    ---------------
-   ::    :;                 ;:    ::   OS: Fedora Linux x86_64
-   ;      :;.             ,;:     ::   Host: Portfolio OS v1.0
-   :;      :;:           ,;"      ::   Kernel: 6.8.9-300.fc40.x86_64
-   ::.      ':;  ..,.;  ;:'     ,.;:   Uptime: 21 years, 10 months, 5 days
-    "'"...   '::,::::: ;:   .;.;""'    Packages: 2405 (rpm), 15 (flatpak)
-        '"""....;:::::;,;.;"""         Shell: zsh 5.9
-    .:::.....'"':::::::'",...;::::;.   Resolution: 2560x1440
-   ;:' '""'"";.,;:::::;.'""""""  ':;   DE: GNOME 46
-  ::'         ;::;:::;::..         :;  WM: Mutter
- ::         ,;:::::::::::;:..       :: Theme: Adwaita-Dark [GTK2/3]
- ;'     ,;;:;::::::::::::::;";..    ':.Terminal: gnome-terminal
-::     ;:"  ::::::"""'::::::  ":     ::CPU: AMD Ryzen 7 5800X (16) @ 3.800GHz
- :.    ::   ::::::;  :::::::   :     ; GPU: NVIDIA GeForce RTX 3070
-  ;    ::   :::::::  :::::::   :    ;  Memory: 16384MiB / 32043MiB
-   '   ::   ::::::....:::::'  ,:   '   
-    '  ::    :::::::::::::"   ::       
-       ::     ':::::::::"'    ::       
-       ':       """""""'      ::       
-        ::                   ;:        
-        ':;                 ;:"        
-          ';              ,;'          
-            "'           '"            
-              '
+       ;         ,       
+      ;:         :;      
+     ::           ::     salah@portfolio
+     ':           :'     ---------------
+   .' ::         :: '.   OS: Fedora Linux x86_64
+  ::   :;       ;:   ::  Host: Portfolio OS v1.0
+  :;    :;.   ,;:    :;  Kernel: 6.8.9-300.fc40.x86_64
+  ::.    ':;.;:'   ,.;:  Uptime: 21 years, 10 months, 5 days
+   '"... ':::::' ..."'   Packages: 2405 (rpm), 15 (flatpak)
+ .:::... '"''"' ...:::.  Shell: zsh 5.9
+ :;' '"";.,;:;.,;""' ':; Resolution: 2560x1440
+ ::      ;:::::;      :: DE: GNOME 46
+ :;  ,;;:::::::::;;,  ;: WM: Mutter
+ ::  ::  :::::::  ::  :: Theme: Adwaita-Dark [GTK2/3]
+  '  ::  :::::::  ::  '  Terminal: gnome-terminal
+     ::  ':::::'  ::     CPU: AMD Ryzen 7 5800X (16) @ 3.800GHz
+     ':   """""   :'     GPU: NVIDIA GeForce RTX 3070
+      ::         ::      Memory: 16384MiB / 32043MiB
+      ':;       ;:'      
+        '       '        
 `;
 
   useEffect(() => {
