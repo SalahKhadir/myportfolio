@@ -41,7 +41,7 @@ export default function NeofetchTerminal({ onClose }: { onClose: () => void }) {
        ':       """""""'      ::       
         ::                   ;:        
         ':;                 ;:"        
--hrr-     ';              ,;'          
+          ';              ,;'          
             "'           '"            
               '
 `;
