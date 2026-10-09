@@ -10,7 +10,7 @@ export default function NeofetchTerminal({ onClose }: { onClose: () => void }) {
   const [history, setHistory] = useState<{ cmd: string; res: React.ReactNode }[]>([]);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  
+
   const neofetchText = `
        ;         ,       
       ;:         :;      
@@ -105,7 +105,7 @@ export default function NeofetchTerminal({ onClose }: { onClose: () => void }) {
   };
 
   const colorizeNeofetch = (text: string) => {
-    return { 
+    return {
       __html: text
         .replace(/salah@portfolio/g, '<span class="text-green-500 font-bold">salah@portfolio</span>')
         .replace(/---------------/g, '<span class="text-gray-500">---------------</span>')
@@ -139,7 +139,7 @@ export default function NeofetchTerminal({ onClose }: { onClose: () => void }) {
           <span className="text-gray-400 text-xs font-mono font-bold tracking-wider">salah@portfolio:~</span>
           <div className="w-10"></div> {/* Spacer to center the title */}
         </div>
-        
+
         {/* Terminal Body */}
         <div className="p-6 font-mono text-sm overflow-y-auto whitespace-pre-wrap scrollbar-hide h-[450px]" onClick={() => inputRef.current?.focus()}>
           <span className="text-green-500 font-bold">salah@portfolio</span>
@@ -149,7 +149,7 @@ export default function NeofetchTerminal({ onClose }: { onClose: () => void }) {
           <br />
           <div className="mt-2 text-gray-300 whitespace-pre" dangerouslySetInnerHTML={colorizeNeofetch(output)}>
           </div>
-          
+
           {/* History */}
           {history.map((entry, idx) => (
             <div key={idx} className="mt-2">

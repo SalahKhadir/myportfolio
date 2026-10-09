@@ -57,7 +57,9 @@ export default function TerminalAssistant() {
   }, []);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (isOpen) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
   }, [messages, isOpen]);
 
   const sendMessage = async (text: string) => {
