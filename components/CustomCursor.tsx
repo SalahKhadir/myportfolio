@@ -9,23 +9,25 @@ export default function CustomCursor() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Only show on devices with a mouse (not touchscreens)
-    if (window.matchMedia("(pointer: coarse)").matches) return;
+    // Only enable custom cursor if a fine pointer (mouse/trackpad) is present
+    if (!window.matchMedia("(pointer: fine)").matches) {
+      return;
+    }
 
     const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
-      if (!isVisible) setIsVisible(true);
+      setIsVisible(true);
     };
 
     const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      // Check if hovering over a clickable element
+      const target = e.target as HTMLElement | null;
       if (
-        target.tagName.toLowerCase() === "a" ||
-        target.tagName.toLowerCase() === "button" ||
-        target.closest("a") ||
-        target.closest("button") ||
-        target.classList.contains("cursor-pointer")
+        target &&
+        (target.tagName.toLowerCase() === "a" ||
+          target.tagName.toLowerCase() === "button" ||
+          target.closest("a") ||
+          target.closest("button") ||
+          target.classList.contains("cursor-pointer"))
       ) {
         setIsHovering(true);
       } else {
@@ -46,7 +48,7 @@ export default function CustomCursor() {
       window.removeEventListener("mouseover", handleMouseOver);
       document.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, [isVisible]);
+  }, []);
 
   if (!isVisible) return null;
 

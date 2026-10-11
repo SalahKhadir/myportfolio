@@ -131,7 +131,7 @@ export default function NeofetchTerminal({ onClose }: { onClose: () => void }) {
 
   return (
     <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 backdrop-blur-md p-4 animate-in fade-in duration-300" onClick={() => inputRef.current?.focus()}>
-      <div className="bg-[#121212] border border-gray-800 rounded-xl shadow-2xl w-full max-w-3xl overflow-hidden flex flex-col transform transition-all scale-100" onClick={(e) => e.stopPropagation()}>
+      <div className="bg-[#121212] border border-gray-800 rounded-xl shadow-2xl w-full max-w-3xl overflow-hidden flex flex-col transform transition-all scale-100 max-h-[85vh] sm:max-h-[80vh]" onClick={(e) => e.stopPropagation()}>
         {/* Title Bar */}
         <div className="flex items-center justify-between px-4 py-3 bg-[#1a1a1a] border-b border-gray-800">
           <div className="flex gap-2">
@@ -144,7 +144,7 @@ export default function NeofetchTerminal({ onClose }: { onClose: () => void }) {
         </div>
 
         {/* Terminal Body */}
-        <div className="p-6 font-mono text-sm overflow-y-auto whitespace-pre-wrap scrollbar-hide h-[450px]" onClick={() => inputRef.current?.focus()}>
+        <div className="p-6 font-mono text-sm overflow-y-auto whitespace-pre-wrap scrollbar-hide h-[450px] max-h-[60vh]" onClick={() => inputRef.current?.focus()}>
           <span className="text-green-500 font-bold">salah@portfolio</span>
           <span className="text-white">:</span>
           <span className="text-blue-500 font-bold">~</span>
@@ -179,8 +179,10 @@ export default function NeofetchTerminal({ onClose }: { onClose: () => void }) {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 className="flex-1 bg-transparent border-none outline-none text-white focus:ring-0 p-0 m-0"
-                spellCheck={false}
                 autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="none"
+                spellCheck="false"
               />
             </form>
           )}

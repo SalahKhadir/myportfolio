@@ -139,7 +139,7 @@ export default function TerminalAssistant() {
           isOpen
             ? "translate-y-0 opacity-100 pointer-events-auto"
             : "translate-y-10 opacity-0 pointer-events-none"
-        } bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-800 text-black dark:text-green-500 font-mono flex flex-col overflow-hidden max-h-[80vh] sm:max-h-[600px] h-[500px]`}
+        } bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-800 text-black dark:text-green-500 font-mono flex flex-col overflow-hidden max-h-[60vh] sm:max-h-[600px] h-[500px]`}
       >
         {/* Terminal Header */}
         <div className="flex items-center justify-between px-4 py-3 bg-gray-100 dark:bg-[#1A1A1A] border-b border-gray-200 dark:border-gray-800">
@@ -235,6 +235,9 @@ export default function TerminalAssistant() {
               placeholder={t.ui.terminal.inputPlaceholder}
               className="flex-1 bg-transparent border-none outline-none text-black dark:text-white text-sm placeholder-gray-400 dark:placeholder-gray-600 focus:ring-0"
               autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="none"
+              spellCheck="false"
               disabled={isLoading}
             />
             <button
