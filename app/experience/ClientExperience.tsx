@@ -2,6 +2,7 @@
 
 import Navbar from "@/components/Navbar";
 import FadeInView from "@/components/FadeInView";
+import { motion } from "framer-motion";
 import { useLanguage } from "@/components/LanguageContext";
 
 export default function ClientExperience() {
@@ -25,14 +26,21 @@ export default function ClientExperience() {
         </FadeInView>
 
         {/* Experience Timeline */}
-        <FadeInView className="mb-32">
+        <div className="mb-32">
           <div className="mb-12">
             <h2 className="text-4xl md:text-5xl font-accent uppercase tracking-tight mb-2">{ui.experience.careerTimeline}</h2>
           </div>
 
           <div className="relative border-l border-gray-alt/30 ml-4 md:ml-6 space-y-20">
             {experience.map((job, idx) => (
-              <div key={idx} className="relative pl-8 md:pl-12">
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0.25, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="relative pl-8 md:pl-12"
+              >
                 {/* Timeline Dot */}
                 <div className="absolute -left-[5px] top-2 w-2.5 h-2.5 bg-accent rounded-full outline outline-4 outline-white dark:outline-[#0a0a0a]"></div>
                 
@@ -69,10 +77,10 @@ export default function ClientExperience() {
                     </span>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </FadeInView>
+        </div>
 
         <div className="grid md:grid-cols-2 gap-16 lg:gap-24">
           {/* Certifications */}

@@ -298,7 +298,28 @@ export const ui = {
     cvDownloadTitle: "Resume / Curriculum Vitae",
     cvDownloadDesc: "Looking for complete academic records, experience timelines, and verified certifications?",
     cvDownloadBtn: "DOWNLOAD CV \u2193",
-    cvFormat: "(PDF, 1 PAGE)"
+    cvFormat: "(PDF, 1 PAGE)",
+    stats: {
+      certificationsCount: 3,
+      certificationsSuffix: "",
+      certificationsLabel: "Professional Certifications",
+      certificationsSub: "Oracle Cloud & Java SE 17",
+
+      systemsBuiltCount: 5,
+      systemsBuiltSuffix: "+",
+      systemsBuiltLabel: "Full-Stack & Cloud Systems Built",
+      systemsBuiltSub: "TicketHub, BibloNova, Spring Boot & React",
+
+      securityCount: 100,
+      securitySuffix: "%",
+      securityLabel: "Automated Security & Delivery",
+      securitySub: "Docker, CI/CD, SAST Escalation",
+
+      gradYear: 2027,
+      gradSuffix: "",
+      gradLabel: "State Engineer PFE",
+      gradSub: "EMSI Rabat — DDSI Specialization"
+    }
   },
   navbar: {
     engineeredSystems: "Engineered Systems",

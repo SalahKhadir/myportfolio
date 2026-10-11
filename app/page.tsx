@@ -93,23 +93,28 @@ export default function HomePage() {
             </p>
           </div>
           
-          <div className="flex flex-col gap-24">
+          <div className="flex flex-col gap-12 relative">
             {architectures.slice(0, 2).map((arch, idx) => (
-              <ArchitectureCard 
+              <div
                 key={arch.index}
-                index={arch.index}
-                category={arch.category}
-                title={arch.title}
-                description={arch.description}
-                image={arch.image}
-                stack={arch.stack}
-                coreFeatures={arch.coreFeatures}
-                isEven={idx % 2 !== 0}
-              />
+                className="sticky top-24 z-10 bg-white/95 dark:bg-[#0c0c0e]/95 backdrop-blur-md rounded-3xl p-6 sm:p-10 border border-gray-200/80 dark:border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.08)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all"
+                style={{ top: `calc(5rem + ${idx * 24}px)` }}
+              >
+                <ArchitectureCard 
+                  index={arch.index}
+                  category={arch.category}
+                  title={arch.title}
+                  description={arch.description}
+                  image={arch.image}
+                  stack={arch.stack}
+                  coreFeatures={arch.coreFeatures}
+                  isEven={idx % 2 !== 0}
+                />
+              </div>
             ))}
           </div>
         </FadeInView>
-        
+
         {/* Technical Scope */}
         <FadeInView className="py-24 px-6 border-t border-gray-alt/10 bg-gray-50/30 dark:bg-black/20">
           <div className="mb-16 max-w-7xl mx-auto w-full">

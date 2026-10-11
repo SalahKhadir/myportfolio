@@ -25,9 +25,13 @@ export default function ClientArchitectures() {
           </header>
         </FadeInView>
 
-        <div className="flex flex-col gap-32">
+        <div className="flex flex-col gap-14 relative">
           {architectures.map((arch, idx) => (
-            <FadeInView key={arch.index}>
+            <div
+              key={arch.index}
+              className="sticky top-28 z-10 bg-white/95 dark:bg-[#0c0c0e]/95 backdrop-blur-md rounded-3xl p-6 sm:p-10 border border-gray-200/80 dark:border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.08)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all"
+              style={{ top: `calc(6rem + ${idx * 24}px)` }}
+            >
               <ArchitectureCard 
                 index={arch.index}
                 category={arch.category}
@@ -38,7 +42,7 @@ export default function ClientArchitectures() {
                 coreFeatures={arch.coreFeatures}
                 isEven={idx % 2 !== 0}
               />
-            </FadeInView>
+            </div>
           ))}
         </div>
       </main>

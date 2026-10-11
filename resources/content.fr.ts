@@ -298,7 +298,28 @@ export const ui = {
     cvDownloadTitle: "Curriculum Vitae",
     cvDownloadDesc: "Vous cherchez un dossier académique complet, l'historique de mes expériences et mes certifications ?",
     cvDownloadBtn: "TÉLÉCHARGER LE CV \u2193",
-    cvFormat: "(PDF, 1 PAGE)"
+    cvFormat: "(PDF, 1 PAGE)",
+    stats: {
+      certificationsCount: 3,
+      certificationsSuffix: "",
+      certificationsLabel: "Certifications Professionnelles",
+      certificationsSub: "Oracle Cloud & Java SE 17",
+
+      systemsBuiltCount: 5,
+      systemsBuiltSuffix: "+",
+      systemsBuiltLabel: "Systèmes Full-Stack & Cloud Conçus",
+      systemsBuiltSub: "TicketHub, BibloNova, Spring Boot & React",
+
+      securityCount: 100,
+      securitySuffix: "%",
+      securityLabel: "Sécurité & Déploiement Automatisés",
+      securitySub: "Docker, CI/CD, Alertes SAST",
+
+      gradYear: 2027,
+      gradSuffix: "",
+      gradLabel: "Diplôme d'Ingénieur d'État PFE",
+      gradSub: "EMSI Rabat — Spécialisation DDSI"
+    }
   },
   navbar: {
     engineeredSystems: "Systèmes Conçus",
