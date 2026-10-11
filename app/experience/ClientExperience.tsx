@@ -1,13 +1,44 @@
 "use client";
 
+import { useRef } from "react";
 import Navbar from "@/components/Navbar";
 import FadeInView from "@/components/FadeInView";
-import { motion } from "framer-motion";
+import CertificationCard from "@/components/CertificationCard";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { useLanguage } from "@/components/LanguageContext";
+
+function renderHighlightedMetric(text: string) {
+  const parts = text.split(/(-\d+(?:\.\d+)?%|\b\d+m\d+s\b|\b\d+(?:\.\d+)?%|\b\d+\b)/g);
+  return parts.map((part, index) => {
+    if (index % 2 === 1) {
+      return (
+        <span
+          key={index}
+          className="font-semibold text-accent dark:text-cyan-300 bg-accent/10 dark:bg-accent/15 px-1.5 py-0.5 rounded border border-accent/20 mx-0.5 inline-block"
+        >
+          {part}
+        </span>
+      );
+    }
+    return <span key={index}>{part}</span>;
+  });
+}
 
 export default function ClientExperience() {
   const { t } = useLanguage();
   const { ui, experience, education, certifications } = t;
+
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start 70%", "end 60%"],
+  });
+
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 24,
+    restDelta: 0.001,
+  });
 
   return (
     <>
@@ -31,21 +62,56 @@ export default function ClientExperience() {
             <h2 className="text-4xl md:text-5xl font-accent uppercase tracking-tight mb-2">{ui.experience.careerTimeline}</h2>
           </div>
 
-          <div className="relative border-l border-gray-alt/30 ml-4 md:ml-6 space-y-20">
+          <div ref={timelineRef} className="relative ml-4 md:ml-6 space-y-20">
+            {/* Base timeline track */}
+            <div
+              aria-hidden="true"
+              className="absolute left-0 top-3 bottom-3 w-[2px] bg-gray-200 dark:bg-white/10"
+            />
+
+            {/* Glowing Laser Tracer Line */}
+            <motion.div
+              aria-hidden="true"
+              style={{ scaleY }}
+              className="absolute left-0 top-3 bottom-3 w-[2px] origin-top bg-gradient-to-b from-accent via-accent to-accent/60 shadow-[0_0_10px_rgba(var(--accent-rgb,144,202,249),0.8)] z-10"
+            />
+
             {experience.map((job, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0.25, x: -10 }}
+                initial={{ opacity: 0.3, x: -12 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: false, amount: 0.3 }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="relative pl-8 md:pl-12"
+                viewport={{ once: false, amount: 0.35 }}
+                transition={{ duration: 0.6, delay: 0.05 }}
+                className="relative pl-8 md:pl-12 group"
               >
-                {/* Timeline Dot */}
-                <div className="absolute -left-[5px] top-2 w-2.5 h-2.5 bg-accent rounded-full outline outline-4 outline-white dark:outline-[#0a0a0a]"></div>
+                {/* Milestone Dot with Radar Pulse */}
+                <div className="absolute -left-[5px] top-2 z-20 flex items-center justify-center">
+                  <motion.span
+                    initial={{ scale: 0.8, opacity: 0.4 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    viewport={{ once: false, amount: 0.35 }}
+                    transition={{ duration: 0.4 }}
+                    className="w-3 h-3 bg-accent rounded-full outline outline-4 outline-white dark:outline-[#0a0a0a] shadow-[0_0_10px_rgba(var(--accent-rgb,144,202,249),0.9)]"
+                  />
+                  <motion.span
+                    initial={{ scale: 1, opacity: 0 }}
+                    whileInView={{
+                      scale: [1, 2.4, 2.8],
+                      opacity: [0.8, 0.3, 0],
+                    }}
+                    viewport={{ once: false, amount: 0.35 }}
+                    transition={{
+                      duration: 2.2,
+                      repeat: Infinity,
+                      ease: "easeOut",
+                    }}
+                    className="absolute w-3 h-3 rounded-full bg-accent pointer-events-none"
+                  />
+                </div>
                 
                 <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4 mb-3">
-                  <h3 className="text-2xl font-bold dark:text-white">{job.role}</h3>
+                  <h3 className="text-2xl font-bold dark:text-white group-hover:text-accent transition-colors duration-300">{job.role}</h3>
                   <span className="font-mono text-[10px] uppercase tracking-widest text-gray-500 bg-gray-alt/10 px-2 py-1 rounded">
                     {job.period}
                   </span>
@@ -63,18 +129,43 @@ export default function ClientExperience() {
 
                 <ul className="space-y-3 mb-8 max-w-3xl">
                   {job.metrics.map((metric, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <span className="w-1.5 h-1.5 bg-accent rounded-full mt-2 shrink-0"></span>
-                      <span className="text-sm font-mono text-gray-600 dark:text-gray-400">{metric}</span>
-                    </li>
+                    <motion.li
+                      key={i}
+                      initial={{ opacity: 0, x: -16 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: false, amount: 0.35 }}
+                      transition={{
+                        duration: 0.45,
+                        delay: 0.1 + i * 0.08,
+                        ease: "easeOut",
+                      }}
+                      className="flex items-start gap-3"
+                    >
+                      <span className="w-1.5 h-1.5 bg-accent rounded-full mt-2 shrink-0 shadow-[0_0_6px_rgba(var(--accent-rgb,144,202,249),0.8)]" />
+                      <span className="text-sm font-mono text-gray-600 dark:text-gray-400 leading-relaxed">
+                        {renderHighlightedMetric(metric)}
+                      </span>
+                    </motion.li>
                   ))}
                 </ul>
 
                 <div className="flex flex-wrap gap-2">
-                  {job.stack.map(tech => (
-                    <span key={tech} className="px-3 py-1 bg-gray-50 dark:bg-white/5 text-gray-700 dark:text-gray-300 font-mono text-[9px] uppercase tracking-widest rounded-full border border-gray-alt/20">
+                  {job.stack.map((tech, techIdx) => (
+                    <motion.span
+                      key={tech}
+                      initial={{ opacity: 0, scale: 0.85, y: 6 }}
+                      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                      viewport={{ once: false, amount: 0.35 }}
+                      transition={{
+                        duration: 0.35,
+                        delay: 0.15 + techIdx * 0.035,
+                        ease: "easeOut",
+                      }}
+                      whileHover={{ scale: 1.05 }}
+                      className="px-3 py-1 bg-gray-50 dark:bg-white/5 text-gray-700 dark:text-gray-300 font-mono text-[9px] uppercase tracking-widest rounded-full border border-gray-alt/20 group-hover:border-accent/40 hover:!border-accent hover:text-accent transition-colors cursor-default"
+                    >
                       {tech}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
               </motion.div>
@@ -91,14 +182,11 @@ export default function ClientExperience() {
             
             <div className="space-y-6">
               {certifications.map((cert, idx) => (
-                <div key={idx} className="border border-gray-alt/20 bg-gray-50/50 dark:bg-white/5 p-8 rounded-xl hover:border-accent/50 transition-colors group">
-                  <div className="flex justify-between items-start mb-4">
-                    <span className="font-mono text-[10px] text-gray-500 uppercase tracking-widest">{cert.type}</span>
-                    <span className="font-mono text-[10px] bg-accent text-white px-2 py-1 rounded font-bold uppercase tracking-widest">{cert.code}</span>
-                  </div>
-                  <h3 className="text-xl font-bold dark:text-white mb-2">{cert.title}</h3>
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-gray-500">{ui.experience.issuer} <span className="text-gray-800 dark:text-gray-200">{cert.issuer}</span></p>
-                </div>
+                <CertificationCard
+                  key={idx}
+                  cert={cert}
+                  issuerLabel={ui.experience.issuer}
+                />
               ))}
             </div>
           </FadeInView>

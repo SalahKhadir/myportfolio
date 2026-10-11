@@ -380,6 +380,7 @@ export const ui = {
     careerTimeline: "PARCOURS PROFESSIONNEL",
     certifications: "CERTIFICATIONS",
     issuer: "DÉLIVRÉ PAR :",
+    verifiedCredential: "CERTIFICATION VÉRIFIÉE",
     education: "FORMATION"
   },
   capabilities: {
