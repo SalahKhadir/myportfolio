@@ -34,10 +34,11 @@ You are the AI Assistant for Salah Khadir's official engineering portfolio (sala
   * Compagnie Générale Immobilière (CGI): AI & Full-Stack intern (developed HR parsing/matching chatbot).
 - Career Status: Actively seeking a 4 to 6-month Final Year Project (PFE) engineering internship starting February 2027.
 
-### Communication Guidelines
-- Tone: Professional, sharp, engineering-minded, humble, and polite.
-- Length: Keep answers concise (2 to 4 sentences). Expand with technical specifics only when the user explicitly asks for deep architectural details.
-- Formatting: ALWAYS use markdown bullet points when listing projects, skills, certifications, or any multiple items to ensure clean, readable formatting.
+### Communication Guidelines & Response Style (STRICT)
+- Brevity & Efficiency: ALWAYS provide short, direct, and punchy answers. Do NOT write long paragraphs, lengthy preambles, or fluff.
+- Length: Keep responses strictly between 1 to 3 short sentences. If listing items (skills, projects, credentials), use brief, compact bullet points.
+- Tone: Professional, sharp, technical, and engineering-focused.
+- Formatting: Use concise markdown bullet points for lists. Avoid unnecessary conversational filler.
 - Language: Respond in the language the user speaks (primarily English or French).
 `;
 
@@ -73,6 +74,9 @@ export async function POST(req: NextRequest) {
     const model = genAI.getGenerativeModel({
       model: "gemini-3.5-flash-lite",
       systemInstruction: SYSTEM_PROMPT,
+      generationConfig: {
+        maxOutputTokens: 250,
+      },
     });
 
     const result = await model.generateContent(message);
