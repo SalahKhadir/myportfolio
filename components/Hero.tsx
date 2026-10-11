@@ -60,10 +60,10 @@ export default function Hero() {
       >
         <div className="flex items-center gap-2 mb-1">
           <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-          Status: <span className="text-gray-600 dark:text-gray-300">{systemConfig.status}</span>
+          {ui.hero.statusLabel} <span className="text-gray-600 dark:text-gray-300">{systemConfig.status}</span>
         </div>
-        <div>Focus: <span className="text-gray-600 dark:text-gray-300">{systemConfig.focus}</span></div>
-        <div>Stack: <span className="text-gray-600 dark:text-gray-300">{systemConfig.stack}</span></div>
+        <div>{ui.hero.focusLabel} <span className="text-gray-600 dark:text-gray-300">{systemConfig.focus}</span></div>
+        <div>{ui.hero.stackLabel} <span className="text-gray-600 dark:text-gray-300">{systemConfig.stack}</span></div>
       </motion.div>
 
       {/* Right Metadata Tag (Bottom-Right) */}
@@ -73,9 +73,9 @@ export default function Hero() {
         transition={{ duration: 0.8, delay: 1 }}
         className="absolute bottom-10 right-8 hidden lg:block font-mono text-[10px] text-gray-400 uppercase tracking-[0.3em] leading-relaxed text-right z-30 select-none"
       >
-        <div>Location: <span className="text-gray-600 dark:text-gray-300">{systemConfig.location}</span></div>
-        <div>System: <span className="text-gray-600 dark:text-gray-300">{systemConfig.system}</span></div>
-        <div>Ref: <span className="text-gray-600 dark:text-gray-300">{systemConfig.ref}</span></div>
+        <div>{ui.hero.locationLabel} <span className="text-gray-600 dark:text-gray-300">{systemConfig.location}</span></div>
+        <div>{ui.hero.systemLabel} <span className="text-gray-600 dark:text-gray-300">{systemConfig.system}</span></div>
+        <div>{ui.hero.refLabel} <span className="text-gray-600 dark:text-gray-300">{systemConfig.ref}</span></div>
       </motion.div>
 
       {/* Main Centered Stage */}

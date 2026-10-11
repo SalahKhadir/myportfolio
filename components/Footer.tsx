@@ -44,8 +44,6 @@ export default function Footer() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const isFr = language === "fr";
-
   return (
     <footer className="w-full border-t border-gray-200 dark:border-neutral-800 bg-[#F4F3EF] dark:bg-[#0c0c0c] transition-colors relative z-20">
       {/* Top Accent Line */}
@@ -74,9 +72,7 @@ export default function Footer() {
             </Link>
 
             <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-sm font-light">
-              {isFr
-                ? "Conception de microservices backend résilients, pipelines DevSecOps automatisés et architectures cloud haute disponibilité."
-                : "Architecting resilient backend systems, shift-left DevSecOps automation, and high-availability cloud infrastructure."}
+              {ui.footer.mission}
             </p>
 
             {/* Live Availability Badge */}
@@ -96,7 +92,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-1.5">
                 <Clock size={13} className="text-accent" />
-                <span>Rabat UTC+1: {rabatTime || "--:--:--"}</span>
+                <span>{ui.footer.rabatUtc}: {rabatTime || "--:--:--"}</span>
               </div>
             </div>
           </div>
@@ -104,7 +100,7 @@ export default function Footer() {
           {/* Quick Links Column (3 cols) */}
           <div className="lg:col-span-3 flex flex-col space-y-4">
             <h4 className="font-mono text-xs uppercase tracking-widest text-black dark:text-white font-bold">
-              {isFr ? "Navigation" : "Navigation"}
+              {ui.footer.navigation}
             </h4>
             <ul className="space-y-3 font-mono text-xs uppercase tracking-wider">
               <li>
@@ -158,7 +154,7 @@ export default function Footer() {
           {/* Connect & Channels Column (4 cols) */}
           <div className="lg:col-span-4 flex flex-col space-y-4">
             <h4 className="font-mono text-xs uppercase tracking-widest text-black dark:text-white font-bold">
-              {isFr ? "Canaux & Ressources" : "Channels & Resources"}
+              {ui.footer.channelsAndResources}
             </h4>
             <div className="flex flex-col space-y-3 font-mono text-xs">
               <a
@@ -200,7 +196,7 @@ export default function Footer() {
               >
                 <FileText size={15} />
                 <span>
-                  {isFr ? "Télécharger CV (PDF, 1 Page)" : "Download Resume (PDF, 1 Page)"}
+                  {ui.footer.downloadResume}
                 </span>
                 <span className="text-[10px]">↗</span>
               </a>
@@ -210,11 +206,11 @@ export default function Footer() {
             <div className="pt-2 text-[11px] font-mono text-gray-500 dark:text-gray-400 flex items-center gap-2">
               <Terminal size={13} className="text-accent" />
               <span>
-                {isFr ? "Appuyez sur" : "Press"}{" "}
+                {ui.footer.pressKey}{" "}
                 <kbd className="px-1.5 py-0.5 rounded bg-gray-200 dark:bg-neutral-800 text-gray-800 dark:text-gray-200 text-[10px] font-bold border border-gray-300 dark:border-neutral-700">
                   Ctrl / ⌘ + K
                 </kbd>{" "}
-                {isFr ? "pour l'assistant IA" : "for AI Copilot"}
+                {ui.footer.forCopilot}
               </span>
             </div>
           </div>
@@ -226,7 +222,7 @@ export default function Footer() {
             <span>© {currentYear} Salah Khadir.</span>
             <span className="hidden sm:inline">•</span>
             <span className="hidden sm:inline">
-              {isFr ? "Tous droits réservés." : "All rights reserved."}
+              {ui.footer.allRightsReserved}
             </span>
           </p>
 
@@ -240,7 +236,7 @@ export default function Footer() {
               className="flex items-center gap-2 hover:text-black dark:hover:text-white transition-colors group p-1"
               aria-label="Back to top"
             >
-              <span>{isFr ? "Haut de page" : "Back to top"}</span>
+              <span>{ui.footer.backToTop}</span>
               <ArrowUp size={14} className="group-hover:-translate-y-0.5 transition-transform" />
             </button>
           </div>

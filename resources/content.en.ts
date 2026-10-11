@@ -284,7 +284,13 @@ export const ui = {
     andIAmA: "and I'm a",
     viewArchitectures: "VIEW ARCHITECTURES \u2192",
     resumeCv: "RESUME / CV \u2197",
-    getInTouch: "GET IN TOUCH \u2192"
+    getInTouch: "GET IN TOUCH \u2192",
+    statusLabel: "Status:",
+    focusLabel: "Focus:",
+    stackLabel: "Stack:",
+    locationLabel: "Location:",
+    systemLabel: "System:",
+    refLabel: "Ref:"
   },
   about: {
     tagline: "SOFTWARE & DEVOPS ENGINEER",
@@ -365,5 +371,40 @@ export const ui = {
     tagline: "// STACK & TOOLCHAIN",
     title: "TECHNICAL ARSENAL",
     description: "Core competencies, runtime environments, and infrastructure tooling."
+  },
+  footer: {
+    mission: "Architecting resilient backend systems, shift-left DevSecOps automation, and high-availability cloud infrastructure.",
+    navigation: "Navigation",
+    channelsAndResources: "Channels & Resources",
+    downloadResume: "Download Resume (PDF, 1 Page)",
+    pressKey: "Press",
+    forCopilot: "for AI Copilot",
+    allRightsReserved: "All rights reserved.",
+    backToTop: "Back to top",
+    rabatUtc: "Rabat UTC+1"
+  },
+  terminal: {
+    initialMessage: "Welcome to Salah Khadir's OS. Type a message or click a quick prompt.",
+    openingBash: "Opening full bash environment...",
+    systemError: "System error. Please try again.",
+    connectionFailed: "Connection failed. Terminal offline.",
+    title: "Terminal",
+    processing: "Processing...",
+    inputPlaceholder: "Type a command...",
+    openAriaLabel: "Open AI Assistant",
+    quickPrompts: {
+      devopsLabel: "DevOps",
+      devopsPrompt: "Tell me about Salah's DevOps background",
+      availabilityLabel: "Availability",
+      availabilityPrompt: "Is Salah available for a 2027 PFE?",
+      tickethubLabel: "TicketHub",
+      tickethubPrompt: "What architecture does TicketHub use?"
+    },
+    neofetch: {
+      whoami: "salah khadir - Software & DevOps Engineer. I automate things and build scalable systems.",
+      catResume: "Opening resume...",
+      hireSalah: "Access granted. redirecting to /contact ...",
+      help: "Available commands: whoami, clear, exit, cat resume.pdf, sudo hire salah, ls"
+    }
   }
 };

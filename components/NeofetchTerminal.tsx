@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
-import { X } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { useLanguage } from './LanguageContext';
 
 export default function NeofetchTerminal({ onClose }: { onClose: () => void }) {
-  const { language } = useLanguage();
+  const router = useRouter();
+  const { language, t } = useLanguage();
   const [output, setOutput] = useState("");
   const [isReady, setIsReady] = useState(false);
   const [input, setInput] = useState("");
@@ -72,7 +73,7 @@ export default function NeofetchTerminal({ onClose }: { onClose: () => void }) {
 
     switch (cmd.toLowerCase()) {
       case "whoami":
-        res = "salah khadir - Software & DevOps Engineer. I automate things and build scalable systems.";
+        res = t.ui.terminal.neofetch.whoami;
         break;
       case "clear":
         setHistory([]);
@@ -83,20 +84,20 @@ export default function NeofetchTerminal({ onClose }: { onClose: () => void }) {
         return;
       case "cat resume.pdf":
       case "cat resume":
-        res = "Opening resume...";
+        res = t.ui.terminal.neofetch.catResume;
         window.open(language === "fr" ? "/Salah_KHADIR_CV(fr).pdf" : "/Salah_KHADIR_CV(en).pdf", "_blank");
         break;
       case "sudo hire salah":
-        res = "Access granted. redirecting to /contact ...";
+        res = t.ui.terminal.neofetch.hireSalah;
         setTimeout(() => {
-          window.location.href = "/contact";
+          router.push("/contact");
         }, 1500);
         break;
       case "ls":
         res = "projects/  skills/  resume.pdf  contact.sh";
         break;
       case "help":
-        res = "Available commands: whoami, clear, exit, cat resume.pdf, sudo hire salah, ls";
+        res = t.ui.terminal.neofetch.help;
         break;
       default:
         res = `bash: ${cmd}: command not found`;

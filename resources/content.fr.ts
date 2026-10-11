@@ -284,7 +284,13 @@ export const ui = {
     andIAmA: "et je suis un",
     viewArchitectures: "VOIR LES ARCHITECTURES \u2192",
     resumeCv: "MON CV \u2197",
-    getInTouch: "CONTACTEZ-MOI \u2192"
+    getInTouch: "CONTACTEZ-MOI \u2192",
+    statusLabel: "Statut :",
+    focusLabel: "Focus :",
+    stackLabel: "Stack :",
+    locationLabel: "Localisation :",
+    systemLabel: "Système :",
+    refLabel: "Réf :"
   },
   about: {
     tagline: "INGÉNIEUR LOGICIEL & DEVOPS",
@@ -365,5 +371,40 @@ export const ui = {
     tagline: "// STACK & OUTILS",
     title: "ARSENAL TECHNIQUE",
     description: "Compétences clés, environnements d'exécution et outils d'infrastructure."
+  },
+  footer: {
+    mission: "Conception de microservices backend résilients, pipelines DevSecOps automatisés et architectures cloud haute disponibilité.",
+    navigation: "Navigation",
+    channelsAndResources: "Canaux & Ressources",
+    downloadResume: "Télécharger CV (PDF, 1 Page)",
+    pressKey: "Appuyez sur",
+    forCopilot: "pour l'assistant IA",
+    allRightsReserved: "Tous droits réservés.",
+    backToTop: "Haut de page",
+    rabatUtc: "Rabat UTC+1"
+  },
+  terminal: {
+    initialMessage: "Bienvenue sur l'OS de Salah Khadir. Tapez un message ou sélectionnez un prompt rapide.",
+    openingBash: "Ouverture de l'environnement bash complet...",
+    systemError: "Erreur système. Veuillez réessayer.",
+    connectionFailed: "Connexion échouée. Terminal hors ligne.",
+    title: "Terminal",
+    processing: "Traitement en cours...",
+    inputPlaceholder: "Tapez une commande...",
+    openAriaLabel: "Ouvrir l'assistant IA",
+    quickPrompts: {
+      devopsLabel: "DevOps",
+      devopsPrompt: "Parlez-moi du parcours DevOps de Salah",
+      availabilityLabel: "Disponibilité",
+      availabilityPrompt: "Salah est-il disponible pour un PFE en 2027 ?",
+      tickethubLabel: "TicketHub",
+      tickethubPrompt: "Quelle architecture TicketHub utilise-t-il ?"
+    },
+    neofetch: {
+      whoami: "salah khadir - Ingénieur Logiciel & DevOps. J'automatise et conçois des systèmes scalables.",
+      catResume: "Ouverture du CV...",
+      hireSalah: "Accès autorisé. redirection vers /contact ...",
+      help: "Commandes disponibles: whoami, clear, exit, cat resume.pdf, sudo hire salah, ls"
+    }
   }
 };

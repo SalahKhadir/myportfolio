@@ -42,33 +42,83 @@ You are the AI Assistant for Salah Khadir's official engineering portfolio (sala
 - Language: Respond in the language the user speaks (primarily English or French).
 `;
 
-// Simple in-memory rate limiting map
-const rateLimitMap = new Map<string, { count: number, timestamp: number }>();
-const RATE_LIMIT_WINDOW_MS = 60000; // 1 minute
-const MAX_REQUESTS_PER_WINDOW = 5; // 5 requests per minute per IP
+interface RateLimitRecord {
+  count: number;
+  resetTime: number;
+}
+
+const rateLimitMap = new Map<string, RateLimitRecord>();
+const RATE_LIMIT_WINDOW_MS = 60 * 1000;
+const MAX_REQUESTS_PER_WINDOW = 5;
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+
+  if (rateLimitMap.size > 1000) {
+    for (const [key, value] of rateLimitMap.entries()) {
+      if (now > value.resetTime) {
+        rateLimitMap.delete(key);
+      }
+    }
+  }
+
+  const record = rateLimitMap.get(ip);
+  if (!record || now > record.resetTime) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS });
+    return true;
+  }
+
+  if (record.count >= MAX_REQUESTS_PER_WINDOW) {
+    return false;
+  }
+
+  record.count += 1;
+  return true;
+}
 
 export async function POST(req: NextRequest) {
   try {
-    // Basic rate limiting
-    const ip = req.headers.get("x-forwarded-for") || "unknown";
-    const now = Date.now();
-    const userRateData = rateLimitMap.get(ip) || { count: 0, timestamp: now };
-    
-    if (now - userRateData.timestamp > RATE_LIMIT_WINDOW_MS) {
-      userRateData.count = 1;
-      userRateData.timestamp = now;
-    } else {
-      userRateData.count++;
-      if (userRateData.count > MAX_REQUESTS_PER_WINDOW) {
-        return NextResponse.json({ error: "Rate limit exceeded. Try again later." }, { status: 429 });
-      }
+    const forwardedHeader = req.headers.get("x-forwarded-for");
+    const clientIp = forwardedHeader ? forwardedHeader.split(",")[0].trim() : "127.0.0.1";
+
+    if (!checkRateLimit(clientIp)) {
+      return NextResponse.json(
+        { error: "Too many requests. Please wait a minute before trying again." },
+        { status: 429 }
+      );
     }
-    rateLimitMap.set(ip, userRateData);
 
-    const { message } = await req.json();
+    let body: unknown;
+    try {
+      body = await req.json();
+    } catch {
+      return NextResponse.json(
+        { error: "Invalid request payload. JSON body is required." },
+        { status: 400 }
+      );
+    }
 
-    if (!message || typeof message !== "string" || message.length > 500) {
-      return NextResponse.json({ error: "Invalid input" }, { status: 400 });
+    if (!body || typeof body !== "object" || !("message" in body)) {
+      return NextResponse.json(
+        { error: "Missing required 'message' field." },
+        { status: 400 }
+      );
+    }
+
+    const rawMessage = (body as { message: unknown }).message;
+    if (typeof rawMessage !== "string") {
+      return NextResponse.json(
+        { error: "Message must be a string." },
+        { status: 400 }
+      );
+    }
+
+    const message = rawMessage.trim();
+    if (message.length === 0 || message.length > 500) {
+      return NextResponse.json(
+        { error: "Message must be non-empty and cannot exceed 500 characters." },
+        { status: 400 }
+      );
     }
 
     const model = genAI.getGenerativeModel({
@@ -83,7 +133,7 @@ export async function POST(req: NextRequest) {
     const reply = result.response.text();
 
     return NextResponse.json({ reply });
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error("Gemini API error:", err);
     return NextResponse.json(
       { error: "Assistant temporarily offline." },

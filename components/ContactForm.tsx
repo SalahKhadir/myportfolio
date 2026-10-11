@@ -165,8 +165,8 @@ export default function ContactForm() {
             {/* Email Row */}
             <div className="flex items-center gap-4">
               <Mail className="w-5 h-5 text-accent" />
-              <a href="mailto:salah.khadir@outlook.com" className="text-black dark:text-white hover:text-accent dark:hover:text-accent hover:underline transition-colors font-medium">
-                salah.khadir@outlook.com
+              <a href={`mailto:${systemConfig.email}`} className="text-black dark:text-white hover:text-accent dark:hover:text-accent hover:underline transition-colors font-medium">
+                {systemConfig.email}
               </a>
             </div>
 
@@ -212,15 +212,15 @@ export default function ContactForm() {
           </p>
           
           <div className="flex flex-wrap items-center gap-6 text-black dark:text-white text-sm font-medium">
-            <a href="https://github.com/SalahKhadir" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-accent dark:hover:text-accent transition-colors">
+            <a href={systemConfig.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-accent dark:hover:text-accent transition-colors">
               <Github className="w-5 h-5" />
               GitHub
             </a>
-            <a href="https://linkedin.com/in/salah-khadir" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-accent dark:hover:text-accent transition-colors">
+            <a href={systemConfig.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-accent dark:hover:text-accent transition-colors">
               <Linkedin className="w-5 h-5" />
               LinkedIn
             </a>
-            <a href="mailto:salah.khadir@outlook.com" className="flex items-center gap-2 hover:text-accent dark:hover:text-accent transition-colors">
+            <a href={`mailto:${systemConfig.email}`} className="flex items-center gap-2 hover:text-accent dark:hover:text-accent transition-colors">
               <Mail className="w-5 h-5" />
               Email
             </a>

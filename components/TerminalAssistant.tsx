@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { Terminal, X, Send, Command } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import NeofetchTerminal from "./NeofetchTerminal";
+import { useLanguage } from "./LanguageContext";
 
 interface Message {
   role: "user" | "ai";
@@ -15,10 +16,7 @@ const TypewriterMarkdown = ({ content, animate }: { content: string; animate?: b
   const [displayedContent, setDisplayedContent] = useState(animate ? "" : content);
 
   useEffect(() => {
-    if (!animate) {
-      setDisplayedContent(content);
-      return;
-    }
+    if (!animate) return;
 
     let i = 0;
     const interval = setInterval(() => {
@@ -27,23 +25,28 @@ const TypewriterMarkdown = ({ content, animate }: { content: string; animate?: b
       if (i > content.length) {
         clearInterval(interval);
       }
-    }, 15); // Adjust typing speed here
+    }, 15);
 
     return () => clearInterval(interval);
   }, [content, animate]);
 
-  return <ReactMarkdown>{displayedContent}</ReactMarkdown>;
+  return <ReactMarkdown>{animate ? displayedContent : content}</ReactMarkdown>;
 };
 
 export default function TerminalAssistant() {
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [showNeofetch, setShowNeofetch] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    { role: "ai", content: "Welcome to Salah Khadir's OS. Type a message or click a quick prompt." },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const initialMessage = t.ui.terminal.initialMessage;
+  const activeMessages = useMemo(
+    () => (messages.length === 0 ? [{ role: "ai" as const, content: initialMessage }] : messages),
+    [messages, initialMessage]
+  );
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -60,23 +63,27 @@ export default function TerminalAssistant() {
     if (isOpen) {
       messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }
-  }, [messages, isOpen]);
+  }, [activeMessages, isOpen]);
 
   const sendMessage = async (text: string) => {
     if (!text.trim() || isLoading) return;
 
+    const baseMessages = messages.length === 0
+      ? [{ role: "ai" as const, content: initialMessage }]
+      : messages;
+
     if (text.trim().toLowerCase() === "terminal") {
       setShowNeofetch(true);
-      setMessages((prev) => [
-        ...prev,
+      setMessages([
+        ...baseMessages,
         { role: "user", content: text },
-        { role: "ai", content: "Opening full bash environment...", animate: true },
+        { role: "ai", content: t.ui.terminal.openingBash, animate: true },
       ]);
       setInput("");
       return;
     }
 
-    setMessages((prev) => [...prev, { role: "user", content: text }]);
+    setMessages([...baseMessages, { role: "user", content: text }]);
     setInput("");
     setIsLoading(true);
 
@@ -96,13 +103,13 @@ export default function TerminalAssistant() {
       } else {
         setMessages((prev) => [
           ...prev,
-          { role: "ai", content: data.error || "System error. Please try again.", animate: true },
+          { role: "ai", content: data.error || t.ui.terminal.systemError, animate: true },
         ]);
       }
-    } catch (error) {
+    } catch {
       setMessages((prev) => [
         ...prev,
-        { role: "ai", content: "Connection failed. Terminal offline.", animate: true },
+        { role: "ai", content: t.ui.terminal.connectionFailed, animate: true },
       ]);
     } finally {
       setIsLoading(false);
@@ -121,7 +128,7 @@ export default function TerminalAssistant() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="fixed bottom-6 right-6 z-50 flex items-center justify-center p-3 sm:p-4 rounded-full bg-black dark:bg-white text-white dark:text-black shadow-lg hover:bg-accent dark:hover:bg-accent hover:text-white transition-all hover:scale-105 active:scale-95"
-        aria-label="Open AI Assistant"
+        aria-label={t.ui.terminal.openAriaLabel}
       >
         {isOpen ? <X size={20} /> : <Terminal size={20} />}
       </button>
@@ -143,7 +150,7 @@ export default function TerminalAssistant() {
               <span className="bg-green-500 inline-block w-3 h-3 rounded-full"></span>
             </div>
             <span className="ml-2 text-xs text-gray-500 dark:text-gray-300 font-bold uppercase tracking-wider">
-              Terminal
+              {t.ui.terminal.title}
             </span>
           </div>
           <div className="flex items-center gap-2 text-xs text-gray-500">
@@ -158,7 +165,7 @@ export default function TerminalAssistant() {
 
         {/* Terminal Body */}
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
-          {messages.map((msg, idx) => (
+          {activeMessages.map((msg, idx) => (
             <div key={idx} className="flex flex-col gap-1">
               <div className="text-xs text-gray-500 uppercase flex items-center gap-2">
                 {msg.role === "ai" ? (
@@ -181,32 +188,32 @@ export default function TerminalAssistant() {
           {isLoading && (
             <div className="flex items-center gap-2 text-accent dark:text-[#90caf9]">
               <span className="animate-pulse block w-2 h-4 bg-current"></span>
-              <span className="text-xs text-gray-500">Processing...</span>
+              <span className="text-xs text-gray-500">{t.ui.terminal.processing}</span>
             </div>
           )}
           <div ref={messagesEndRef} />
         </div>
 
         {/* Quick Prompts */}
-        {messages.length < 3 && (
+        {activeMessages.length < 3 && (
           <div className="px-4 pb-2 flex flex-wrap gap-2">
             <button
-              onClick={() => handleQuickPrompt("Tell me about Salah's DevOps background")}
+              onClick={() => handleQuickPrompt(t.ui.terminal.quickPrompts.devopsPrompt)}
               className="text-[10px] px-2 py-1 bg-gray-100 dark:bg-[#1A1A1A] border border-gray-200 dark:border-gray-800 rounded hover:bg-gray-200 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 dark:hover:text-white transition-colors"
             >
-              DevOps
+              {t.ui.terminal.quickPrompts.devopsLabel}
             </button>
             <button
-              onClick={() => handleQuickPrompt("Is Salah available for a 2027 PFE?")}
+              onClick={() => handleQuickPrompt(t.ui.terminal.quickPrompts.availabilityPrompt)}
               className="text-[10px] px-2 py-1 bg-gray-100 dark:bg-[#1A1A1A] border border-gray-200 dark:border-gray-800 rounded hover:bg-gray-200 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 dark:hover:text-white transition-colors"
             >
-              Availability
+              {t.ui.terminal.quickPrompts.availabilityLabel}
             </button>
             <button
-              onClick={() => handleQuickPrompt("What architecture does TicketHub use?")}
+              onClick={() => handleQuickPrompt(t.ui.terminal.quickPrompts.tickethubPrompt)}
               className="text-[10px] px-2 py-1 bg-gray-100 dark:bg-[#1A1A1A] border border-gray-200 dark:border-gray-800 rounded hover:bg-gray-200 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400 dark:hover:text-white transition-colors"
             >
-              TicketHub
+              {t.ui.terminal.quickPrompts.tickethubLabel}
             </button>
           </div>
         )}
@@ -225,7 +232,7 @@ export default function TerminalAssistant() {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Type a command..."
+              placeholder={t.ui.terminal.inputPlaceholder}
               className="flex-1 bg-transparent border-none outline-none text-black dark:text-white text-sm placeholder-gray-400 dark:placeholder-gray-600 focus:ring-0"
               autoComplete="off"
               disabled={isLoading}
