@@ -56,14 +56,14 @@ export default function Footer() {
           <div className="lg:col-span-5 flex flex-col items-start space-y-6">
             <Link href="/" className="hover:scale-105 transition-transform duration-300">
               <Image
-                src="/assets/mylogo/horizontallogoLightBG.png"
+                src="/assets/mylogo/HorizontallogoLightBG.png"
                 alt="Salah Khadir Logo"
                 width={400}
                 height={200}
                 className="dark:hidden h-8 sm:h-9 w-auto"
               />
               <Image
-                src="/assets/mylogo/horizontallogoDarkBG.png"
+                src="/assets/mylogo/HorizontallogoDarkBG.png"
                 alt="Salah Khadir Logo"
                 width={400}
                 height={200}
