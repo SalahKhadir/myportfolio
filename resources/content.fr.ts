@@ -380,7 +380,7 @@ export const ui = {
     forCopilot: "pour l'assistant IA",
     allRightsReserved: "Tous droits réservés.",
     backToTop: "Haut de page",
-    rabatUtc: "Rabat UTC+1"
+    rabatUtc: "Rabat UTC"
   },
   terminal: {
     name: "Sal",
