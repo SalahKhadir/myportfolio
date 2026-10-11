@@ -54,27 +54,32 @@ export default function HomePage() {
   return (
     <>
       <Navbar />
-      <main>
-        <Hero />
+      <main className="relative">
+        {/* Sticky Hero Curtain */}
+        <div className="sticky top-0 z-0">
+          <Hero />
+        </div>
         
-        <FadeInView className="py-8 w-full overflow-hidden">
-          <LogoLoop
-            logos={techLogos}
-            speed={60}
-            direction="left"
-            logoHeight={40}
-            gap={60}
-            hoverSpeed={0}
-            scaleOnHover
-            fadeOut
-            ariaLabel="Technology stack"
-          />
-        </FadeInView>
+        {/* Foreground Content Sliding Over Hero */}
+        <div className="relative z-10 bg-white dark:bg-[#0a0a0a] shadow-[0_-20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+          <FadeInView className="py-8 w-full overflow-hidden">
+            <LogoLoop
+              logos={techLogos}
+              speed={60}
+              direction="left"
+              logoHeight={40}
+              gap={60}
+              hoverSpeed={0}
+              scaleOnHover
+              fadeOut
+              ariaLabel="Technology stack"
+            />
+          </FadeInView>
 
-        {/* About Me */}
-        <FadeInView className="py-24 px-6 max-w-[90rem] mx-auto w-full border-t border-gray-alt/10">
-          <AboutSection />
-        </FadeInView>
+          {/* About Me */}
+          <FadeInView className="py-24 px-6 max-w-[90rem] mx-auto w-full border-t border-gray-alt/10">
+            <AboutSection />
+          </FadeInView>
 
         {/* Selected Architectures */}
         <FadeInView className="py-24 px-6 max-w-[90rem] mx-auto w-full border-t border-gray-alt/10">
@@ -135,6 +140,7 @@ export default function HomePage() {
         <FadeInView className="py-24 px-6 border-t border-gray-alt/10 bg-[radial-gradient(#e8e8e8_1px,transparent_1px)] dark:bg-[radial-gradient(rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:20px_20px]">
           <ContactForm />
         </FadeInView>
+        </div>
       </main>
     </>
   );
