@@ -44,8 +44,8 @@ test.describe('Portfolio E2E Tests', () => {
     await expect(botcheck).toBeHidden();
 
     // Verify required validation (HTML5 native validation blocks form submission)
-    // Locate the button by its type instead of its dynamic text content
-    const submitBtn = page.locator('button[type="submit"]');
+    // Locate the contact form submit button within the contact form
+    const submitBtn = page.locator('form').filter({ has: page.locator('input[name="email"]') }).locator('button[type="submit"]');
     await submitBtn.click();
     
     // It should not change to "Sending..." because it's empty

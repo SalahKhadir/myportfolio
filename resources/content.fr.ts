@@ -383,21 +383,42 @@ export const ui = {
     rabatUtc: "Rabat UTC+1"
   },
   terminal: {
-    initialMessage: "Bienvenue sur l'OS de Salah Khadir. Tapez un message ou sélectionnez un prompt rapide.",
+    name: "Sal",
+    role: "Assistant d'ingénierie virtuel de Salah",
+    initialMessage: "Bonjour ! Je suis Sal, l'assistant d'ingénierie virtuel de Salah. Posez-moi vos questions sur son architecture backend, DevOps ou sa disponibilité de stage.",
     openingBash: "Ouverture de l'environnement bash complet...",
     systemError: "Erreur système. Veuillez réessayer.",
-    connectionFailed: "Connexion échouée. Terminal hors ligne.",
-    title: "Terminal",
+    connectionFailed: "Connexion échouée. Assistant hors ligne.",
+    title: "Sal",
+    subtitle: "Assistant d'ingénierie virtuel de Salah",
     processing: "Traitement en cours...",
-    inputPlaceholder: "Tapez une commande...",
-    openAriaLabel: "Ouvrir l'assistant IA",
+    inputPlaceholder: "Posez une question à Sal sur le backend, le cloud ou les projets...",
+    openAriaLabel: "Ouvrir Sal - Assistant d'ingénierie virtuel",
+    inquiryTitle: "Sujets d'exploration",
     quickPrompts: {
-      devopsLabel: "DevOps",
-      devopsPrompt: "Parlez-moi du parcours DevOps de Salah",
-      availabilityLabel: "Disponibilité",
-      availabilityPrompt: "Salah est-il disponible pour un PFE en 2027 ?",
-      tickethubLabel: "TicketHub",
-      tickethubPrompt: "Quelle architecture TicketHub utilise-t-il ?"
+      whoIsSalahLabel: "Qui est Salah ?",
+      whoIsSalahDesc: "Formation d'ingénieur, parcours et vision",
+      whoIsSalahPrompt: "Qui est Salah Khadir et quelle est sa formation d'ingénieur ?",
+
+      stackLabel: "Stack Backend & DevOps",
+      stackDesc: "Spring Boot 3, Docker, Kubernetes & Linux",
+      stackPrompt: "Quelles technologies Backend et DevOps Salah maîtrise-t-il ?",
+
+      certificationsLabel: "Certifications Cloud & Java",
+      certificationsDesc: "Oracle OCI Architect, DevOps & Java SE 17",
+      certificationsPrompt: "Quelles sont les certifications détenues par Salah et que valident-elles ?",
+
+      availabilityLabel: "Disponibilité Stage",
+      availabilityDesc: "Stage PFE de fin d'études 2027",
+      availabilityPrompt: "Salah est-il disponible pour un stage PFE ingénieur en 2027 ?",
+
+      tickethubLabel: "Architecture TicketHub",
+      tickethubDesc: "Monorepo, flux SSE et sécurité RBAC",
+      tickethubPrompt: "Comment est conçue l'architecture de la plateforme TicketHub ?",
+
+      experienceLabel: "Expérience Professionnelle",
+      experienceDesc: "Stages chez Capgemini Engineering & CGI",
+      experiencePrompt: "Quels projets Salah a-t-il réalisés lors de ses stages chez Capgemini et CGI ?"
     },
     neofetch: {
       whoami: "salah khadir - Ingénieur Logiciel & DevOps. J'automatise et conçois des systèmes scalables.",

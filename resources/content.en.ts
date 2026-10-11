@@ -383,21 +383,42 @@ export const ui = {
     rabatUtc: "Rabat UTC+1"
   },
   terminal: {
-    initialMessage: "Welcome to Salah Khadir's OS. Type a message or click a quick prompt.",
+    name: "SAL",
+    role: "Virtual Engineering Assistant",
+    initialMessage: "Hello! I'm Sal, Salah's virtual engineering assistant. Ask me anything about Salah's backend systems, DevOps architecture, or internship availability.",
     openingBash: "Opening full bash environment...",
     systemError: "System error. Please try again.",
-    connectionFailed: "Connection failed. Terminal offline.",
-    title: "Terminal",
+    connectionFailed: "Connection failed. Assistant offline.",
+    title: "SAL",
+    subtitle: "Salah's Virtual Engineering Assistant",
     processing: "Processing...",
-    inputPlaceholder: "Type a command...",
-    openAriaLabel: "Open AI Assistant",
+    inputPlaceholder: "Ask Sal about Salah's backend, cloud, or projects...",
+    openAriaLabel: "Open Sal - Virtual Engineering Assistant",
+    inquiryTitle: "Inquiry Topics",
     quickPrompts: {
-      devopsLabel: "DevOps",
-      devopsPrompt: "Tell me about Salah's DevOps background",
-      availabilityLabel: "Availability",
-      availabilityPrompt: "Is Salah available for a 2027 PFE?",
-      tickethubLabel: "TicketHub",
-      tickethubPrompt: "What architecture does TicketHub use?"
+      whoIsSalahLabel: "Who is Salah?",
+      whoIsSalahDesc: "Engineering background, education & core focus",
+      whoIsSalahPrompt: "Who is Salah Khadir and what is his engineering background?",
+
+      stackLabel: "Backend & DevOps Stack",
+      stackDesc: "Spring Boot 3, Docker, Kubernetes & Linux",
+      stackPrompt: "What backend and DevOps technologies does Salah use?",
+
+      certificationsLabel: "Cloud & Java Certs",
+      certificationsDesc: "Oracle OCI Architect, DevOps & Java SE 17",
+      certificationsPrompt: "What certifications does Salah hold and what do they validate?",
+
+      availabilityLabel: "Internship Availability",
+      availabilityDesc: "2027 End-of-Studies PFE engineering role",
+      availabilityPrompt: "Is Salah available for a 2027 PFE internship?",
+
+      tickethubLabel: "TicketHub Architecture",
+      tickethubDesc: "Monorepo, SSE stream & Spring Security RBAC",
+      tickethubPrompt: "How is the TicketHub incident management system architected?",
+
+      experienceLabel: "Work Experience",
+      experienceDesc: "Capgemini Engineering Morocco & CGI internships",
+      experiencePrompt: "What did Salah build during his internships at Capgemini and CGI?"
     },
     neofetch: {
       whoami: "salah khadir - Software & DevOps Engineer. I automate things and build scalable systems.",
