@@ -12,8 +12,9 @@ import { useLanguage } from "./LanguageContext";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { ui } = t;
+  const cvUrl = language === "fr" ? "/Salah_KHADIR_CV(fr).pdf" : "/Salah_KHADIR_CV(en).pdf";
 
   useEffect(() => {
     if (isOpen) {
@@ -31,8 +32,8 @@ export default function Navbar() {
       <div className="w-full px-6 lg:px-12 h-24 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="hover:scale-105 transition-transform duration-300 flex items-center">
-          <Image src="/assets/mylogo/horizontallogoLightBG.png" alt="Logo" width={300} height={300} className="dark:hidden h-10 w-auto" priority />
-          <Image src="/assets/mylogo/horizontallogoDarkBG.png" alt="Logo" width={300} height={300} className="hidden dark:block h-10 w-auto" priority />
+          <Image src="/assets/mylogo/verticallogoLightBG.png" alt="Logo" width={400} height={400} className="dark:hidden h-14 md:h-16 w-auto" priority />
+          <Image src="/assets/mylogo/verticallogoDarkBG.png" alt="Logo" width={400} height={400} className="hidden dark:block h-14 md:h-16 w-auto" priority />
         </Link>
 
         {/* Desktop Links */}
@@ -93,7 +94,7 @@ export default function Navbar() {
           <div className="h-px w-full bg-gray-alt/10 dark:bg-neutral-800 my-2" />
 
           <a 
-            href="/Salah_KHADIR_CV.pdf" 
+            href={cvUrl} 
             target="_blank" 
             rel="noopener noreferrer" 
             onClick={() => setIsOpen(false)} 

@@ -8,8 +8,9 @@ import { useLanguage } from "./LanguageContext";
 
 export default function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { systemConfig, profile, ui } = t;
+  const cvUrl = language === "fr" ? "/Salah_KHADIR_CV(fr).pdf" : "/Salah_KHADIR_CV(en).pdf";
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -136,7 +137,7 @@ export default function Hero() {
               {ui.hero.viewArchitectures}
             </Link>
             <a
-              href="/Salah_KHADIR_CV.pdf"
+              href={cvUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm tracking-wider text-gray-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"

@@ -2,8 +2,10 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
+import { useLanguage } from './LanguageContext';
 
 export default function NeofetchTerminal({ onClose }: { onClose: () => void }) {
+  const { language } = useLanguage();
   const [output, setOutput] = useState("");
   const [isReady, setIsReady] = useState(false);
   const [input, setInput] = useState("");
@@ -81,8 +83,8 @@ export default function NeofetchTerminal({ onClose }: { onClose: () => void }) {
         return;
       case "cat resume.pdf":
       case "cat resume":
-        res = "Opening resume... (If I had a real PDF right now, I'd trigger a download!)";
-        window.open("/Salah_KHADIR_CV.pdf", "_blank");
+        res = "Opening resume...";
+        window.open(language === "fr" ? "/Salah_KHADIR_CV(fr).pdf" : "/Salah_KHADIR_CV(en).pdf", "_blank");
         break;
       case "sudo hire salah":
         res = "Access granted. redirecting to /contact ...";

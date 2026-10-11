@@ -21,8 +21,9 @@ interface AboutSectionProps {
 }
 
 export default function AboutSection({ showCvDownload = false }: AboutSectionProps) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { profile, ui } = t;
+  const cvUrl = language === "fr" ? "/Salah_KHADIR_CV(fr).pdf" : "/Salah_KHADIR_CV(en).pdf";
 
   return (
     <div className="max-w-4xl mx-auto w-full flex flex-col items-center">
@@ -55,7 +56,7 @@ export default function AboutSection({ showCvDownload = false }: AboutSectionPro
             </p>
           </div>
           <a 
-            href="/Salah_KHADIR_CV.pdf" 
+            href={cvUrl} 
             target="_blank" 
             rel="noopener noreferrer" 
             className="shrink-0 flex items-center gap-4 bg-black text-white dark:bg-white dark:text-black px-6 py-4 rounded-full hover:scale-105 transition-transform duration-300"

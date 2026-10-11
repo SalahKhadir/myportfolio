@@ -3,7 +3,7 @@ export const systemConfig = {
   focus: "DevOps & Systèmes Backend",
   stack: "Spring Boot / FastAPI / GitLab CI/CD",
   location: "Rabat / Casablanca, MAROC",
-  system: "v4.2.0_Stable",
+  system: "v2.0.0_Stable",
   ref: "Portfolio_2026",
   email: "salah.khadir@outlook.com",
   github: "https://github.com/SalahKhadir",
