@@ -8,6 +8,7 @@ import { useLanguage } from "./LanguageContext";
 
 export default function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [cursorCoords, setCursorCoords] = useState({ clientX: 0, clientY: 0, isHovering: false });
   const { t, language } = useLanguage();
   const { systemConfig, profile, ui } = t;
   const cvUrl = language === "fr" ? "/Salah_KHADIR_CV(fr).pdf" : "/Salah_KHADIR_CV(en).pdf";
@@ -18,10 +19,19 @@ export default function Hero() {
       const x = (e.clientX / window.innerWidth - 0.5) * 2;
       const y = (e.clientY / window.innerHeight - 0.5) * 2;
       setMousePosition({ x, y });
+      setCursorCoords({ clientX: e.clientX, clientY: e.clientY, isHovering: true });
+    };
+
+    const handleMouseLeave = () => {
+      setCursorCoords((prev) => ({ ...prev, isHovering: false }));
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseleave", handleMouseLeave);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+    };
   }, []);
 
   const parallaxStyle = {
@@ -50,6 +60,24 @@ export default function Hero() {
       className="relative min-h-screen w-full flex items-center justify-center overflow-hidden px-4 py-20 bg-[radial-gradient(#e8e8e8_1px,transparent_1px)] dark:bg-[radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:30px_30px]"
       style={{ perspective: "1000px" }}
     >
+      {/* Interactive Cursor Spotlight Glow on Dot-Grid */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-500"
+        style={{
+          opacity: cursorCoords.isHovering ? 1 : 0,
+          background: `radial-gradient(600px circle at ${cursorCoords.clientX}px ${cursorCoords.clientY}px, rgba(var(--accent-rgb, 144, 202, 249), 0.12), transparent 75%)`,
+        }}
+      />
+
+      {/* Radar Ping Wave from Status Badge Anchor */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-12 left-10 z-0 hidden lg:block"
+      >
+        <span className="absolute w-32 h-32 -left-14 -top-14 rounded-full border border-accent/20 animate-ping opacity-30" style={{ animationDuration: "3s" }} />
+        <span className="absolute w-48 h-48 -left-22 -top-22 rounded-full border border-accent/10 animate-ping opacity-20" style={{ animationDuration: "4s", animationDelay: "1s" }} />
+      </div>
       
       {/* Left Metadata Tag (Bottom-Left) */}
       <motion.div 
