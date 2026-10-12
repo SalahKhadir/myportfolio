@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { useLanguage } from "./LanguageContext";
 
 interface ArchitectureCardProps {
@@ -30,28 +30,49 @@ export default function ArchitectureCard({
   const { ui } = t;
 
   const cardRef = useRef<HTMLDivElement>(null);
-  const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0, glareX: 50, glareY: 50, opacity: 0 });
+  const glareRef = useRef<HTMLDivElement>(null);
+  const frameRef = useRef<number | null>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
+    if (!cardRef.current || !glareRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
+    if (frameRef.current !== null) return;
 
-    const rotateX = ((y - centerY) / centerY) * -8;
-    const rotateY = ((x - centerX) / centerX) * 8;
+    frameRef.current = window.requestAnimationFrame(() => {
+      frameRef.current = null;
+      if (!cardRef.current || !glareRef.current) return;
 
-    const glareX = (x / rect.width) * 100;
-    const glareY = (y / rect.height) * 100;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -6;
+      const rotateY = ((x - centerX) / centerX) * 6;
+      const glareX = (x / rect.width) * 100;
+      const glareY = (y / rect.height) * 100;
 
-    setTilt({ rotateX, rotateY, glareX, glareY, opacity: 1 });
+      cardRef.current.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      glareRef.current.style.opacity = "1";
+      glareRef.current.style.background = `radial-gradient(circle 350px at ${glareX}% ${glareY}%, rgba(255, 255, 255, 0.18), transparent 70%)`;
+    });
   };
 
   const handleMouseLeave = () => {
-    setTilt({ rotateX: 0, rotateY: 0, glareX: 50, glareY: 50, opacity: 0 });
+    if (frameRef.current !== null) {
+      window.cancelAnimationFrame(frameRef.current);
+      frameRef.current = null;
+    }
+    if (cardRef.current) {
+      cardRef.current.style.transition = "transform 0.5s ease-out";
+      cardRef.current.style.transform = "rotateX(0deg) rotateY(0deg)";
+      setTimeout(() => {
+        if (cardRef.current) cardRef.current.style.transition = "none";
+      }, 500);
+    }
+    if (glareRef.current) {
+      glareRef.current.style.opacity = "0";
+    }
   };
 
   return (
@@ -61,26 +82,21 @@ export default function ArchitectureCard({
         {/* Offset rotated backdrop container */}
         <div className={`absolute -inset-4 bg-gray-100 dark:bg-white/5 rounded-2xl transition-transform duration-500 group-hover:rotate-0 ${isEven ? "rotate-1" : "-rotate-1"}`}></div>
         
-        {/* Interactive 3D Browser-style window */}
+        {/* Interactive 3D Browser-style window (GPU-accelerated, zero React re-renders) */}
         <div
           ref={cardRef}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           style={{
-            transform: `rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg)`,
             transformStyle: "preserve-3d",
-            transition: tilt.opacity === 0 ? "transform 0.5s ease-out" : "none",
           }}
           className="relative overflow-hidden rounded-xl border border-gray-alt/10 shadow-2xl bg-[#F8F7F4] dark:bg-black aspect-[16/10] will-change-transform"
         >
           {/* Dynamic Glare Light Sheen */}
           <div
+            ref={glareRef}
             aria-hidden="true"
-            className="absolute inset-0 pointer-events-none z-30 transition-opacity duration-300"
-            style={{
-              opacity: tilt.opacity,
-              background: `radial-gradient(circle 350px at ${tilt.glareX}% ${tilt.glareY}%, rgba(255, 255, 255, 0.18), transparent 70%)`,
-            }}
+            className="absolute inset-0 pointer-events-none z-30 transition-opacity duration-300 opacity-0 will-change-[opacity]"
           />
 
           {/* Window header */}

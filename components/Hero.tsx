@@ -2,42 +2,67 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, Variants } from "framer-motion";
 import { useLanguage } from "./LanguageContext";
 
 export default function Hero() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [cursorCoords, setCursorCoords] = useState({ clientX: 0, clientY: 0, isHovering: false });
+  const containerRef = useRef<HTMLElement>(null);
+  const portraitRef = useRef<HTMLDivElement>(null);
+  const [isHovering, setIsHovering] = useState(false);
   const { t, language } = useLanguage();
   const { systemConfig, profile, ui } = t;
   const cvUrl = language === "fr" ? "/Salah_KHADIR_CV(fr).pdf" : "/Salah_KHADIR_CV(en).pdf";
 
   useEffect(() => {
+    let animationFrameId: number | null = null;
+
     const handleMouseMove = (e: MouseEvent) => {
-      // Normalize values between -1 and 1
-      const x = (e.clientX / window.innerWidth - 0.5) * 2;
-      const y = (e.clientY / window.innerHeight - 0.5) * 2;
-      setMousePosition({ x, y });
-      setCursorCoords({ clientX: e.clientX, clientY: e.clientY, isHovering: true });
+      if (animationFrameId !== null) return;
+
+      animationFrameId = window.requestAnimationFrame(() => {
+        animationFrameId = null;
+
+        // Update CSS variables for spotlight without React re-renders
+        if (containerRef.current) {
+          containerRef.current.style.setProperty("--cursor-x", `${e.clientX}px`);
+          containerRef.current.style.setProperty("--cursor-y", `${e.clientY}px`);
+        }
+
+        // Direct transform update on portrait cut-out
+        if (portraitRef.current) {
+          const normX = (e.clientX / window.innerWidth - 0.5) * 2;
+          const normY = (e.clientY / window.innerHeight - 0.5) * 2;
+          portraitRef.current.style.transform = `translate3d(${normX * -25}px, ${normY * -25}px, 0) rotateY(${normX * -4}deg) rotateX(${normY * 4}deg)`;
+        }
+      });
     };
 
+    const handleMouseEnter = () => setIsHovering(true);
     const handleMouseLeave = () => {
-      setCursorCoords((prev) => ({ ...prev, isHovering: false }));
+      if (animationFrameId !== null) {
+        window.cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+      }
+      setIsHovering(false);
+      if (portraitRef.current) {
+        portraitRef.current.style.transform = "translate3d(0, 0, 0) rotateY(0deg) rotateX(0deg)";
+      }
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    document.addEventListener("mouseenter", handleMouseEnter);
     document.addEventListener("mouseleave", handleMouseLeave);
+
     return () => {
+      if (animationFrameId !== null) {
+        window.cancelAnimationFrame(animationFrameId);
+      }
       window.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseenter", handleMouseEnter);
       document.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
-
-  const parallaxStyle = {
-    transform: `translate3d(${mousePosition.x * -30}px, ${mousePosition.y * -30}px, 0) rotateY(${mousePosition.x * -5}deg) rotateX(${mousePosition.y * 5}deg)`,
-    transition: "transform 0.1s ease-out",
-  };
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -57,16 +82,17 @@ export default function Hero() {
 
   return (
     <section 
+      ref={containerRef}
       className="relative min-h-screen w-full flex items-center justify-center overflow-hidden px-4 py-20 bg-[radial-gradient(#e8e8e8_1px,transparent_1px)] dark:bg-[radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:30px_30px]"
       style={{ perspective: "1000px" }}
     >
-      {/* Interactive Cursor Spotlight Glow on Dot-Grid */}
+      {/* Interactive Cursor Spotlight Glow on Dot-Grid (GPU-accelerated, zero React re-renders) */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-500"
+        className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-500 will-change-[opacity]"
         style={{
-          opacity: cursorCoords.isHovering ? 1 : 0,
-          background: `radial-gradient(600px circle at ${cursorCoords.clientX}px ${cursorCoords.clientY}px, rgba(var(--accent-rgb, 144, 202, 249), 0.12), transparent 75%)`,
+          opacity: isHovering ? 1 : 0,
+          background: "radial-gradient(550px circle at var(--cursor-x, -1000px) var(--cursor-y, -1000px), rgba(var(--accent-rgb, 144, 202, 249), 0.12), transparent 75%)",
         }}
       />
 
@@ -116,7 +142,7 @@ export default function Hero() {
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           className="relative md:absolute order-1 md:order-none bottom-0 md:-left-8 lg:-left-14 xl:-left-68 z-0 md:z-20 pointer-events-none select-none w-full max-w-[300px] sm:max-w-[360px] md:max-w-none md:w-[440px] lg:w-[500px] xl:w-[750px] mx-auto flex items-end justify-center -mb-10 md:mb-0"
         >
-          <div className="relative w-full h-auto flex items-end" style={parallaxStyle}>
+          <div ref={portraitRef} className="relative w-full h-auto flex items-end will-change-transform transition-transform duration-75 ease-out">
             <Image
               src="/assets/Salah_Khadir.png"
               alt={profile.name}

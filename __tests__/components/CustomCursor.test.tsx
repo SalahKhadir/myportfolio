@@ -45,7 +45,7 @@ describe('CustomCursor Component', () => {
     const removeEventListenerSpy = jest.spyOn(window, 'removeEventListener');
 
     const { unmount } = render(<CustomCursor />);
-    expect(addEventListenerSpy).toHaveBeenCalledWith('mousemove', expect.any(Function));
+    expect(addEventListenerSpy).toHaveBeenCalledWith('mousemove', expect.any(Function), { passive: true });
 
     act(() => {
       unmount();

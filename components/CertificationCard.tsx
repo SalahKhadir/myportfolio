@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, MouseEvent } from "react";
+import { useRef, MouseEvent } from "react";
 import { motion } from "framer-motion";
 
 interface CertificationCardProps {
@@ -18,38 +18,49 @@ export default function CertificationCard({
   issuerLabel,
 }: CertificationCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const [coords, setCoords] = useState({ x: 50, y: 50 });
-  const [isHovered, setIsHovered] = useState(false);
+  const foilRef = useRef<HTMLDivElement>(null);
+  const frameRef = useRef<number | null>(null);
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
+    if (!cardRef.current || !foilRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
-    setCoords({ x, y });
+
+    if (frameRef.current !== null) return;
+
+    frameRef.current = window.requestAnimationFrame(() => {
+      frameRef.current = null;
+      if (!foilRef.current) return;
+      foilRef.current.style.opacity = "1";
+      foilRef.current.style.background = `radial-gradient(400px circle at ${x}% ${y}%, rgba(144, 202, 249, 0.18), rgba(216, 180, 254, 0.12) 35%, rgba(110, 231, 183, 0.10) 60%, transparent 80%)`;
+    });
+  };
+
+  const handleMouseLeave = () => {
+    if (frameRef.current !== null) {
+      window.cancelAnimationFrame(frameRef.current);
+      frameRef.current = null;
+    }
+    if (foilRef.current) {
+      foilRef.current.style.opacity = "0";
+    }
   };
 
   return (
     <motion.div
       ref={cardRef}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => {
-        setIsHovered(false);
-        setCoords({ x: 50, y: 50 });
-      }}
+      onMouseLeave={handleMouseLeave}
       whileHover={{ y: -4 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className="relative overflow-hidden rounded-2xl border border-gray-alt/20 bg-gray-50/60 dark:bg-white/[0.03] p-8 transition-colors duration-500 hover:border-accent/60 shadow-sm hover:shadow-xl dark:hover:shadow-accent/5 group"
+      className="relative overflow-hidden rounded-2xl border border-gray-alt/20 bg-gray-50/60 dark:bg-white/[0.03] p-8 transition-colors duration-500 hover:border-accent/60 shadow-sm hover:shadow-xl dark:hover:shadow-accent/5 group will-change-transform"
     >
-      {/* Dynamic Holographic Foil Shimmer */}
+      {/* Dynamic Holographic Foil Shimmer (zero React re-renders) */}
       <div
+        ref={foilRef}
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 transition-opacity duration-500"
-        style={{
-          opacity: isHovered ? 1 : 0,
-          background: `radial-gradient(400px circle at ${coords.x}% ${coords.y}%, rgba(144, 202, 249, 0.18), rgba(216, 180, 254, 0.12) 35%, rgba(110, 231, 183, 0.10) 60%, transparent 80%)`,
-        }}
+        className="pointer-events-none absolute inset-0 transition-opacity duration-500 opacity-0 will-change-[opacity]"
       />
 
       {/* Iridescent Foil Diagonal Sheen Sweep */}

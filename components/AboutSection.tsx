@@ -48,9 +48,9 @@ export default function AboutSection({ showCvDownload = false, showStats = false
             key={idx}
             initial={{ opacity: 0.2, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.35, margin: "-10% 0px -10% 0px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-gray-600 dark:text-gray-300 font-light text-lg md:text-xl leading-relaxed transition-opacity"
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="text-gray-600 dark:text-gray-300 font-light text-lg md:text-xl leading-relaxed will-change-[opacity,transform]"
           >
             {renderParagraph(paragraph)}
           </motion.p>

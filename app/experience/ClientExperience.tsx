@@ -81,16 +81,16 @@ export default function ClientExperience() {
                 key={idx}
                 initial={{ opacity: 0.3, x: -12 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: false, amount: 0.35 }}
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6, delay: 0.05 }}
-                className="relative pl-8 md:pl-12 group"
+                className="relative pl-8 md:pl-12 group will-change-[transform,opacity]"
               >
                 {/* Milestone Dot with Radar Pulse */}
                 <div className="absolute -left-[5px] top-2 z-20 flex items-center justify-center">
                   <motion.span
                     initial={{ scale: 0.8, opacity: 0.4 }}
                     whileInView={{ scale: 1, opacity: 1 }}
-                    viewport={{ once: false, amount: 0.35 }}
+                    viewport={{ once: true, amount: 0.2 }}
                     transition={{ duration: 0.4 }}
                     className="w-3 h-3 bg-accent rounded-full outline outline-4 outline-white dark:outline-[#0a0a0a] shadow-[0_0_10px_rgba(var(--accent-rgb,144,202,249),0.9)]"
                   />
@@ -100,7 +100,7 @@ export default function ClientExperience() {
                       scale: [1, 2.4, 2.8],
                       opacity: [0.8, 0.3, 0],
                     }}
-                    viewport={{ once: false, amount: 0.35 }}
+                    viewport={{ once: true, amount: 0.2 }}
                     transition={{
                       duration: 2.2,
                       repeat: Infinity,
@@ -133,13 +133,13 @@ export default function ClientExperience() {
                       key={i}
                       initial={{ opacity: 0, x: -16 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: false, amount: 0.35 }}
+                      viewport={{ once: true, amount: 0.2 }}
                       transition={{
                         duration: 0.45,
-                        delay: 0.1 + i * 0.08,
+                        delay: 0.08 + i * 0.06,
                         ease: "easeOut",
                       }}
-                      className="flex items-start gap-3"
+                      className="flex items-start gap-3 will-change-[transform,opacity]"
                     >
                       <span className="w-1.5 h-1.5 bg-accent rounded-full mt-2 shrink-0 shadow-[0_0_6px_rgba(var(--accent-rgb,144,202,249),0.8)]" />
                       <span className="text-sm font-mono text-gray-600 dark:text-gray-400 leading-relaxed">
@@ -155,14 +155,14 @@ export default function ClientExperience() {
                       key={tech}
                       initial={{ opacity: 0, scale: 0.85, y: 6 }}
                       whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                      viewport={{ once: false, amount: 0.35 }}
+                      viewport={{ once: true, amount: 0.2 }}
                       transition={{
                         duration: 0.35,
-                        delay: 0.15 + techIdx * 0.035,
+                        delay: 0.12 + techIdx * 0.03,
                         ease: "easeOut",
                       }}
                       whileHover={{ scale: 1.05 }}
-                      className="px-3 py-1 bg-gray-50 dark:bg-white/5 text-gray-700 dark:text-gray-300 font-mono text-[9px] uppercase tracking-widest rounded-full border border-gray-alt/20 group-hover:border-accent/40 hover:!border-accent hover:text-accent transition-colors cursor-default"
+                      className="px-3 py-1 bg-gray-50 dark:bg-white/5 text-gray-700 dark:text-gray-300 font-mono text-[9px] uppercase tracking-widest rounded-full border border-gray-alt/20 group-hover:border-accent/40 hover:!border-accent hover:text-accent transition-colors cursor-default will-change-transform"
                     >
                       {tech}
                     </motion.span>
