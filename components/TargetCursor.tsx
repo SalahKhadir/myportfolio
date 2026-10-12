@@ -91,7 +91,15 @@ export default function TargetCursor({
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
-    const update = () => setHost(finePointer.matches ? document.body : null);
+    const update = () => {
+      const isCoarse = window.matchMedia('(pointer: coarse)').matches;
+      // If the device explicitly identifies only as coarse touch, bypass cursor
+      if (isCoarse && !finePointer.matches) {
+        setHost(null);
+        return;
+      }
+      setHost(finePointer.matches ? document.body : null);
+    };
     update();
     finePointer.addEventListener('change', update);
     return () => finePointer.removeEventListener('change', update);

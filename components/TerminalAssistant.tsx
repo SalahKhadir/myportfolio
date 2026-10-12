@@ -1,10 +1,14 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useMemo } from "react";
+import dynamic from "next/dynamic";
 import { Terminal, X, Send, Command } from "lucide-react";
-import ReactMarkdown from "react-markdown";
 import NeofetchTerminal from "./NeofetchTerminal";
 import { useLanguage } from "./LanguageContext";
+
+const ReactMarkdown = dynamic(() => import("react-markdown"), {
+  loading: () => <span className="opacity-70">...</span>,
+});
 
 interface Message {
   role: "user" | "ai";

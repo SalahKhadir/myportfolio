@@ -31,7 +31,7 @@ export const architectures = [
     title: "TicketHub",
     client: "Completed Monorepo",
     description: "TicketHub provides structured incident resolution for IT support operations. Decoupled Spring Boot 3 and Next.js architecture replacing client polling with an asynchronous HTTP/1.1 Server-Sent Events (SSE) notification stream, maintaining persistent single-connection updates per client. Features an automated SlaMonitoringService running scheduled cron sweeps against strict priority-based resolution deadlines, paired with multi-tier RBAC (Client, Technician, Admin) guarded by stateless JWT authentication and Spring Security filters.",
-    image: "/assets/projects/tickethub.png",
+    image: "/assets/projects/tickethub.webp",
     stack: ["SPRING BOOT 3", "NEXT.JS (APP ROUTER)", "POSTGRESQL/MYSQL", "SPRING DATA JPA", "SERVER-SENT EVENTS (SSE)", "GITHUB ACTIONS CI"],
     coreFeatures: [
       "Async Server-Sent Events (SSE) stream eliminating redundant HTTP polling overhead",
@@ -45,7 +45,7 @@ export const architectures = [
     title: "BibloNova",
     client: "Completed Monorepo",
     description: "BibloNova pairs enterprise Java services with interactive AI capabilities via a decoupled React monorepo and Spring Boot REST API. Features a containerized 3-tier topology (Spring Boot, MySQL 8, Nginx reverse proxy) isolated in dedicated Docker Compose bridge networks. Integrates Google Gemini API constrained by token-bounded context windows and sanitized payload schemas for semantic query answering, secured by stateless JWT authentication separating admin inventory and reader catalog privileges.",
-    image: "/assets/projects/BibloNova.png",
+    image: "/assets/projects/BibloNova.webp",
     stack: ["SPRING BOOT 3", "JAVA 17", "REACT (VITE)", "MYSQL", "SPRING SECURITY", "DOCKER", "NGINX", "GOOGLE GEMINI API"],
     coreFeatures: [
       "Gemini-powered semantic querying constrained to bounded token contexts",
@@ -59,7 +59,7 @@ export const architectures = [
     title: "Sounds of Morocco",
     client: "Live / Deployed",
     description: "Sounds of Morocco is a deployed cultural news and media platform documenting the modern Moroccan music landscape. Built with Next.js (App Router), it hoists a persistent HTML5 Audio context above the router tree to ensure uninterrupted continuous playback across client-side route transitions. Backed by a headless Strapi CMS on PostgreSQL delivering modular JSON payloads cached via Next.js ISR, with a Cloudinary CDN pipeline for on-the-fly audio streaming and responsive image optimization.",
-    image: "/assets/projects/soundsofmorocco.png",
+    image: "/assets/projects/soundsofmorocco.webp",
     stack: ["NEXT.JS (APP ROUTER)", "STRAPI CMS", "POSTGRESQL (SUPABASE)", "TAILWIND CSS", "CLOUDINARY", "VERCEL"],
     coreFeatures: [
       "Global React Audio Context preserving seamless playback across route navigations",
@@ -73,7 +73,7 @@ export const architectures = [
     title: "GeoLocation Utility",
     client: "Completed Script Environment",
     description: "A high-performance Python geospatial computing environment engineered for large-scale location queries and coordinate transformations. Implements vectorized Haversine distance computations using NumPy arrays and Narwhals dataframes, replacing nested Python loops (O(N²)) with O(N) vectorized matrix operations. Enables sub-10ms spatial proximity queries across thousands of geospatial coordinate points while enforcing memory-mapped columnar evaluation that avoids intermediate dataframe copy allocations.",
-    image: "/assets/projects/geolocation.png",
+    image: "/assets/projects/geolocation.webp",
     stack: ["PYTHON", "NUMPY", "NARWHALS", "PANDAS"],
     coreFeatures: [
       "Vectorized Haversine geometric algorithms operating in O(N) vectorized matrix operations",
@@ -87,7 +87,7 @@ export const architectures = [
     title: "Enterprise HR AI Assistant",
     client: "Completed Monorepo",
     description: "Engineered during a software engineering internship, this corporate AI assistant streamlines HR workflows and resume screening. Built using FastAPI async endpoints and React, the service ingests documents (PDF/DOCX) using chunked text extraction schemas before Gemini embedding and contextual retrieval. Incorporates session-isolated chat memory keeping context within prompt limits and a custom sliding-window token-bucket rate limiter middleware, containerized with FastAPI and Nginx reverse proxy.",
-    image: "/assets/projects/ai-chatbot.png",
+    image: "/assets/projects/ai-chatbot.webp",
     stack: ["FASTAPI", "PYTHON", "GOOGLE GEMINI SDK", "SQLALCHEMY", "REACT (VITE)", "DOCKER", "NGINX"],
     coreFeatures: [
       "Sliding-window token bucket middleware enforcing strict rate limits per IP",
@@ -101,7 +101,7 @@ export const architectures = [
     title: "EcoTrace",
     client: "Completed Monorepo",
     description: "EcoTrace coordinates urban environmental irregularity reporting between citizens and municipal authorities. Built with Django REST Framework and MySQL, the backend enforces 3 isolated user tiers (Citizen reporter, Field operator, Municipal supervisor) guarded by JWT authentication. Features an asynchronous multi-part media upload pipeline enforcing strict MIME validation and 5MB payload limits with Pillow, backed by indexed spatial coordinate fields and foreign-key constraints in MySQL validated by automated GitHub Actions CI.",
-    image: "/assets/projects/ecotrace.png",
+    image: "/assets/projects/ecotrace.webp",
     stack: ["DJANGO", "DJANGO REST FRAMEWORK", "REACT", "MYSQL", "JWT AUTH", "PILLOW", "GITHUB ACTIONS"],
     coreFeatures: [
       "3-tier role isolation schema (Reporter / Operator / Supervisor) via JWT authentication",

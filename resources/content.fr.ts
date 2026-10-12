@@ -31,7 +31,7 @@ export const architectures = [
     title: "TicketHub",
     client: "Monorepo Terminé",
     description: "TicketHub assure la résolution structurée des incidents pour le support informatique. Architecture découplée Spring Boot 3 et Next.js remplaçant le polling client par un flux asynchrone Server-Sent Events (SSE) HTTP/1.1 maintenant une connexion persistante par client. Intègre un service SlaMonitoringService exécutant des balayages cron planifiés contre des délais stricts de résolution par priorité, avec RBAC multiniveaux (Client, Technicien, Admin) sécurisé par JWT sans état et filtres Spring Security.",
-    image: "/assets/projects/tickethub.png",
+    image: "/assets/projects/tickethub.webp",
     stack: ["SPRING BOOT 3", "NEXT.JS (APP ROUTER)", "POSTGRESQL/MYSQL", "SPRING DATA JPA", "SERVER-SENT EVENTS (SSE)", "GITHUB ACTIONS CI"],
     coreFeatures: [
       "Flux asynchrone Server-Sent Events (SSE) éliminant la surcharge du polling HTTP redondant",
@@ -45,7 +45,7 @@ export const architectures = [
     title: "BibloNova",
     client: "Monorepo Terminé",
     description: "BibloNova associe des services Java d'entreprise à des capacités d'IA interactives via un monorepo React et une API REST Spring Boot. Déploie une topologie 3-tiers conteneurisée (Spring Boot, MySQL 8, proxy inverse Nginx) isolée dans des réseaux bridge Docker Compose dédiés. Intègre l'API Google Gemini contrainte par des fenêtres de contexte limitées en jetons et des schémas de charges assainis pour les requêtes sémantiques, sécurisée par authentification JWT sans état séparant privilèges d'inventaire admin et catalogue lecteur.",
-    image: "/assets/projects/BibloNova.png",
+    image: "/assets/projects/BibloNova.webp",
     stack: ["SPRING BOOT 3", "JAVA 17", "REACT (VITE)", "MYSQL", "SPRING SECURITY", "DOCKER", "NGINX", "GOOGLE GEMINI API"],
     coreFeatures: [
       "Requêtes sémantiques propulsées par Gemini contraintes dans des contextes de jetons limités",
@@ -59,7 +59,7 @@ export const architectures = [
     title: "Sounds of Morocco",
     client: "En Ligne / Déployé",
     description: "Sounds of Morocco est une plateforme de médias culturels déployée pour documenter la scène musicale marocaine moderne. Conçue avec Next.js (App Router), elle hisse un contexte audio HTML5 persistant au-dessus de l'arbre de routage pour assurer une lecture continue ininterrompue lors des transitions de navigation client. Alimentée par un CMS headless Strapi sur PostgreSQL délivrant des blocs JSON modulaires mis en cache via Next.js ISR, avec un pipeline CDN Cloudinary pour le streaming audio à la volée et l'optimisation responsive des médias.",
-    image: "/assets/projects/soundsofmorocco.png",
+    image: "/assets/projects/soundsofmorocco.webp",
     stack: ["NEXT.JS (APP ROUTER)", "STRAPI CMS", "POSTGRESQL (SUPABASE)", "TAILWIND CSS", "CLOUDINARY", "VERCEL"],
     coreFeatures: [
       "Contexte audio React global préservant une lecture fluide à travers les navigations",
@@ -73,7 +73,7 @@ export const architectures = [
     title: "GeoLocation Utility",
     client: "Environnement de Script Terminé",
     description: "Environnement de calcul géospatial Python haute performance conçu pour les requêtes de localisation massives et les transformations de coordonnées. Implémente des calculs de distance Haversine vectorisés avec NumPy et Narwhals, remplaçant les boucles imbriquées (O(N²)) par des opérations matricielles vectorisées en O(N). Permet des requêtes de proximité spatiale en moins de 10 ms sur des milliers de coordonnées tout en appliquant une évaluation colonnaire évitant les allocations de copies intermédiaires.",
-    image: "/assets/projects/geolocation.png",
+    image: "/assets/projects/geolocation.webp",
     stack: ["PYTHON", "NUMPY", "NARWHALS", "PANDAS"],
     coreFeatures: [
       "Algorithmes géométriques Haversine vectorisés opérant en opérations matricielles O(N)",
@@ -87,7 +87,7 @@ export const architectures = [
     title: "Enterprise HR AI Assistant",
     client: "Monorepo Terminé",
     description: "Conçu lors d'un stage d'ingénierie logicielle, cet assistant IA rationalise les processus RH et le tri des CV. Bâti sur des endpoints asynchrones FastAPI et React, le service ingère des documents (PDF/DOCX) via une extraction de texte découpée en blocs avant la recherche contextuelle et l'embedding Gemini. Intègre une mémoire de conversation isolée par session maintenant le contexte sous les limites de jetons et un middleware limiteur de débit par seau à jetons (token-bucket), conteneurisé avec FastAPI et proxy inverse Nginx.",
-    image: "/assets/projects/ai-chatbot.png",
+    image: "/assets/projects/ai-chatbot.webp",
     stack: ["FASTAPI", "PYTHON", "GOOGLE GEMINI SDK", "SQLALCHEMY", "REACT (VITE)", "DOCKER", "NGINX"],
     coreFeatures: [
       "Middleware limiteur de débit (token-bucket) à fenêtre glissante imposant des limites strictes par IP",
@@ -101,7 +101,7 @@ export const architectures = [
     title: "EcoTrace",
     client: "Monorepo Terminé",
     description: "EcoTrace coordonne le signalement des irrégularités environnementales urbaines entre citoyens et services municipaux. Conçu avec Django REST Framework et MySQL, le backend impose 3 niveaux d'utilisateurs isolés (Citoyen déclarant, Opérateur de terrain, Superviseur municipal) protégés par authentification JWT. Intègre un pipeline asynchrone d'upload média restreignant les charges à 5 Mo avec validation stricte des types MIME via Pillow, soutenu par des champs spatiaux indexés et des contraintes de clés étrangères validés par CI GitHub Actions.",
-    image: "/assets/projects/ecotrace.png",
+    image: "/assets/projects/ecotrace.webp",
     stack: ["DJANGO", "DJANGO REST FRAMEWORK", "REACT", "MYSQL", "JWT AUTH", "PILLOW", "GITHUB ACTIONS"],
     coreFeatures: [
       "Schéma d'isolation des rôles à 3 niveaux (Déclarant / Opérateur / Superviseur) via authentification JWT",
