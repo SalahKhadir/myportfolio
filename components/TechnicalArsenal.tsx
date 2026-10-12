@@ -135,9 +135,9 @@ export default function TechnicalArsenal() {
                             className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-alt/20 dark:border-neutral-800 bg-white dark:bg-neutral-950/60 hover:border-accent/40 dark:hover:border-accent/40 text-xs font-mono text-gray-700 dark:text-neutral-300 transition-colors cursor-default shadow-sm dark:shadow-none"
                           >
                             {IconComponent ? (
-                              <IconComponent className="w-4 h-4 text-gray-400 dark:text-neutral-400 shrink-0" />
+                              <IconComponent className="w-4 h-4 text-gray-400 dark:text-neutral-400 shrink-0" aria-hidden="true" />
                             ) : (
-                              <div className="w-4 h-4 bg-gray-200 dark:bg-neutral-800 rounded-full shrink-0" />
+                              <div className="w-4 h-4 bg-gray-200 dark:bg-neutral-800 rounded-full shrink-0" aria-hidden="true" />
                             )}
                             <span className="tracking-wide">{item.name}</span>
                           </motion.div>

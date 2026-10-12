@@ -32,8 +32,8 @@ export default function Navbar() {
       <div className="w-full px-6 lg:px-12 h-24 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="hover:scale-105 transition-transform duration-300 flex items-center">
-          <Image src="/assets/mylogo/VerticallogoLightBG.png" alt="Logo" width={400} height={400} className="dark:hidden h-16 md:h-20 w-auto" priority />
-          <Image src="/assets/mylogo/VerticallogoDarkBG.png" alt="Logo" width={400} height={400} className="hidden dark:block h-16 md:h-20 w-auto" priority />
+          <Image src="/assets/mylogo/VerticallogoLightBG.png" alt="Logo" width={828} height={444} className="dark:hidden h-16 md:h-20 w-auto" priority />
+          <Image src="/assets/mylogo/VerticallogoDarkBG.png" alt="Logo" width={828} height={444} className="hidden dark:block h-16 md:h-20 w-auto" priority />
         </Link>
 
         {/* Desktop Links */}

@@ -65,19 +65,18 @@ export default function Hero() {
   }, []);
 
   const containerVariants: Variants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 1 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
+        staggerChildren: 0.08,
       }
     }
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+    hidden: { opacity: 1, y: 0 },
+    visible: { opacity: 1, y: 0 }
   };
 
   return (
@@ -106,11 +105,8 @@ export default function Hero() {
       </div>
       
       {/* Left Metadata Tag (Bottom-Left) */}
-      <motion.div 
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 1 }}
-        className="absolute bottom-10 left-8 hidden lg:block font-mono text-[10px] text-gray-400 uppercase tracking-[0.3em] leading-relaxed z-30 select-none"
+      <div 
+        className="absolute bottom-10 left-8 hidden lg:block font-mono text-[10px] text-gray-400 uppercase tracking-[0.3em] leading-relaxed z-30 select-none animate-fadeIn"
       >
         <div className="flex items-center gap-2 mb-1">
           <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
@@ -118,28 +114,22 @@ export default function Hero() {
         </div>
         <div>{ui.hero.focusLabel} <span className="text-gray-600 dark:text-gray-300">{systemConfig.focus}</span></div>
         <div>{ui.hero.stackLabel} <span className="text-gray-600 dark:text-gray-300">{systemConfig.stack}</span></div>
-      </motion.div>
+      </div>
 
       {/* Right Metadata Tag (Bottom-Right) */}
-      <motion.div 
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 1 }}
-        className="absolute bottom-10 right-8 hidden lg:block font-mono text-[10px] text-gray-400 uppercase tracking-[0.3em] leading-relaxed text-right z-30 select-none"
+      <div 
+        className="absolute bottom-10 right-8 hidden lg:block font-mono text-[10px] text-gray-400 uppercase tracking-[0.3em] leading-relaxed text-right z-30 select-none animate-fadeIn"
       >
         <div>{ui.hero.locationLabel} <span className="text-gray-600 dark:text-gray-300">{systemConfig.location}</span></div>
         <div>{ui.hero.systemLabel} <span className="text-gray-600 dark:text-gray-300">{systemConfig.system}</span></div>
         <div>{ui.hero.refLabel} <span className="text-gray-600 dark:text-gray-300">{systemConfig.ref}</span></div>
-      </motion.div>
+      </div>
 
       {/* Main Centered Stage */}
       <div className="relative w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center md:h-[85vh] md:min-h-[640px] pt-24 md:pt-0">
 
         {/* 1. Portrait Cut-out Layer */}
-        <motion.div 
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+        <div 
           className="relative md:absolute order-1 md:order-none bottom-0 md:-left-8 lg:-left-14 xl:-left-68 z-0 md:z-20 pointer-events-none select-none w-full max-w-[300px] sm:max-w-[360px] md:max-w-none md:w-[440px] lg:w-[500px] xl:w-[750px] mx-auto flex items-end justify-center -mb-10 md:mb-0"
         >
           <div ref={portraitRef} className="relative w-full h-auto flex items-end will-change-transform transition-transform duration-75 ease-out">
@@ -150,9 +140,10 @@ export default function Hero() {
               height={900}
               className="w-full h-auto object-contain object-bottom drop-shadow-2xl mix-blend-multiply dark:mix-blend-lighten opacity-93 brightness-100 contrast-110 [mask-image:linear-gradient(to_top,transparent_0%,black_20%)] md:[mask-image:linear-gradient(to_top,transparent_0%,black_15%)]"
               priority
+              fetchPriority="high"
             />
           </div>
-        </motion.div>
+        </div>
 
         {/* 2. Typography Block */}
         <motion.div 

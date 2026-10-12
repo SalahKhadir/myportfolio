@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Montserrat, Bebas_Neue, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -9,6 +10,27 @@ import ScrollProgress from "@/components/ScrollProgress";
 import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+
+const bebasNeue = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-accent",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
+
+const montserrat = Montserrat({
+  weight: ["300", "400", "700"],
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.salahkhadir.codes'),
@@ -83,7 +105,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${bebasNeue.variable} ${jetbrainsMono.variable} ${montserrat.variable}`}>
       <body
         className="font-sans antialiased bg-[#F8F7F4] dark:bg-[#0a0a0a] text-black dark:text-white min-h-screen selection:bg-accent selection:text-white"
       >

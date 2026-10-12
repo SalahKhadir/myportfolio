@@ -5,15 +5,13 @@ import { motion } from "framer-motion";
 export default function Template({ children }: { children: React.ReactNode }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
-      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{
-        type: "spring",
-        stiffness: 150,
-        damping: 15,
-        mass: 0.8,
-        duration: 0.6,
+        duration: 0.35,
+        ease: "easeOut",
       }}
+      className="will-change-[opacity,transform]"
     >
       {children}
     </motion.div>
