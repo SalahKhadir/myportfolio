@@ -20,14 +20,25 @@ export default function CertificationCard({
   const cardRef = useRef<HTMLDivElement>(null);
   const foilRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<number | null>(null);
+  const rectRef = useRef<DOMRect | null>(null);
+
+  const handleMouseEnter = () => {
+    if (cardRef.current) {
+      rectRef.current = cardRef.current.getBoundingClientRect();
+    }
+  };
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current || !foilRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
+    if (frameRef.current !== null || !foilRef.current) return;
+
+    if (!rectRef.current && cardRef.current) {
+      rectRef.current = cardRef.current.getBoundingClientRect();
+    }
+    const rect = rectRef.current;
+    if (!rect) return;
+
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
-
-    if (frameRef.current !== null) return;
 
     frameRef.current = window.requestAnimationFrame(() => {
       frameRef.current = null;
@@ -38,6 +49,7 @@ export default function CertificationCard({
   };
 
   const handleMouseLeave = () => {
+    rectRef.current = null;
     if (frameRef.current !== null) {
       window.cancelAnimationFrame(frameRef.current);
       frameRef.current = null;
@@ -50,6 +62,7 @@ export default function CertificationCard({
   return (
     <motion.div
       ref={cardRef}
+      onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       whileHover={{ y: -4 }}

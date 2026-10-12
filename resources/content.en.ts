@@ -386,7 +386,38 @@ export const ui = {
   capabilities: {
     tagline: "// TECHNICAL SCOPE",
     title: "CORE CAPABILITIES",
-    description: "Specializing in resilient server architectures, automated deployment security, and contextual data pipelines."
+    description: "Specializing in resilient server architectures, automated deployment security, and contextual data pipelines.",
+    benchmarks: [
+      {
+        value: 99.9,
+        suffix: "%",
+        decimals: 1,
+        label: "Architecture Target Availability",
+        sub: "Stateless microservice failover & healthchecks"
+      },
+      {
+        value: 32,
+        suffix: "",
+        decimals: 0,
+        label: "Vulnerabilities Intercepted",
+        sub: "Pre-prod Semgrep, Gitleaks, and Trivy scans"
+      },
+      {
+        value: 19.7,
+        prefix: "-",
+        suffix: "%",
+        decimals: 1,
+        label: "CI/CD Pipeline Latency",
+        sub: "Optimized to 4m42s via DAG parallel stages"
+      },
+      {
+        value: 100,
+        suffix: "%",
+        decimals: 0,
+        label: "Automated Test Gate Enforcement",
+        sub: "Zero unverified code pushed to main branch"
+      }
+    ]
   },
   technicalArsenal: {
     tagline: "// STACK & TOOLCHAIN",

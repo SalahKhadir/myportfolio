@@ -16,10 +16,12 @@
     scroll-behavior: smooth;
   }
   :root {
-    --accent: #000068; /* Light mode color */
+    --accent: #000DE2; /* Light mode color */
+    --accent-hover: #000bb8; /* Light mode hover */
   }
   .dark {
     --accent: #90caf9; /* Dark mode color */
+    --accent-hover: #38bdf8; /* Dark mode hover cyan */
   }
 }
 

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useRef } from "react";
 import { useLanguage } from "./LanguageContext";
 
 interface ArchitectureCardProps {
@@ -15,6 +14,7 @@ interface ArchitectureCardProps {
   coreFeatures: string[];
   isEven?: boolean;
   priority?: boolean;
+  onOpenSpecs?: () => void;
 }
 
 export default function ArchitectureCard({
@@ -27,80 +27,22 @@ export default function ArchitectureCard({
   coreFeatures,
   isEven = false,
   priority = false,
+  onOpenSpecs,
 }: ArchitectureCardProps) {
   const { t } = useLanguage();
   const { ui } = t;
 
-  const cardRef = useRef<HTMLDivElement>(null);
-  const glareRef = useRef<HTMLDivElement>(null);
-  const frameRef = useRef<number | null>(null);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current || !glareRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    if (frameRef.current !== null) return;
-
-    frameRef.current = window.requestAnimationFrame(() => {
-      frameRef.current = null;
-      if (!cardRef.current || !glareRef.current) return;
-
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * -6;
-      const rotateY = ((x - centerX) / centerX) * 6;
-      const glareX = (x / rect.width) * 100;
-      const glareY = (y / rect.height) * 100;
-
-      cardRef.current.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-      glareRef.current.style.opacity = "1";
-      glareRef.current.style.background = `radial-gradient(circle 350px at ${glareX}% ${glareY}%, rgba(255, 255, 255, 0.18), transparent 70%)`;
-    });
-  };
-
-  const handleMouseLeave = () => {
-    if (frameRef.current !== null) {
-      window.cancelAnimationFrame(frameRef.current);
-      frameRef.current = null;
-    }
-    if (cardRef.current) {
-      cardRef.current.style.transition = "transform 0.5s ease-out";
-      cardRef.current.style.transform = "rotateX(0deg) rotateY(0deg)";
-      setTimeout(() => {
-        if (cardRef.current) cardRef.current.style.transition = "none";
-      }, 500);
-    }
-    if (glareRef.current) {
-      glareRef.current.style.opacity = "0";
-    }
-  };
-
   return (
     <article className="project-item group grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
       {/* Media Mockup Column */}
-      <div className={`lg:col-span-7 relative ${isEven ? "lg:order-2" : ""}`} style={{ perspective: "1200px" }}>
-        {/* Offset rotated backdrop container */}
-        <div className={`absolute -inset-4 bg-gray-100 dark:bg-white/5 rounded-2xl transition-transform duration-500 group-hover:rotate-0 ${isEven ? "rotate-1" : "-rotate-1"}`}></div>
+      <div className={`lg:col-span-7 relative ${isEven ? "lg:order-2" : ""}`}>
+        {/* Clean static backdrop container */}
+        <div className="absolute -inset-2 bg-gray-100 dark:bg-white/5 rounded-2xl"></div>
         
-        {/* Interactive 3D Browser-style window (GPU-accelerated, zero React re-renders) */}
+        {/* Solid static browser-style window with zero mouse move tilt */}
         <div
-          ref={cardRef}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
-          style={{
-            transformStyle: "preserve-3d",
-          }}
-          className="relative overflow-hidden rounded-xl border border-gray-alt/10 shadow-2xl bg-[#F8F7F4] dark:bg-black aspect-[16/10] will-change-transform"
+          className="relative overflow-hidden rounded-xl border border-gray-alt/10 shadow-xl bg-[#F8F7F4] dark:bg-black aspect-[16/10]"
         >
-          {/* Dynamic Glare Light Sheen */}
-          <div
-            ref={glareRef}
-            aria-hidden="true"
-            className="absolute inset-0 pointer-events-none z-30 transition-opacity duration-300 opacity-0 will-change-[opacity]"
-          />
-
           {/* Window header */}
           <div className="h-8 border-b border-gray-alt/10 bg-gray-50 dark:bg-black/50 flex items-center px-4 gap-2 z-20 relative">
             <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></div>
@@ -158,10 +100,20 @@ export default function ArchitectureCard({
           ))}
         </ul>
         
-        <div className="pt-4">
-          <Link href="/contact" className="btn-link group">
-            {ui.card.viewSystemSpecs}
-          </Link>
+        <div className="pt-4 flex items-center gap-4">
+          {onOpenSpecs ? (
+            <button
+              onClick={onOpenSpecs}
+              type="button"
+              className="btn-link group text-accent hover:text-black dark:hover:text-white inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider font-bold"
+            >
+              <span>{ui.card.viewSystemSpecs}</span>
+            </button>
+          ) : (
+            <Link href="/contact" className="btn-link group">
+              {ui.card.viewSystemSpecs}
+            </Link>
+          )}
         </div>
       </div>
     </article>

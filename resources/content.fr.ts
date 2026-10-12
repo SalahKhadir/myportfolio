@@ -386,7 +386,38 @@ export const ui = {
   capabilities: {
     tagline: "// PORTÉE TECHNIQUE",
     title: "COMPÉTENCES DE BASE",
-    description: "Spécialisé dans les architectures de serveurs résilientes, la sécurité des déploiements automatisés et les pipelines de données contextuelles."
+    description: "Spécialisé dans les architectures de serveurs résilientes, la sécurité des déploiements automatisés et les pipelines de données contextuelles.",
+    benchmarks: [
+      {
+        value: 99.9,
+        suffix: "%",
+        decimals: 1,
+        label: "Disponibilité Cible de l'Architecture",
+        sub: "Microservices sans état & bilans de santé"
+      },
+      {
+        value: 32,
+        suffix: "",
+        decimals: 0,
+        label: "Vulnérabilités Interceptées",
+        sub: "Scans pré-déploiement Semgrep, Gitleaks, et Trivy"
+      },
+      {
+        value: 19.7,
+        prefix: "-",
+        suffix: "%",
+        decimals: 1,
+        label: "Latence du Pipeline CI/CD",
+        sub: "Optimisé à 4m42s via parallélisation DAG"
+      },
+      {
+        value: 100,
+        suffix: "%",
+        decimals: 0,
+        label: "Contrôle Automatisé des Tests",
+        sub: "Zéro code non vérifié poussé sur la branche main"
+      }
+    ]
   },
   technicalArsenal: {
     tagline: "// STACK & OUTILS",

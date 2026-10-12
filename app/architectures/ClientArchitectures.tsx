@@ -1,13 +1,32 @@
 "use client";
 
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import ArchitectureCard from "@/components/ArchitectureCard";
 import FadeInView from "@/components/FadeInView";
+import SystemSpecsModal from "@/components/SystemSpecsModal";
+import { ARCHITECTURE_SPECS, SystemSpecData } from "@/resources/architectureSpecs";
 import { useLanguage } from "@/components/LanguageContext";
 
 export default function ClientArchitectures() {
   const { t } = useLanguage();
   const { ui, architectures } = t;
+
+  const [activeSpec, setActiveSpec] = useState<SystemSpecData | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenSpecs = (title: string) => {
+    const spec = ARCHITECTURE_SPECS[title] || null;
+    if (spec) {
+      setActiveSpec(spec);
+      setIsModalOpen(true);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setActiveSpec(null);
+  };
 
   return (
     <>
@@ -23,12 +42,11 @@ export default function ClientArchitectures() {
           </p>
         </header>
 
-        <div className="flex flex-col gap-14 relative">
+        <div className="flex flex-col gap-20 sm:gap-28 relative">
           {architectures.map((arch, idx) => (
             <div
               key={arch.index}
-              className="sticky z-10 bg-white dark:bg-[#0c0c0e] rounded-3xl p-6 sm:p-10 border border-gray-200/80 dark:border-white/10 shadow-lg dark:shadow-2xl transition-all will-change-transform"
-              style={{ top: `calc(6rem + ${idx * 24}px)` }}
+              className="bg-white dark:bg-[#0c0c0e] rounded-3xl p-6 sm:p-10 border border-gray-200/80 dark:border-white/10 shadow-lg dark:shadow-2xl transition-all"
             >
               <ArchitectureCard 
                 index={arch.index}
@@ -40,11 +58,19 @@ export default function ClientArchitectures() {
                 coreFeatures={arch.coreFeatures}
                 isEven={idx % 2 !== 0}
                 priority={idx === 0}
+                onOpenSpecs={ARCHITECTURE_SPECS[arch.title] ? () => handleOpenSpecs(arch.title) : undefined}
               />
             </div>
           ))}
         </div>
       </main>
+
+      {/* Interactive System Architecture & Specs Modal */}
+      <SystemSpecsModal
+        spec={activeSpec}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </>
   );
 }

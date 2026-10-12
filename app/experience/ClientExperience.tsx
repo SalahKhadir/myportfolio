@@ -7,14 +7,46 @@ import CertificationCard from "@/components/CertificationCard";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useLanguage } from "@/components/LanguageContext";
 
+import MetricCounter from "@/components/MetricCounter";
+
 function renderHighlightedMetric(text: string) {
-  const parts = text.split(/(-\d+(?:\.\d+)?%|\b\d+m\d+s\b|\b\d+(?:\.\d+)?%|\b\d+\b)/g);
+  const parts = text.split(/(-\d+(?:\.\d+)?%|\b\d+(?:\.\d+)?%|\b\d+m\d+s\b|\b\d+\b)/g);
   return parts.map((part, index) => {
     if (index % 2 === 1) {
+      // Check if it's a negative or positive percentage: e.g. "-19.7%" or "32"
+      const pctMatch = part.match(/^(-)?(\d+(?:\.\d+)?)(%)$/);
+      const intMatch = part.match(/^(\d+)$/);
+
+      if (pctMatch) {
+        const prefix = pctMatch[1] ? "-" : "";
+        const num = parseFloat(pctMatch[2]);
+        const decimals = pctMatch[2].includes(".") ? pctMatch[2].split(".")[1].length : 0;
+        return (
+          <span
+            key={index}
+            className="font-mono font-bold text-accent dark:text-cyan-300 bg-accent/10 dark:bg-accent/15 px-2 py-0.5 rounded border border-accent/30 mx-0.5 inline-flex items-center shadow-[0_0_8px_rgba(var(--accent-rgb,144,202,249),0.25)]"
+          >
+            <MetricCounter value={num} prefix={prefix} suffix="%" decimals={decimals} duration={1400} />
+          </span>
+        );
+      }
+
+      if (intMatch) {
+        const num = parseInt(intMatch[1], 10);
+        return (
+          <span
+            key={index}
+            className="font-mono font-bold text-accent dark:text-cyan-300 bg-accent/10 dark:bg-accent/15 px-2 py-0.5 rounded border border-accent/30 mx-0.5 inline-flex items-center shadow-[0_0_8px_rgba(var(--accent-rgb,144,202,249),0.25)]"
+          >
+            <MetricCounter value={num} duration={1200} />
+          </span>
+        );
+      }
+
       return (
         <span
           key={index}
-          className="font-semibold text-accent dark:text-cyan-300 bg-accent/10 dark:bg-accent/15 px-1.5 py-0.5 rounded border border-accent/20 mx-0.5 inline-block"
+          className="font-mono font-semibold text-accent dark:text-cyan-300 bg-accent/10 dark:bg-accent/15 px-1.5 py-0.5 rounded border border-accent/20 mx-0.5 inline-block"
         >
           {part}
         </span>

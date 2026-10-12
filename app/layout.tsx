@@ -5,7 +5,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { LanguageProvider } from "@/components/LanguageContext";
 import TerminalAssistant from "@/components/TerminalAssistant";
-import CustomCursor from "@/components/CustomCursor";
+import TargetCursor from "@/components/TargetCursor";
 import ScrollProgress from "@/components/ScrollProgress";
 import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/react";
@@ -114,7 +114,15 @@ export default function RootLayout({
             <ScrollProgress />
             {children}
             <Footer />
-            <CustomCursor />
+            <TargetCursor
+              spinDuration={2}
+              hideDefaultCursor={true}
+              parallaxOn={false}
+              padding={9}
+              blendMode="normal"
+              cursorColor="var(--accent, #90caf9)"
+              cursorColorOnTarget="var(--accent-hover, var(--accent))"
+            />
             <TerminalAssistant />
           </LanguageProvider>
         </ThemeProvider>

@@ -8,17 +8,32 @@ import { useLanguage } from "./LanguageContext";
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
-  const portraitRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
   const { t, language } = useLanguage();
   const { systemConfig, profile, ui } = t;
   const cvUrl = language === "fr" ? "/Salah_KHADIR_CV(fr).pdf" : "/Salah_KHADIR_CV(en).pdf";
 
   useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
     let animationFrameId: number | null = null;
+    let isVisible = true;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (!isVisible && animationFrameId !== null) {
+          window.cancelAnimationFrame(animationFrameId);
+          animationFrameId = null;
+        }
+      },
+      { threshold: 0 }
+    );
+    observer.observe(container);
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (animationFrameId !== null) return;
+      if (!isVisible || animationFrameId !== null) return;
 
       animationFrameId = window.requestAnimationFrame(() => {
         animationFrameId = null;
@@ -27,13 +42,6 @@ export default function Hero() {
         if (containerRef.current) {
           containerRef.current.style.setProperty("--cursor-x", `${e.clientX}px`);
           containerRef.current.style.setProperty("--cursor-y", `${e.clientY}px`);
-        }
-
-        // Direct transform update on portrait cut-out
-        if (portraitRef.current) {
-          const normX = (e.clientX / window.innerWidth - 0.5) * 2;
-          const normY = (e.clientY / window.innerHeight - 0.5) * 2;
-          portraitRef.current.style.transform = `translate3d(${normX * -25}px, ${normY * -25}px, 0) rotateY(${normX * -4}deg) rotateX(${normY * 4}deg)`;
         }
       });
     };
@@ -45,22 +53,20 @@ export default function Hero() {
         animationFrameId = null;
       }
       setIsHovering(false);
-      if (portraitRef.current) {
-        portraitRef.current.style.transform = "translate3d(0, 0, 0) rotateY(0deg) rotateX(0deg)";
-      }
     };
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    document.addEventListener("mouseenter", handleMouseEnter);
-    document.addEventListener("mouseleave", handleMouseLeave);
+    container.addEventListener("mouseenter", handleMouseEnter);
+    container.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
+      observer.disconnect();
       if (animationFrameId !== null) {
         window.cancelAnimationFrame(animationFrameId);
       }
       window.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseenter", handleMouseEnter);
-      document.removeEventListener("mouseleave", handleMouseLeave);
+      container.removeEventListener("mouseenter", handleMouseEnter);
+      container.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
 
@@ -132,7 +138,7 @@ export default function Hero() {
         <div 
           className="relative md:absolute order-1 md:order-none bottom-0 md:-left-8 lg:-left-14 xl:-left-68 z-0 md:z-20 pointer-events-none select-none w-full max-w-[300px] sm:max-w-[360px] md:max-w-none md:w-[440px] lg:w-[500px] xl:w-[750px] mx-auto flex items-end justify-center -mb-10 md:mb-0"
         >
-          <div ref={portraitRef} className="relative w-full h-auto flex items-end will-change-transform transition-transform duration-75 ease-out">
+          <div className="relative w-full h-auto flex items-end">
             <Image
               src="/assets/Salah_Khadir.png"
               alt={profile.name}
