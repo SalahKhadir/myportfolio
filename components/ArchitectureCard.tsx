@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "./LanguageContext";
 
@@ -14,7 +13,6 @@ interface ArchitectureCardProps {
   coreFeatures: string[];
   isEven?: boolean;
   priority?: boolean;
-  onOpenSpecs?: () => void;
 }
 
 export default function ArchitectureCard({
@@ -27,7 +25,6 @@ export default function ArchitectureCard({
   coreFeatures,
   isEven = false,
   priority = false,
-  onOpenSpecs,
 }: ArchitectureCardProps) {
   const { t } = useLanguage();
   const { ui } = t;
@@ -39,7 +36,7 @@ export default function ArchitectureCard({
         {/* Clean static backdrop container */}
         <div className="absolute -inset-2 bg-gray-100 dark:bg-white/5 rounded-2xl"></div>
         
-        {/* Solid static browser-style window with zero mouse move tilt */}
+        {/* Solid static browser-style window with zero hover movements */}
         <div
           className="relative overflow-hidden rounded-xl border border-gray-alt/10 shadow-xl bg-[#F8F7F4] dark:bg-black aspect-[16/10]"
         >
@@ -50,13 +47,13 @@ export default function ArchitectureCard({
             <div className="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></div>
           </div>
           
-          {/* Image placeholder or actual image */}
+          {/* Image */}
           <div className="absolute inset-0 top-8 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-[#111] dark:to-[#0a0a0a]">
             <Image 
               src={image} 
               fill 
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" 
-              className="object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500" 
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 75vw, 60vw" 
+              className="object-cover" 
               alt={title} 
               priority={priority}
             />
@@ -99,22 +96,6 @@ export default function ArchitectureCard({
             </li>
           ))}
         </ul>
-        
-        <div className="pt-4 flex items-center gap-4">
-          {onOpenSpecs ? (
-            <button
-              onClick={onOpenSpecs}
-              type="button"
-              className="btn-link group text-accent hover:text-black dark:hover:text-white inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider font-bold"
-            >
-              <span>{ui.card.viewSystemSpecs}</span>
-            </button>
-          ) : (
-            <Link href="/contact" className="btn-link group">
-              {ui.card.viewSystemSpecs}
-            </Link>
-          )}
-        </div>
       </div>
     </article>
   );
