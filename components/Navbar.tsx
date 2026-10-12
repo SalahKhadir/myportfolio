@@ -39,19 +39,19 @@ export default function Navbar() {
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8 font-mono text-[11px] uppercase tracking-widest">
           <Link href="/architectures" className="group transition-colors hover:text-accent">
-            <span className="text-accent/40 group-hover:text-accent font-bold mr-2">01.</span> 
+            <span className="text-accent/80 group-hover:text-accent font-bold mr-2">01.</span> 
             {ui.navbar.engineeredSystems}
           </Link>
           <Link href="/capabilities" className="group transition-colors hover:text-accent">
-            <span className="text-accent/40 group-hover:text-accent font-bold mr-2">02.</span> 
+            <span className="text-accent/80 group-hover:text-accent font-bold mr-2">02.</span> 
             {ui.navbar.capabilities}
           </Link>
           <Link href="/experience" className="group transition-colors hover:text-accent">
-            <span className="text-accent/40 group-hover:text-accent font-bold mr-2">03.</span> 
+            <span className="text-accent/80 group-hover:text-accent font-bold mr-2">03.</span> 
             {ui.navbar.trackRecord}
           </Link>
           <Link href="/about" className="group transition-colors hover:text-accent">
-            <span className="text-accent/40 group-hover:text-accent font-bold mr-2">04.</span> 
+            <span className="text-accent/80 group-hover:text-accent font-bold mr-2">04.</span> 
             {ui.navbar.about}
           </Link>
           
@@ -79,16 +79,16 @@ export default function Navbar() {
       {isOpen && (
         <div className="md:hidden fixed top-24 left-0 w-full h-[calc(100vh-6rem)] bg-white/90 dark:bg-neutral-950/90 backdrop-blur-md border-t border-gray-alt/10 dark:border-neutral-800 p-8 flex flex-col gap-8 font-mono text-sm uppercase tracking-widest z-40 overflow-y-auto">
           <Link href="/architectures" onClick={() => setIsOpen(false)} className="flex items-center text-gray-900 dark:text-gray-100 hover:text-accent dark:hover:text-accent transition-colors">
-            <span className="text-accent/60 font-bold mr-4">01.</span> {ui.navbar.engineeredSystems}
+            <span className="text-accent/85 font-bold mr-4">01.</span> {ui.navbar.engineeredSystems}
           </Link>
           <Link href="/capabilities" onClick={() => setIsOpen(false)} className="flex items-center text-gray-900 dark:text-gray-100 hover:text-accent dark:hover:text-accent transition-colors">
-            <span className="text-accent/60 font-bold mr-4">02.</span> {ui.navbar.capabilities}
+            <span className="text-accent/85 font-bold mr-4">02.</span> {ui.navbar.capabilities}
           </Link>
           <Link href="/experience" onClick={() => setIsOpen(false)} className="flex items-center text-gray-900 dark:text-gray-100 hover:text-accent dark:hover:text-accent transition-colors">
-            <span className="text-accent/60 font-bold mr-4">03.</span> {ui.navbar.trackRecord}
+            <span className="text-accent/85 font-bold mr-4">03.</span> {ui.navbar.trackRecord}
           </Link>
           <Link href="/about" onClick={() => setIsOpen(false)} className="flex items-center text-gray-900 dark:text-gray-100 hover:text-accent dark:hover:text-accent transition-colors">
-            <span className="text-accent/60 font-bold mr-4">04.</span> {ui.navbar.about}
+            <span className="text-accent/85 font-bold mr-4">04.</span> {ui.navbar.about}
           </Link>
           
           <div className="h-px w-full bg-gray-alt/10 dark:bg-neutral-800 my-2" />

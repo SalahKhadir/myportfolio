@@ -325,6 +325,7 @@ export default function TerminalAssistant() {
             <button
               type="submit"
               disabled={isLoading || !input.trim()}
+              aria-label="Send message"
               className="text-gray-500 hover:text-accent dark:hover:text-accent disabled:opacity-50 transition-colors"
             >
               <Send size={16} />

@@ -141,9 +141,9 @@ export default function ArchitectureCard({
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-gray-400">{category}</span>
         </div>
         
-        <h3 className="text-4xl md:text-5xl font-bold dark:text-white tracking-tight group-hover:text-accent transition-colors duration-300">
+        <h2 className="text-4xl md:text-5xl font-bold dark:text-white tracking-tight group-hover:text-accent transition-colors duration-300">
           {title}
-        </h3>
+        </h2>
         
         <p className="text-lg text-gray-600 dark:text-gray-300 font-light leading-relaxed">
           {description}

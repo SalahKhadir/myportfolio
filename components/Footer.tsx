@@ -108,7 +108,7 @@ export default function Footer() {
                   href="/architectures"
                   className="text-gray-600 dark:text-gray-400 hover:text-accent dark:hover:text-accent transition-colors flex items-center gap-2 group"
                 >
-                  <span className="text-accent/40 group-hover:text-accent font-bold">01.</span>
+                  <span className="text-accent/80 group-hover:text-accent font-bold">01.</span>
                   {ui.navbar.engineeredSystems}
                 </Link>
               </li>
@@ -117,7 +117,7 @@ export default function Footer() {
                   href="/capabilities"
                   className="text-gray-600 dark:text-gray-400 hover:text-accent dark:hover:text-accent transition-colors flex items-center gap-2 group"
                 >
-                  <span className="text-accent/40 group-hover:text-accent font-bold">02.</span>
+                  <span className="text-accent/80 group-hover:text-accent font-bold">02.</span>
                   {ui.navbar.capabilities}
                 </Link>
               </li>
@@ -126,7 +126,7 @@ export default function Footer() {
                   href="/experience"
                   className="text-gray-600 dark:text-gray-400 hover:text-accent dark:hover:text-accent transition-colors flex items-center gap-2 group"
                 >
-                  <span className="text-accent/40 group-hover:text-accent font-bold">03.</span>
+                  <span className="text-accent/80 group-hover:text-accent font-bold">03.</span>
                   {ui.navbar.trackRecord}
                 </Link>
               </li>
@@ -135,7 +135,7 @@ export default function Footer() {
                   href="/about"
                   className="text-gray-600 dark:text-gray-400 hover:text-accent dark:hover:text-accent transition-colors flex items-center gap-2 group"
                 >
-                  <span className="text-accent/40 group-hover:text-accent font-bold">04.</span>
+                  <span className="text-accent/80 group-hover:text-accent font-bold">04.</span>
                   {ui.navbar.about}
                 </Link>
               </li>
@@ -144,7 +144,7 @@ export default function Footer() {
                   href="/contact"
                   className="text-gray-600 dark:text-gray-400 hover:text-accent dark:hover:text-accent transition-colors flex items-center gap-2 group"
                 >
-                  <span className="text-accent/40 group-hover:text-accent font-bold">05.</span>
+                  <span className="text-accent/80 group-hover:text-accent font-bold">05.</span>
                   {ui.navbar.getInTouch}
                 </Link>
               </li>
