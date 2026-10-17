@@ -1,29 +1,40 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ReactNode } from "react";
+import AnimatedContent from "./AnimatedContent";
 
 interface FadeInViewProps {
   children: ReactNode;
   className?: string;
   delay?: number;
+  distance?: number;
+  duration?: number;
+  ease?: string;
+  wipe?: "none" | "up" | "down" | "left" | "right" | "center";
 }
 
-export default function FadeInView({ children, className = "", delay = 0 }: FadeInViewProps) {
+export default function FadeInView({
+  children,
+  className = "",
+  delay = 0,
+  distance = 60,
+  duration = 0.9,
+  ease = "power3.out",
+  wipe = "none",
+}: FadeInViewProps) {
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ 
-        duration: 0.7, 
-        ease: [0.16, 1, 0.3, 1], 
-        delay 
-      }}
+    <AnimatedContent
+      distance={distance}
+      direction="vertical"
+      duration={duration}
+      ease={ease}
+      delay={delay}
+      wipe={wipe}
+      threshold={0.12}
       className={className}
-      style={{ willChange: "transform, opacity" }}
     >
       {children}
-    </motion.section>
+    </AnimatedContent>
   );
 }
+

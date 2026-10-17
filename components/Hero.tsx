@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { motion, Variants } from "framer-motion";
 import { useLanguage } from "./LanguageContext";
+import SocialIconButtons from "./SocialIconButtons";
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
@@ -133,6 +134,15 @@ export default function Hero() {
         <div>{ui.hero.stackLabel} <span className="text-gray-600 dark:text-gray-300">{systemConfig.stack}</span></div>
       </div>
 
+      {/* Floating Vertical Social Icon Dock (Desktop Right) */}
+      <div 
+        className="absolute right-6 xl:right-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-4 z-30 select-none"
+      >
+        <span className="w-px h-12 bg-gradient-to-b from-transparent to-gray-300 dark:to-neutral-800" />
+        <SocialIconButtons />
+        <span className="w-px h-12 bg-gradient-to-t from-transparent to-gray-300 dark:to-neutral-800" />
+      </div>
+
       {/* Right Metadata Tag (Bottom-Right) */}
       <div 
         className="absolute bottom-10 right-8 hidden lg:block font-mono text-[10px] text-gray-400 uppercase tracking-[0.3em] leading-relaxed text-right z-30 select-none animate-fadeIn"
@@ -216,6 +226,11 @@ export default function Hero() {
             >
               {ui.hero.getInTouch}
             </Link>
+          </motion.div>
+
+          {/* Social Icons for Mobile / Small Screens */}
+          <motion.div variants={itemVariants} className="mt-8 lg:hidden flex justify-center">
+            <SocialIconButtons />
           </motion.div>
         </motion.div>
 

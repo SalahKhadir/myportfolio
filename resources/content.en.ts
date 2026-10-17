@@ -289,7 +289,12 @@ export const ui = {
     stackLabel: "Stack:",
     locationLabel: "Location:",
     systemLabel: "System:",
-    refLabel: "Ref:"
+    refLabel: "Ref:",
+    socialLinks: {
+      github: "Salah Khadir on GitHub",
+      linkedin: "Salah Khadir on LinkedIn",
+      email: "Send Email to Salah Khadir"
+    }
   },
   about: {
     tagline: "SOFTWARE & DEVOPS ENGINEER",

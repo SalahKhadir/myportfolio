@@ -1,0 +1,134 @@
+.social-icon-buttons-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.social-icon-button {
+  position: relative;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  overflow: hidden;
+  border: 0;
+  border-radius: 50%;
+  background: #ffffff;
+  color: var(--accent);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+}
+
+:where(.dark) .social-icon-button {
+  background: #0f0f13;
+}
+
+.social-icon-button-swap {
+  display: grid;
+  place-items: center;
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.social-icon-button-swap:not(.social-icon-button-arrow) {
+  color: #1e232d;
+}
+
+:where(.dark) .social-icon-button-swap:not(.social-icon-button-arrow) {
+  color: #e5e7eb;
+}
+
+.social-icon-button-swap svg {
+  width: 18px;
+  height: 18px;
+}
+
+.social-icon-button-arrow {
+  position: absolute;
+  transform: translateY(260%);
+  color: var(--accent);
+}
+
+.social-button-border {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.social-button-border-base,
+.social-button-border-edge {
+  fill: none;
+  stroke-width: 1;
+}
+
+.social-button-border-base {
+  stroke: rgba(144, 202, 249, 0.25);
+  transition: stroke 0.2s ease;
+}
+
+:where(.dark) .social-button-border-base {
+  stroke: rgba(255, 255, 255, 0.12);
+}
+
+.social-button-border-edge,
+.social-button-fill-edge {
+  opacity: 0;
+}
+
+.social-button-border-edge {
+  stroke-linecap: round;
+}
+
+.social-button-border[data-side] .social-button-border-edge,
+.social-button-border[data-side] .social-button-fill-edge {
+  opacity: 1;
+  animation: social-neighbor-in 0.16s ease-out;
+}
+
+.social-icon-button:hover,
+.social-icon-button:focus-visible {
+  outline: none;
+  transform: scale(1.06);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+.social-icon-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.social-icon-button:hover .social-icon-button-swap:not(.social-icon-button-arrow),
+.social-icon-button:focus-visible .social-icon-button-swap:not(.social-icon-button-arrow) {
+  transform: translateY(-260%);
+}
+
+.social-icon-button:hover .social-icon-button-arrow,
+.social-icon-button:focus-visible .social-icon-button-arrow {
+  transform: translateY(0);
+}
+
+.social-icon-button:hover .social-button-border-base,
+.social-icon-button:focus-visible .social-button-border-base {
+  stroke: var(--accent);
+}
+
+@keyframes social-neighbor-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social-icon-button,
+  .social-icon-button-swap {
+    transition: none;
+  }
+  .social-button-border-edge,
+  .social-button-fill-edge {
+    animation: none;
+  }
+}

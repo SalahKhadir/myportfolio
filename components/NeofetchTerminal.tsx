@@ -4,17 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLanguage } from './LanguageContext';
 
-export default function NeofetchTerminal({ onClose }: { onClose: () => void }) {
-  const router = useRouter();
-  const { language, t } = useLanguage();
-  const [output, setOutput] = useState("");
-  const [isReady, setIsReady] = useState(false);
-  const [input, setInput] = useState("");
-  const [history, setHistory] = useState<{ cmd: string; res: React.ReactNode }[]>([]);
-  const bottomRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const neofetchText = `
+const NEOFETCH_TEXT = `
        ;         ,       
       ;:         :;      
      ::           ::     salah@portfolio
@@ -37,9 +27,19 @@ export default function NeofetchTerminal({ onClose }: { onClose: () => void }) {
         '       '        
 `;
 
+export default function NeofetchTerminal({ onClose }: { onClose: () => void }) {
+  const router = useRouter();
+  const { language, t } = useLanguage();
+  const [output, setOutput] = useState("");
+  const [isReady, setIsReady] = useState(false);
+  const [input, setInput] = useState("");
+  const [history, setHistory] = useState<{ cmd: string; res: React.ReactNode }[]>([]);
+  const bottomRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
   useEffect(() => {
     let currentText = "";
-    const lines = neofetchText.split('\n');
+    const lines = NEOFETCH_TEXT.split('\n');
     let i = 0;
     const interval = setInterval(() => {
       if (i < lines.length) {
@@ -52,7 +52,8 @@ export default function NeofetchTerminal({ onClose }: { onClose: () => void }) {
       }
     }, 25);
     return () => clearInterval(interval);
-  }, [neofetchText]);
+  }, []);
+
 
   useEffect(() => {
     if (isReady) {
